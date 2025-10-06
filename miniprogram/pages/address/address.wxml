@@ -1,0 +1,37 @@
+<!-- pages/address/address.wxml -->
+<view class="address-page">
+  <view class="section-title">我的收货地址</view>
+  <block wx:for="{{addresses}}" wx:key="id">
+    <view class="address-card">
+      <view class="address-info">
+        <text class="address-name">{{item.name}} {{item.phone}}</text>
+        <text class="address-detail">{{item.region}} {{item.detail}}</text>
+      </view>
+      <button class="remove-btn" bindtap="removeAddress" data-id="{{item.id}}">删除</button>
+    </view>
+  </block>
+  <view class="empty" wx:if="{{!addresses.length}}">
+    <text class="empty-text">暂无收货地址，请在下方添加。</text>
+  </view>
+
+  <view class="form">
+    <view class="form-title">新增地址</view>
+    <view class="form-item">
+      <text class="form-label">收货人</text>
+      <input class="form-input" placeholder="姓名" value="{{formData.name}}" bindinput="handleInput" data-field="name" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">手机号</text>
+      <input class="form-input" placeholder="手机号" value="{{formData.phone}}" bindinput="handleInput" data-field="phone" type="number" maxlength="11" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">所在地区</text>
+      <input class="form-input" placeholder="省市区" value="{{formData.region}}" bindinput="handleInput" data-field="region" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">详细地址</text>
+      <textarea class="form-textarea" placeholder="街道、小区、门牌号" value="{{formData.detail}}" bindinput="handleInput" data-field="detail"></textarea>
+    </view>
+    <button class="btn-primary submit-btn" bindtap="saveAddress">保存地址</button>
+  </view>
+</view>

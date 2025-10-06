@@ -1,0 +1,15 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "yuncha-shop",
+  "description": "云南茶叶销售小程序",
+  "appid": "touristappid",
+  "compileType": "miniprogram",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "condition": {}
+}

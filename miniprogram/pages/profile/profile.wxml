@@ -1,0 +1,52 @@
+<!-- pages/profile/profile.wxml -->
+<view class="profile">
+  <view class="profile-header">
+    <image class="avatar" src="{{userInfo && userInfo.avatar ? userInfo.avatar : defaultAvatar}}" mode="aspectFill"></image>
+    <view class="profile-info">
+      <text class="profile-name">{{userInfo && userInfo.name ? userInfo.name : '未登录用户'}}</text>
+      <text class="profile-desc">{{userInfo && userInfo.phone ? '联系电话：' + userInfo.phone : '点击下方按钮完成登录'}}</text>
+    </view>
+    <button class="btn-outline login-btn" bindtap="goToLogin">{{userInfo ? '修改信息' : '立即登录'}}</button>
+  </view>
+
+  <view class="section">
+    <view class="section-title">常用功能</view>
+    <view class="menu">
+      <view class="menu-item" bindtap="goToOrders">
+        <image class="menu-icon" src="https://img.icons8.com/color/96/clipboard-list.png" mode="aspectFit"></image>
+        <view class="menu-text">
+          <text class="menu-title">订单中心</text>
+          <text class="menu-subtitle">查看近期茶叶订单记录</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+
+      <view class="menu-item" bindtap="goToAddress">
+        <image class="menu-icon" src="https://img.icons8.com/color/96/order-delivered.png" mode="aspectFit"></image>
+        <view class="menu-text">
+          <text class="menu-title">地址管理</text>
+          <text class="menu-subtitle">新增、编辑收货地址</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+
+      <view class="menu-item" bindtap="goToCart">
+        <image class="menu-icon" src="https://img.icons8.com/color/96/shopping-cart.png" mode="aspectFit"></image>
+        <view class="menu-text">
+          <text class="menu-title">购物车</text>
+          <text class="menu-subtitle">当前共 {{cartCount}} 件商品</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">联系我们</view>
+    <view class="contact-card">
+      <text>客服热线：400-888-6688</text>
+      <text>服务时间：工作日 09:00-20:00</text>
+      <text>门店地址：云南省昆明市盘龙区茶文化体验馆</text>
+    </view>
+  </view>
+</view>

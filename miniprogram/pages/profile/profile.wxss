@@ -1,0 +1,104 @@
+/* pages/profile/profile.wxss */
+.profile {
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.profile-header {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #f0f0f0;
+}
+
+.profile-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.profile-name {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1a5b34;
+}
+
+.profile-desc {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.login-btn {
+  font-size: 26rpx;
+}
+
+.section {
+  margin-top: 32rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 16rpx 0;
+  box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.04);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 32rpx;
+  gap: 24rpx;
+}
+
+.menu-item + .menu-item {
+  border-top: 2rpx solid #f0f0f0;
+}
+
+.menu-icon {
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.menu-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-title {
+  font-size: 30rpx;
+  color: #1a5b34;
+  font-weight: 600;
+}
+
+.menu-subtitle {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.menu-arrow {
+  font-size: 40rpx;
+  color: #c0c0c0;
+}
+
+.contact-card {
+  padding: 24rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  font-size: 26rpx;
+  color: #555;
+}

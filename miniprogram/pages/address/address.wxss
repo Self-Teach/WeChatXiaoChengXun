@@ -1,0 +1,97 @@
+/* pages/address/address.wxss */
+.address-page {
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.address-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.05);
+}
+
+.address-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.address-name {
+  font-size: 30rpx;
+  color: #1a5b34;
+  font-weight: 600;
+}
+
+.address-detail {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+.remove-btn {
+  background: #fff2f0;
+  color: #ff7043;
+  padding: 12rpx 24rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+}
+
+.empty {
+  padding: 24rpx 0;
+}
+
+.empty-text {
+  color: #999;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.form {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  box-shadow: 0 12rpx 28rpx rgba(0, 0, 0, 0.06);
+}
+
+.form-title {
+  font-size: 32rpx;
+  color: #1a5b34;
+  font-weight: 600;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.form-label {
+  font-size: 26rpx;
+  color: #1a5b34;
+}
+
+.form-input,
+.form-textarea {
+  background: #f7f7f7;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  border: none;
+}
+
+.form-textarea {
+  min-height: 160rpx;
+}
+
+.submit-btn {
+  align-self: flex-end;
+  padding: 20rpx 48rpx;
+}

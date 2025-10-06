@@ -1,0 +1,39 @@
+<!-- pages/cart/cart.wxml -->
+<view class="cart-page" wx:if="{{cartItems.length > 0}}">
+  <block wx:for="{{cartItems}}" wx:key="id">
+    <view class="cart-item">
+      <image class="cart-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="cart-info">
+        <text class="cart-name">{{item.name}}</text>
+        <text class="cart-weight">规格：{{item.weight}}</text>
+        <view class="cart-bottom">
+          <text class="cart-price">￥{{item.price}}</text>
+          <view class="cart-quantity">
+            <button class="quantity-btn" bindtap="decrease" data-id="{{item.id}}">-</button>
+            <text class="quantity-value">{{item.quantity}}</text>
+            <button class="quantity-btn" bindtap="increase" data-id="{{item.id}}">+</button>
+          </view>
+        </view>
+      </view>
+      <button class="remove-btn" bindtap="removeItem" data-id="{{item.id}}">删除</button>
+    </view>
+  </block>
+
+  <view class="summary">
+    <view class="summary-row">
+      <text>合计数量</text>
+      <text>{{totalQuantity}} 件</text>
+    </view>
+    <view class="summary-row total">
+      <text>应付金额</text>
+      <text>￥{{totalAmount}}</text>
+    </view>
+    <button class="btn-primary checkout-btn" bindtap="checkout">提交订单</button>
+  </view>
+</view>
+
+<view class="empty" wx:else>
+  <image src="https://img.icons8.com/fluency/240/empty-box.png" class="empty-image"></image>
+  <text class="empty-text">购物车还是空的，快去挑选心仪的茶叶吧～</text>
+  <button class="btn-primary" bindtap="goShopping">立即选购</button>
+</view>

@@ -1,0 +1,24 @@
+<!-- pages/knowledge/knowledge.wxml -->
+<view class="container">
+  <view class="header">
+    <image class="header-image" src="https://images.unsplash.com/photo-1514849565985-00ba92794fdd?auto=format&fit=crop&w=600&q=60" mode="aspectFill"></image>
+    <view class="header-overlay">
+      <text class="header-title">云南茶叶百科</text>
+      <text class="header-subtitle">了解茶史、工艺与冲泡，喝懂每一杯云南茶。</text>
+    </view>
+  </view>
+
+  <view class="section-title">茶知识速览</view>
+  <block wx:for="{{knowledge}}" wx:key="id">
+    <view class="card">
+      <view class="card-header">
+        <text class="card-title">{{item.title}}</text>
+      </view>
+      <view class="card-content">
+        <text class="card-text">{{item.content}}</text>
+        <view class="divider"></view>
+        <text class="card-highlight">冲泡建议：{{item.brewTips}}</text>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,33 @@
+<!-- pages/orders/orders.wxml -->
+<view class="orders-page" wx:if="{{orders.length}}">
+  <block wx:for="{{orders}}" wx:key="id">
+    <view class="order-card">
+      <view class="order-header">
+        <text class="order-id">订单号：{{item.id}}</text>
+        <text class="order-date">{{item.createdAt}}</text>
+      </view>
+      <block wx:for="{{item.items}}" wx:key="id">
+        <view class="order-item">
+          <image class="order-image" src="{{item2.image}}" mode="aspectFill"></image>
+          <view class="order-info">
+            <text class="order-name">{{item2.name}}</text>
+            <text class="order-spec">规格：{{item2.weight}}</text>
+          </view>
+          <view class="order-meta">
+            <text class="order-quantity">x{{item2.quantity}}</text>
+            <text class="order-price">￥{{item2.price}}</text>
+          </view>
+        </view>
+      </block>
+      <view class="order-summary">
+        <text>共 {{item.totalQuantity}} 件商品</text>
+        <text>合计：￥{{item.totalAmount}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class="empty" wx:else>
+  <image src="https://img.icons8.com/fluency/240/order-history.png" class="empty-image"></image>
+  <text class="empty-text">暂无订单记录，去购物车提交订单吧。</text>
+</view>
