@@ -1,0 +1,40 @@
+<view class="profile-page">
+  <view class="user-card">
+    <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+    <view class="user-info">
+      <view class="user-name">{{userInfo.nickName}}</view>
+      <view class="user-desc">欢迎来到云南茶坊小程序</view>
+    </view>
+    <button class="login-btn" bindtap="handleLogin">{{isLoggedIn ? '已登录' : '立即登录'}}</button>
+  </view>
+
+  <view class="stats-card">
+    <view class="stats-item">
+      <view class="stats-value">{{stats.orders}}</view>
+      <view class="stats-label">我的订单</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{stats.pending}}</view>
+      <view class="stats-label">待支付</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{stats.addresses}}</view>
+      <view class="stats-label">收货地址</view>
+    </view>
+  </view>
+
+  <view class="menu">
+    <button class="menu-item" bindtap="viewOrders">
+      <text>订单详情</text>
+      <text class="arrow">›</text>
+    </button>
+    <button class="menu-item" bindtap="manageAddress">
+      <text>地址管理</text>
+      <text class="arrow">›</text>
+    </button>
+    <button class="menu-item" bindtap="contactService">
+      <text>联系客服</text>
+      <text class="arrow">›</text>
+    </button>
+  </view>
+</view>

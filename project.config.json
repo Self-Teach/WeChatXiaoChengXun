@@ -1,0 +1,14 @@
+{
+  "miniprogramRoot": "",
+  "projectname": "YunnanTeaShop",
+  "description": "基于本地数据的云南茶叶销售小程序",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.32.2",
+  "condition": {}
+}

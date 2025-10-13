@@ -1,0 +1,24 @@
+.container {
+  padding: 32rpx 24rpx 48rpx;
+}
+
+.article-card {
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 12rpx 24rpx rgba(26, 76, 45, 0.06);
+}
+
+.article-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a4c2d;
+  margin-bottom: 16rpx;
+}
+
+.article-content {
+  font-size: 26rpx;
+  line-height: 1.8;
+  color: #4d4d4d;
+}

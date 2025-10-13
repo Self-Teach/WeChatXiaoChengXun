@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="section-title">云南茶叶百科</view>
+  <block wx:for="{{articles}}" wx:key="title">
+    <view class="article-card">
+      <view class="article-title">{{item.title}}</view>
+      <view class="article-content">{{item.content}}</view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,41 @@
+<view class="cart-page">
+  <block wx:if="{{cartItems.length}}">
+    <block wx:for="{{cartItems}}" wx:key="id">
+      <view class="cart-card">
+        <image class="cart-img" src="{{item.image}}" mode="aspectFill" />
+        <view class="cart-info">
+          <view class="cart-name">{{item.name}}</view>
+          <view class="cart-origin">产地：{{item.origin}}</view>
+          <view class="cart-price">¥{{item.price}}</view>
+          <view class="cart-actions">
+            <view class="quantity-control">
+              <button size="mini" data-id="{{item.id}}" data-action="minus" bindtap="changeQuantity">-</button>
+              <text class="quantity-text">{{item.quantity}}</text>
+              <button size="mini" data-id="{{item.id}}" data-action="plus" bindtap="changeQuantity">+</button>
+            </view>
+            <button class="remove-btn" data-id="{{item.id}}" bindtap="removeItem">删除</button>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="summary-card">
+      <view class="summary-row">
+        <text>合计：</text>
+        <text class="summary-amount">¥{{totalAmount}}</text>
+      </view>
+      <view class="summary-actions">
+        <button class="clear-btn" bindtap="clearCart">清空</button>
+        <button class="checkout-btn" bindtap="goToCheckout">去结算</button>
+      </view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="empty">
+      <image class="empty-img" src="https://images.unsplash.com/photo-1483794344563-d27a8d18014e?auto=format&fit=crop&w=600&q=80" mode="aspectFill" />
+      <view class="empty-text">购物车还是空的，去挑选心仪的茶叶吧～</view>
+      <button class="go-shop" bindtap="goShopping">随便逛逛</button>
+    </view>
+  </block>
+</view>

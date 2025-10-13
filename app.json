@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/knowledge/knowledge",
+    "pages/cart/cart",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarTitleText": "云南茶坊",
+    "navigationBarBackgroundColor": "#1a4c2d",
+    "navigationBarTextStyle": "white",
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#1a4c2d",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/knowledge/knowledge",
+        "text": "茶知识"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  }
+}
