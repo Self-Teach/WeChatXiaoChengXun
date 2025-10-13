@@ -1,24 +1,133 @@
-.container {
-  padding: 32rpx 24rpx 48rpx;
+.knowledge-page {
+  padding: 32rpx 24rpx 120rpx;
+  background: #f6f8f7;
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
 }
 
-.article-card {
-  background-color: #ffffff;
-  border-radius: 24rpx;
+.section {
+  background: #ffffff;
+  border-radius: 28rpx;
   padding: 32rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 12rpx 24rpx rgba(26, 76, 45, 0.06);
+  box-shadow: 0 12rpx 28rpx rgba(26, 76, 45, 0.08);
 }
 
-.article-title {
+.section-title {
   font-size: 32rpx;
+  font-weight: 700;
+  color: #1a4c2d;
+  margin-bottom: 24rpx;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300rpx, 1fr));
+  gap: 24rpx;
+}
+
+.category-card {
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: #f0f6f3;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  transition: transform 0.2s ease;
+}
+
+.category-card:active {
+  transform: scale(0.98);
+}
+
+.category-name {
+  font-size: 30rpx;
   font-weight: 600;
   color: #1a4c2d;
-  margin-bottom: 16rpx;
 }
 
-.article-content {
+.category-summary {
   font-size: 26rpx;
-  line-height: 1.8;
-  color: #4d4d4d;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.category-link {
+  font-size: 24rpx;
+  color: #2d8a55;
+}
+
+.info-card {
+  padding: 24rpx;
+  border-radius: 20rpx;
+  background: rgba(26, 76, 45, 0.06);
+  margin-bottom: 24rpx;
+}
+
+.info-card:last-child {
+  margin-bottom: 0;
+}
+
+.info-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a4c2d;
+  margin-bottom: 12rpx;
+}
+
+.info-content {
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 1.7;
+}
+
+.list-card {
+  background: rgba(217, 111, 44, 0.05);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.list-subtitle {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #d96f2c;
+}
+
+.list-item {
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.brew-card {
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: rgba(26, 76, 45, 0.06);
+  margin-bottom: 24rpx;
+}
+
+.brew-card:last-child {
+  margin-bottom: 0;
+}
+
+.brew-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a4c2d;
+  margin-bottom: 12rpx;
+}
+
+.brew-step {
+  font-size: 26rpx;
+  color: #444444;
+  margin-bottom: 8rpx;
+}
+
+.brew-suggestion {
+  font-size: 24rpx;
+  color: #2d8a55;
+  margin-top: 12rpx;
 }

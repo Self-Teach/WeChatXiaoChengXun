@@ -1,6 +1,10 @@
 <view class="page">
   <view class="hero">
-    <image class="hero-bg" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80" mode="aspectFill" />
+    <image
+      class="hero-bg"
+      src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80"
+      mode="aspectFill"
+    />
     <view class="hero-content">
       <text class="hero-title">云南茶坊</text>
       <text class="hero-subtitle">臻选十二款云南茶，带您品味山间的甘露与花香。</text>
@@ -11,15 +15,16 @@
     <view class="section-title">热门茶款</view>
     <view class="tea-grid">
       <block wx:for="{{teaList}}" wx:key="id">
-        <view class="tea-card">
+        <view class="tea-card" data-id="{{item.id}}" bindtap="openDetail">
           <image class="tea-img" src="{{item.image}}" mode="aspectFill" />
           <view class="tea-info">
             <view class="tea-name">{{item.name}}</view>
             <view class="tea-origin">产地：{{item.origin}}</view>
             <view class="tea-flavor">口感：{{item.flavor}}</view>
+            <view class="tea-spec">默认规格：{{item.specs[0].label}}</view>
             <view class="tea-footer">
-              <text class="tea-price">¥{{item.price}}</text>
-              <button class="add-btn" data-id="{{item.id}}" bindtap="addToCart">加入购物车</button>
+              <text class="tea-price">¥{{item.specs[0].price}}</text>
+              <button class="add-btn" data-id="{{item.id}}" catchtap="addToCart">加入购物车</button>
             </view>
           </view>
         </view>

@@ -22,9 +22,11 @@ Page({
   },
 
   changeQuantity(event) {
-    const { id, action } = event.currentTarget.dataset;
+    const { id, specId, action } = event.currentTarget.dataset;
     const cart = [...(this.data.cartItems || [])];
-    const index = cart.findIndex((item) => item.id === id);
+    const index = cart.findIndex(
+      (item) => item.id === id && (specId ? item.specId === specId : !item.specId)
+    );
     if (index === -1) return;
 
     if (action === 'minus' && cart[index].quantity > 1) {
@@ -49,8 +51,13 @@ Page({
   },
 
   removeItem(event) {
-    const { id } = event.currentTarget.dataset;
-    const cart = [...(this.data.cartItems || [])].filter((item) => item.id !== id);
+    const { id, specId } = event.currentTarget.dataset;
+    const cart = [...(this.data.cartItems || [])].filter((item) => {
+      if (specId) {
+        return !(item.id === id && item.specId === specId);
+      }
+      return item.id !== id;
+    });
     this.updateCart(cart);
   },
 

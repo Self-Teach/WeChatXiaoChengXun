@@ -1,19 +1,37 @@
 <view class="cart-page">
   <block wx:if="{{cartItems.length}}">
-    <block wx:for="{{cartItems}}" wx:key="id">
+    <block wx:for="{{cartItems}}" wx:key="specId">
       <view class="cart-card">
         <image class="cart-img" src="{{item.image}}" mode="aspectFill" />
         <view class="cart-info">
           <view class="cart-name">{{item.name}}</view>
           <view class="cart-origin">产地：{{item.origin}}</view>
+          <view class="cart-spec">规格：{{item.specLabel || '默认'}}</view>
           <view class="cart-price">¥{{item.price}}</view>
           <view class="cart-actions">
             <view class="quantity-control">
-              <button size="mini" data-id="{{item.id}}" data-action="minus" bindtap="changeQuantity">-</button>
+              <button
+                size="mini"
+                data-id="{{item.id}}"
+                data-spec-id="{{item.specId}}"
+                data-action="minus"
+                bindtap="changeQuantity"
+              >-</button>
               <text class="quantity-text">{{item.quantity}}</text>
-              <button size="mini" data-id="{{item.id}}" data-action="plus" bindtap="changeQuantity">+</button>
+              <button
+                size="mini"
+                data-id="{{item.id}}"
+                data-spec-id="{{item.specId}}"
+                data-action="plus"
+                bindtap="changeQuantity"
+              >+</button>
             </view>
-            <button class="remove-btn" data-id="{{item.id}}" bindtap="removeItem">删除</button>
+            <button
+              class="remove-btn"
+              data-id="{{item.id}}"
+              data-spec-id="{{item.specId}}"
+              bindtap="removeItem"
+            >删除</button>
           </view>
         </view>
       </view>
@@ -33,7 +51,11 @@
 
   <block wx:else>
     <view class="empty">
-      <image class="empty-img" src="https://images.unsplash.com/photo-1483794344563-d27a8d18014e?auto=format&fit=crop&w=600&q=80" mode="aspectFill" />
+      <image
+        class="empty-img"
+        src="https://images.unsplash.com/photo-1483794344563-d27a8d18014e?auto=format&fit=crop&w=600&q=80"
+        mode="aspectFill"
+      />
       <view class="empty-text">购物车还是空的，去挑选心仪的茶叶吧～</view>
       <button class="go-shop" bindtap="goShopping">随便逛逛</button>
     </view>

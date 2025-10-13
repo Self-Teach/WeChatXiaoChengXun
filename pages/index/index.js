@@ -31,12 +31,21 @@ Page({
       return;
     }
 
-    const existingIndex = cart.findIndex((item) => item.id === id);
+    const spec =
+      teaItem.specs.find((item) => item.id === teaItem.defaultSpecId) || teaItem.specs[0];
+    const existingIndex = cart.findIndex((item) => item.id === id && item.specId === spec.id);
+
     if (existingIndex > -1) {
       cart[existingIndex].quantity += 1;
     } else {
       cart.push({
-        ...teaItem,
+        id: teaItem.id,
+        name: teaItem.name,
+        origin: teaItem.origin,
+        image: teaItem.image,
+        price: spec.price,
+        specId: spec.id,
+        specLabel: spec.label,
         quantity: 1
       });
     }
@@ -46,6 +55,13 @@ Page({
     wx.showToast({
       title: '已加入购物车',
       icon: 'success'
+    });
+  },
+
+  openDetail(event) {
+    const { id } = event.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/product/detail?id=${id}`
     });
   },
 

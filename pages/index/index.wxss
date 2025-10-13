@@ -70,9 +70,14 @@
 }
 
 .tea-origin,
-.tea-flavor {
+.tea-flavor,
+.tea-spec {
   font-size: 24rpx;
   color: #666666;
+}
+
+.tea-spec {
+  color: #888888;
 }
 
 .tea-footer {

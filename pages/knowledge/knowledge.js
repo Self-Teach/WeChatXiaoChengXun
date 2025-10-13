@@ -1,13 +1,22 @@
-const { knowledgeArticles } = require('../../utils/teaData');
+const { teaCategories, knowledgeSections } = require('../../utils/teaData');
 
 Page({
   data: {
-    articles: []
+    categories: [],
+    sections: {}
   },
 
   onLoad() {
     this.setData({
-      articles: knowledgeArticles
+      categories: teaCategories,
+      sections: knowledgeSections
+    });
+  },
+
+  openCategory(event) {
+    const { id } = event.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/knowledge/detail?id=${id}`
     });
   }
 });

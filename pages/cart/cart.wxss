@@ -1,5 +1,6 @@
 .cart-page {
   padding: 24rpx;
+  background: #f6f8f7;
 }
 
 .cart-card {
@@ -30,9 +31,14 @@
   color: #1a4c2d;
 }
 
-.cart-origin {
+.cart-origin,
+.cart-spec {
   font-size: 24rpx;
   color: #666666;
+}
+
+.cart-spec {
+  color: #2d8a55;
 }
 
 .cart-price {

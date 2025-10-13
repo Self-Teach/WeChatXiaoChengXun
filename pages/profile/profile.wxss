@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 24rpx;
+  background: #f6f8f7;
 }
 
 .user-card {
@@ -74,25 +75,83 @@
   color: #666666;
 }
 
-.menu {
+.card {
   background: #ffffff;
   border-radius: 32rpx;
-  overflow: hidden;
   box-shadow: 0 12rpx 24rpx rgba(26, 76, 45, 0.06);
+  padding: 24rpx 0;
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24rpx 16rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a4c2d;
+}
+
+.card-link {
+  color: #2d8a55;
+  background: transparent;
+  border: none;
+  font-size: 26rpx;
+  padding: 0;
+  line-height: 1;
+}
+
+.card-link::after {
+  border: none;
+}
+
+.order-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16rpx;
+  padding: 24rpx;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 16rpx 12rpx;
+}
+
+.order-icon {
+  font-size: 42rpx;
+}
+
+.order-label {
+  font-size: 24rpx;
+  color: #333333;
 }
 
 .menu-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32rpx 24rpx;
+  padding: 28rpx 24rpx;
   font-size: 28rpx;
   color: #333333;
   border-bottom: 1rpx solid #f0f0f0;
+  background: transparent;
 }
 
 .menu-item:last-child {
   border-bottom: none;
+}
+
+.menu-item::after {
+  border: none;
 }
 
 .arrow {

@@ -1,9 +1,51 @@
-<view class="container">
-  <view class="section-title">云南茶叶百科</view>
-  <block wx:for="{{articles}}" wx:key="title">
-    <view class="article-card">
-      <view class="article-title">{{item.title}}</view>
-      <view class="article-content">{{item.content}}</view>
+<view class="knowledge-page">
+  <view class="section">
+    <view class="section-title">云南茶分类</view>
+    <view class="category-grid">
+      <block wx:for="{{categories}}" wx:key="id">
+        <view class="category-card" data-id="{{item.id}}" bindtap="openCategory">
+          <view class="category-name">{{item.name}}</view>
+          <view class="category-summary">{{item.summary}}</view>
+          <view class="category-link">查看详细介绍 ›</view>
+        </view>
+      </block>
     </view>
-  </block>
+  </view>
+
+  <view class="section" wx:if="{{sections.origins && sections.origins.length}}">
+    <view class="section-title">云南茶产地介绍</view>
+    <block wx:for="{{sections.origins}}" wx:key="name">
+      <view class="info-card">
+        <view class="info-title">{{item.name}}</view>
+        <view class="info-content">{{item.description}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="section" wx:if="{{sections.storage}}">
+    <view class="section-title">云南茶存储事项</view>
+    <view class="list-card">
+      <view class="list-subtitle">核心原则</view>
+      <block wx:for="{{sections.storage.principles}}" wx:key="index">
+        <view class="list-item">{{index + 1}}. {{item}}</view>
+      </block>
+      <view class="list-subtitle">实用贴士</view>
+      <block wx:for="{{sections.storage.tips}}" wx:key="index">
+        <view class="list-item">{{item}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{sections.brewing && sections.brewing.length}}">
+    <view class="section-title">云南茶冲泡方法</view>
+    <block wx:for="{{sections.brewing}}" wx:key="teaType">
+      <view class="brew-card">
+        <view class="brew-title">{{item.teaType}}</view>
+        <block wx:for="{{item.steps}}" wx:key="index">
+          <view class="brew-step">{{index + 1}}. {{item}}</view>
+        </block>
+        <view class="brew-suggestion">小贴士：{{item.suggestion}}</view>
+      </view>
+    </block>
+  </view>
 </view>

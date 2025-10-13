@@ -1,0 +1,24 @@
+<view class="detail-page" wx:if="{{category}}">
+  <view class="header">
+    <view class="title">{{category.name}}</view>
+    <view class="summary">{{category.summary}}</view>
+    <button class="share-btn" open-type="share">分享给朋友</button>
+  </view>
+
+  <view class="section">
+    <view class="section-title">核心知识</view>
+    <block wx:for="{{category.details}}" wx:key="index">
+      <view class="paragraph">{{item}}</view>
+    </block>
+  </view>
+
+  <view class="section">
+    <view class="section-title">冲泡建议</view>
+    <block wx:for="{{category.brewTips}}" wx:key="index">
+      <view class="tip-item">
+        <text class="dot">•</text>
+        <text class="tip-text">{{item}}</text>
+      </view>
+    </block>
+  </view>
+</view>

@@ -15,7 +15,7 @@
     </view>
     <view class="stats-item">
       <view class="stats-value">{{stats.pending}}</view>
-      <view class="stats-label">待支付</view>
+      <view class="stats-label">待处理商品</view>
     </view>
     <view class="stats-item">
       <view class="stats-value">{{stats.addresses}}</view>
@@ -23,11 +23,23 @@
     </view>
   </view>
 
-  <view class="menu">
-    <button class="menu-item" bindtap="viewOrders">
-      <text>订单详情</text>
-      <text class="arrow">›</text>
-    </button>
+  <view class="card">
+    <view class="card-header">
+      <view class="card-title">订单服务</view>
+      <button class="card-link" bindtap="viewOrders">全部订单 ›</button>
+    </view>
+    <view class="order-grid">
+      <block wx:for="{{orderStatusList}}" wx:key="key">
+        <view class="order-item" data-status="{{item.key}}" bindtap="handleStatusTap">
+          <view class="order-icon">{{item.icon}}</view>
+          <view class="order-label">{{item.label}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">常用服务</view>
     <button class="menu-item" bindtap="manageAddress">
       <text>地址管理</text>
       <text class="arrow">›</text>
@@ -36,5 +48,15 @@
       <text>联系客服</text>
       <text class="arrow">›</text>
     </button>
+  </view>
+
+  <view class="card">
+    <view class="card-title">账号与安全</view>
+    <block wx:for="{{accountSecurityOptions}}" wx:key="key">
+      <button class="menu-item" data-key="{{item.key}}" bindtap="handleAccountOption">
+        <text>{{item.label}}</text>
+        <text class="arrow">›</text>
+      </button>
+    </block>
   </view>
 </view>
