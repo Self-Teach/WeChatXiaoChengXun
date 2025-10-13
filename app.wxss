@@ -1,0 +1,38 @@
+/**
+ * 全局样式设置
+ */
+page {
+  background-color: #f6f7fb;
+  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  color: #333333;
+}
+
+.text-muted {
+  color: #888888;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #0a8a4a;
+  margin: 32rpx 0 16rpx;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.08);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0a8a4a, #13b067);
+  color: #ffffff;
+  border-radius: 999rpx;
+}
+
+.btn-outline {
+  border: 1rpx solid #0a8a4a;
+  color: #0a8a4a;
+  border-radius: 999rpx;
+}

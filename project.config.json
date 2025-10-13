@@ -1,0 +1,15 @@
+{
+  "description": "云南茶叶销售小程序",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true
+  },
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "yunnan-tea-shop",
+  "condition": {}
+}

@@ -1,0 +1,78 @@
+<view wx:if="{{product}}" class="container">
+  <swiper class="banner" indicator-dots="true" autoplay="true" circular="true">
+    <block wx:for="{{product.images}}" wx:key="*this">
+      <swiper-item>
+        <image class="banner-image" mode="aspectFill" src="{{item}}" bindtap="previewImage" data-src="{{item}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="card info-card">
+    <view class="title">{{product.name}}</view>
+    <view class="price">￥{{product.price}}</view>
+    <view class="meta">产地：{{product.origin}} · 库存：{{product.stock}}</view>
+    <view class="desc">{{product.description}}</view>
+  </view>
+
+  <view class="card option-card" wx:if="{{product.specs.length}}">
+    <view class="option-title">规格型号</view>
+    <radio-group class="option-group" bindchange="handleSpecChange">
+      <label class="option-item" wx:for="{{product.specs}}" wx:key="*this">
+        <radio value="{{item}}" checked="{{item === selectedSpec}}" />
+        <text>{{item}}</text>
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="card option-card" wx:if="{{product.options.length}}">
+    <view class="option-title">包装选择</view>
+    <radio-group class="option-group" bindchange="handleOptionChange">
+      <label class="option-item" wx:for="{{product.options}}" wx:key="*this">
+        <radio value="{{item}}" checked="{{item === selectedOption}}" />
+        <text>{{item}}</text>
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="card quantity-card">
+    <view class="option-title">购买数量</view>
+    <view class="quantity-control">
+      <button class="quantity-btn" size="mini" bindtap="decreaseQty">-</button>
+      <view class="quantity-value">{{quantity}}</view>
+      <button class="quantity-btn" size="mini" bindtap="increaseQty">+</button>
+    </view>
+  </view>
+
+  <view class="card reviews-card" wx:if="{{product.reviews.length}}">
+    <view class="option-title">茶友评价</view>
+    <block wx:for="{{product.reviews}}" wx:key="user">
+      <view class="review-item">
+        <image class="avatar" mode="aspectFill" src="{{item.avatar}}" />
+        <view class="review-content">
+          <view class="review-header">
+            <text class="review-user">{{item.user}}</text>
+            <text class="review-date">{{item.date}}</text>
+          </view>
+          <view class="review-text">{{item.content}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="card detail-card">
+    <view class="option-title">商品详情</view>
+    <view class="detail-images">
+      <block wx:for="{{product.detailImages.length ? product.detailImages : product.images}}" wx:key="*this">
+        <image class="detail-image" mode="aspectFill" src="{{item}}" />
+      </block>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <button class="share-btn" open-type="share">分享</button>
+    <button class="add-btn" type="primary" bindtap="addToCart">加入购物车</button>
+    <button class="buy-btn" type="default" bindtap="addToCart">立即购买</button>
+  </view>
+</view>
+
+<view wx:else class="empty">加载中...</view>

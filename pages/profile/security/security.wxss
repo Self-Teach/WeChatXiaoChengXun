@@ -1,0 +1,42 @@
+.security-page {
+  padding: 24rpx 32rpx 80rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.intro .title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.intro .desc {
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.option {
+  position: relative;
+  padding-right: 72rpx;
+}
+
+.option-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.option-desc {
+  font-size: 26rpx;
+  color: #777777;
+  margin-top: 8rpx;
+}
+
+.more {
+  position: absolute;
+  right: 32rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0a8a4a;
+}

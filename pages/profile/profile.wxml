@@ -1,0 +1,41 @@
+<view class="profile-header card">
+  <image class="avatar" mode="aspectFill" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=60" />
+  <view class="user-info">
+    <view class="user-name">{{userName}}</view>
+    <view class="user-desc">欢迎来到云茶汇，探索云南好茶。</view>
+  </view>
+  <button wx:if="{{!loggedIn}}" class="login-btn" size="mini" bindtap="handleLogin">登录</button>
+  <view wx:else class="login-state">已登录</view>
+</view>
+
+<view class="card order-card" bindtap="goOrders">
+  <view class="order-header">
+    <view class="order-title">订单详情</view>
+    <text class="more">全部订单 ></text>
+  </view>
+  <view class="order-status">
+    <block wx:for="{{orderStatus}}" wx:key="key">
+      <view class="status-item">
+        <view class="status-icon">{{item.icon}}</view>
+        <view class="status-label">{{item.label}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="card setting-card">
+  <navigator class="setting-item" url="/pages/profile/address/address">
+    <view>地址管理</view>
+    <text class="more">管理收货地址 ></text>
+  </navigator>
+  <navigator class="setting-item" url="/pages/profile/security/security">
+    <view>账号与安全</view>
+    <text class="more">手机/密码设置 ></text>
+  </navigator>
+</view>
+
+<view class="card helper-card">
+  <view class="helper-title">贴心服务</view>
+  <view class="helper-desc">关注我们的公众号或联系客服，获取更多云南茶资讯。</view>
+  <button class="contact-btn" open-type="contact">联系客服</button>
+</view>

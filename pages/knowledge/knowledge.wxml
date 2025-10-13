@@ -1,0 +1,25 @@
+<view class="intro card">
+  <view class="title">茶山百科</view>
+  <view class="desc">走近云南茶山，了解普洱茶的分类、产地与冲泡技巧，品味一杯茶的山野故事。</view>
+</view>
+
+<block wx:for="{{sections}}" wx:key="id">
+  <view class="card section">
+    <view class="section-header" bindtap="toggleSection" data-id="{{item.id}}">
+      <view>
+        <view class="section-title">{{item.title}}</view>
+        <view class="section-desc">{{item.description}}</view>
+      </view>
+      <text class="section-toggle">{{item.expanded ? '收起' : '展开'}}</text>
+    </view>
+
+    <view wx:if="{{item.expanded}}" class="section-body">
+      <block wx:for="{{item.items}}" wx:key="name">
+        <view class="knowledge-item">
+          <view class="item-name">{{item.name}}</view>
+          <view class="item-content">{{item.content}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</block>

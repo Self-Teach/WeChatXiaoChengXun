@@ -1,0 +1,123 @@
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin: 32rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.user-desc {
+  font-size: 26rpx;
+  color: #666666;
+  margin-top: 8rpx;
+}
+
+.login-btn {
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, #0a8a4a, #13b067);
+  color: #ffffff;
+}
+
+.login-state {
+  font-size: 24rpx;
+  color: #0a8a4a;
+}
+
+.order-card {
+  margin: 0 32rpx;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.order-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.more {
+  font-size: 24rpx;
+  color: #888888;
+}
+
+.order-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.status-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.status-icon {
+  font-size: 40rpx;
+}
+
+.status-label {
+  font-size: 24rpx;
+  color: #555555;
+}
+
+.setting-card {
+  margin: 24rpx 32rpx;
+  padding: 0;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  color: #333333;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.helper-card {
+  margin: 24rpx 32rpx 120rpx;
+  text-align: center;
+}
+
+.helper-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.helper-desc {
+  font-size: 26rpx;
+  color: #666666;
+  margin-bottom: 20rpx;
+}
+
+.contact-btn {
+  border-radius: 999rpx;
+  background: #0a8a4a;
+  color: #ffffff;
+}

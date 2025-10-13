@@ -1,0 +1,58 @@
+.address-page {
+  padding: 24rpx 32rpx 80rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.address-item {
+  padding: 24rpx;
+}
+
+.address-header {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 12rpx;
+}
+
+.name {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.phone {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.tag {
+  font-size: 22rpx;
+  color: #ffffff;
+  background: #0a8a4a;
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
+}
+
+.region,
+.detail {
+  font-size: 26rpx;
+  color: #444444;
+  margin-bottom: 8rpx;
+}
+
+.actions {
+  display: flex;
+  gap: 12rpx;
+}
+
+.edit {
+  color: #0a8a4a;
+}
+
+.add-btn {
+  margin-top: 32rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, #0a8a4a, #13b067);
+  color: #ffffff;
+}

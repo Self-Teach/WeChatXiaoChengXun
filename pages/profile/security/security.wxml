@@ -1,0 +1,14 @@
+<view class="security-page">
+  <view class="intro card">
+    <view class="title">账号安全提示</view>
+    <view class="desc">为确保账户安全，请定期检查账号信息，开启登录保护，谨防钓鱼链接。</view>
+  </view>
+
+  <block wx:for="{{securityOptions}}" wx:key="title">
+    <view class="card option" bindtap="handleAction">
+      <view class="option-title">{{item.title}}</view>
+      <view class="option-desc">{{item.desc}}</view>
+      <text class="more">立即设置 ></text>
+    </view>
+  </block>
+</view>

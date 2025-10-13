@@ -1,0 +1,27 @@
+<view class="orders-page">
+  <view class="tabs card">
+    <block wx:for="{{tabs}}" wx:key="key">
+      <view class="tab-item {{activeTab === item.key ? 'active' : ''}}" bindtap="switchTab" data-key="{{item.key}}">
+        {{item.label}}
+      </view>
+    </block>
+  </view>
+
+  <view class="order-list">
+    <block wx:if="{{orders[activeTab].length}}">
+      <block wx:for="{{orders[activeTab]}}" wx:key="id">
+        <view class="order-item card">
+          <view class="order-id">订单编号：{{item.id}}</view>
+          <view class="order-name">{{item.productName}}</view>
+          <view class="order-meta">
+            <text class="order-price">￥{{item.price}}</text>
+            <text class="order-status">{{item.status}}</text>
+          </view>
+          <view class="order-time">下单时间：{{item.time}}</view>
+          <button class="order-action" size="mini">查看详情</button>
+        </view>
+      </block>
+    </block>
+    <view wx:else class="empty">暂无此类订单</view>
+  </view>
+</view>

@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/knowledge/knowledge",
+    "pages/cart/cart",
+    "pages/profile/profile",
+    "pages/productDetail/productDetail",
+    "pages/profile/orders/orders",
+    "pages/profile/address/address",
+    "pages/profile/security/security"
+  ],
+  "window": {
+    "navigationBarTitleText": "云茶汇",
+    "navigationBarBackgroundColor": "#0a8a4a",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f6f7fb",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#0a8a4a",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "精选"
+      },
+      {
+        "pagePath": "pages/knowledge/knowledge",
+        "text": "科普"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

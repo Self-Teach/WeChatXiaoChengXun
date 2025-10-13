@@ -1,0 +1,30 @@
+<view class="hero card">
+  <view class="hero-text">
+    <view class="subtitle">云南山野的好茶</view>
+    <view class="title">云茶精选</view>
+    <view class="desc">严选八款云南经典好茶，感受普洱的甜润与岁月的沉香。</view>
+  </view>
+  <image class="hero-image" mode="aspectFill" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80" />
+</view>
+
+<view class="section-title">经典推荐</view>
+
+<view class="product-grid">
+  <block wx:for="{{products}}" wx:key="id">
+    <view class="product-card" bindtap="handleProductTap" data-id="{{item.id}}">
+      <image class="product-image" mode="aspectFill" src="{{item.images[0]}}" />
+      <view class="product-info">
+        <view class="product-name">{{item.name}}</view>
+        <view class="product-brief text-muted">{{item.brief}}</view>
+        <view class="product-meta">
+          <text class="price">￥{{item.price}}</text>
+          <text class="rating">⭐ {{item.rating}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<button class="cart-fab" type="primary" bindtap="goCart">
+  <view class="cart-fab__text">购物车</view>
+</button>

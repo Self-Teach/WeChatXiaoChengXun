@@ -1,0 +1,71 @@
+.intro {
+  margin: 32rpx;
+}
+
+.intro .title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #0a8a4a;
+  margin-bottom: 12rpx;
+}
+
+.intro .desc {
+  font-size: 28rpx;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.section {
+  margin: 24rpx 32rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.section-desc {
+  font-size: 26rpx;
+  color: #777777;
+  margin-top: 8rpx;
+}
+
+.section-toggle {
+  font-size: 26rpx;
+  color: #0a8a4a;
+}
+
+.section-body {
+  margin-top: 20rpx;
+  border-top: 1rpx dashed #e1e8e3;
+  padding-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.knowledge-item {
+  background: #f7faf8;
+  border-radius: 16rpx;
+  padding: 20rpx;
+}
+
+.item-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #0a8a4a;
+  margin-bottom: 12rpx;
+}
+
+.item-content {
+  font-size: 26rpx;
+  color: #444444;
+  line-height: 1.6;
+}
