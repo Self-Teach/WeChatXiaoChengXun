@@ -10,18 +10,32 @@
 }
 
 .tab-item {
-  flex: 1;
-  text-align: center;
-  padding: 16rpx 0;
+  flex: 1 1 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 20rpx 24rpx;
   border-radius: 999rpx;
   background: #f3f7f4;
   color: #666666;
+  transition: all 0.2s ease;
 }
 
 .tab-item.active {
   background: linear-gradient(135deg, #0a8a4a, #13b067);
   color: #ffffff;
   font-weight: 600;
+  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.18);
+}
+
+.tab-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.tab-label {
+  font-size: 26rpx;
 }
 
 .order-list {

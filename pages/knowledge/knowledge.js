@@ -1,6 +1,7 @@
 // pages/knowledge/knowledge.js
 // 科普知识展示页面
 const { knowledgeSections } = require('../../data/knowledge');
+const { SECTION_ICONS } = require('../../utils/icons');
 
 Page({
   data: {
@@ -11,6 +12,7 @@ Page({
     // 初始化时给每个模块增加展开状态，默认首个展开
     const sections = knowledgeSections.map((section, index) => ({
       ...section,
+      icon: SECTION_ICONS[section.id],
       expanded: index === 0
     }));
     this.setData({ sections });

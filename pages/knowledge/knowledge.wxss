@@ -22,8 +22,23 @@
 .section-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 16rpx;
+}
+
+.section-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.section-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  background: #f0f7f4;
+  padding: 12rpx;
 }
 
 .section-title {
@@ -38,8 +53,25 @@
 }
 
 .section-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
   font-size: 26rpx;
   color: #0a8a4a;
+  font-weight: 600;
+}
+
+.toggle-arrow {
+  width: 20rpx;
+  height: 20rpx;
+  border-right: 4rpx solid #0a8a4a;
+  border-bottom: 4rpx solid #0a8a4a;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.toggle-arrow.expanded {
+  transform: rotate(-135deg);
 }
 
 .section-body {

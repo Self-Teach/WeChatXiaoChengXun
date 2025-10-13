@@ -25,6 +25,8 @@
   </block>
 </view>
 
-<button class="cart-fab" type="primary" bindtap="goCart">
-  <view class="cart-fab__text">购物车</view>
-</button>
+<view class="cart-fab" bindtap="goCart">
+  <image class="cart-fab__icon" src="{{cartIcon}}" mode="aspectFit" />
+  <view class="cart-fab__label">购物车</view>
+  <view wx:if="{{cartCount > 0}}" class="cart-fab__badge">{{cartCount}}</view>
+</view>

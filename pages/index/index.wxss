@@ -95,20 +95,50 @@
 
 .cart-fab {
   position: fixed;
-  right: 40rpx;
+  right: 32rpx;
   bottom: 140rpx;
-  width: 150rpx;
-  height: 150rpx;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #0a8a4a, #13b067);
+  width: 152rpx;
+  height: 152rpx;
+  border-radius: 32rpx;
+  background: linear-gradient(135deg, #0a8a4a, #1ac076);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 16rpx 30rpx rgba(10, 138, 74, 0.3);
+  gap: 12rpx;
+  box-shadow: 0 20rpx 40rpx rgba(10, 138, 74, 0.28);
+  color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 10;
 }
 
-.cart-fab__text {
-  color: #ffffff;
-  font-size: 28rpx;
+.cart-fab:active {
+  transform: translateY(6rpx) scale(0.97);
+  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.25);
+}
+
+.cart-fab__icon {
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.cart-fab__label {
+  font-size: 26rpx;
   font-weight: 600;
+  letter-spacing: 2rpx;
+}
+
+.cart-fab__badge {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  min-width: 44rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 999rpx;
+  background: #ff6b3d;
+  color: #ffffff;
+  font-size: 22rpx;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 10rpx 20rpx rgba(255, 107, 61, 0.28);
 }

@@ -16,7 +16,7 @@
   <view class="order-status">
     <block wx:for="{{orderStatus}}" wx:key="key">
       <view class="status-item">
-        <view class="status-icon">{{item.icon}}</view>
+        <image class="status-icon" src="{{item.icon}}" mode="aspectFit" />
         <view class="status-label">{{item.label}}</view>
       </view>
     </block>

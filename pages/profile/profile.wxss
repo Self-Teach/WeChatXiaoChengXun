@@ -69,11 +69,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12rpx;
+  gap: 16rpx;
+  padding: 24rpx 12rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(180deg, #f6fbf8 0%, #ffffff 100%);
+  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.08);
 }
 
 .status-icon {
-  font-size: 40rpx;
+  width: 72rpx;
+  height: 72rpx;
 }
 
 .status-label {

@@ -1,10 +1,13 @@
 // pages/index/index.js
 // 商品列表页面，负责展示主要茶叶商品
 const app = getApp();
+const { ICONS } = require('../../utils/icons');
 
 Page({
   data: {
-    products: []
+    products: [],
+    cartCount: 0,
+    cartIcon: ICONS.cart
   },
 
   onLoad() {
@@ -12,6 +15,11 @@ Page({
     this.setData({
       products: app.globalData.products
     });
+    this.updateCartCount();
+  },
+
+  onShow() {
+    this.updateCartCount();
   },
 
   /**
@@ -31,5 +39,14 @@ Page({
     wx.switchTab({
       url: '/pages/cart/cart'
     });
+  },
+
+  /**
+   * 更新购物车数量，保持浮动按钮与本地数据同步
+   */
+  updateCartCount() {
+    const items = wx.getStorageSync('cartItems') || app.globalData.cart || [];
+    const cartCount = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
+    this.setData({ cartCount });
   }
 });

@@ -2,7 +2,8 @@
   <view class="tabs card">
     <block wx:for="{{tabs}}" wx:key="key">
       <view class="tab-item {{activeTab === item.key ? 'active' : ''}}" bindtap="switchTab" data-key="{{item.key}}">
-        {{item.label}}
+        <image class="tab-icon" src="{{item.icon}}" mode="aspectFit" />
+        <text class="tab-label">{{item.label}}</text>
       </view>
     </block>
   </view>

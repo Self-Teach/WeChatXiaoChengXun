@@ -6,11 +6,17 @@
 <block wx:for="{{sections}}" wx:key="id">
   <view class="card section">
     <view class="section-header" bindtap="toggleSection" data-id="{{item.id}}">
-      <view>
-        <view class="section-title">{{item.title}}</view>
-        <view class="section-desc">{{item.description}}</view>
+      <view class="section-info">
+        <image class="section-icon" src="{{item.icon}}" mode="aspectFit" />
+        <view>
+          <view class="section-title">{{item.title}}</view>
+          <view class="section-desc">{{item.description}}</view>
+        </view>
       </view>
-      <text class="section-toggle">{{item.expanded ? '收起' : '展开'}}</text>
+      <view class="section-toggle">
+        <text>{{item.expanded ? '收起' : '展开'}}</text>
+        <view class="toggle-arrow {{item.expanded ? 'expanded' : ''}}"></view>
+      </view>
     </view>
 
     <view wx:if="{{item.expanded}}" class="section-body">
