@@ -4,7 +4,7 @@
     <view class="title">云茶精选</view>
     <view class="desc">严选八款云南经典好茶，感受普洱的甜润与岁月的沉香。</view>
   </view>
-  <image class="hero-image" mode="aspectFill" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80" />
+  <image class="hero-image" mode="aspectFill" src="/image/banners/hero-tea.svg" />
 </view>
 
 <view class="section-title">经典推荐</view>

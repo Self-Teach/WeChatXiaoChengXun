@@ -16,24 +16,21 @@ const products = [
     specs: ['357g 饼茶', '200g 饼茶', '7饼整提'],
     options: ['单饼装', '礼盒装'],
     images: [
-      'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1462212210333-335063b67632?auto=format&fit=crop&w=900&q=80'
+      '/image/products/tea-green.svg',
+      '/image/products/tea-mist.svg',
+      '/image/products/tea-amber.svg'
     ],
-    detailImages: [
-      'https://images.unsplash.com/photo-1470167290877-7d5d3446de4c?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1456072212658-500e84e7c89e?auto=format&fit=crop&w=900&q=80'
-    ],
+    detailImages: ['/image/products/detail-leaf.svg', '/image/products/detail-tea-set.svg'],
     reviews: [
       {
         user: '茶客阿明',
-        avatar: 'https://randomuser.me/api/portraits/men/75.jpg',
+        avatar: '/image/profile/avatar1.svg',
         content: '茶汤金黄清亮，花香高扬，回甘迅速，非常喜欢。',
         date: '2024-04-16'
       },
       {
         user: '普洱小师妹',
-        avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
+        avatar: '/image/profile/avatar4.svg',
         content: '包装精美，茶香醇厚耐泡，送人自饮都合适。',
         date: '2024-03-02'
       }
@@ -52,17 +49,15 @@ const products = [
     specs: ['357g 饼茶', '500g 散茶', '1kg 散茶'],
     options: ['常规包装', '锦盒礼装'],
     images: [
-      'https://images.unsplash.com/photo-1504437482449-57a3e74dda13?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=80'
+      '/image/products/tea-dark.svg',
+      '/image/products/tea-amber.svg',
+      '/image/products/tea-red.svg'
     ],
-    detailImages: [
-      'https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=900&q=80'
-    ],
+    detailImages: ['/image/products/detail-cake.svg', '/image/products/detail-tea-set.svg'],
     reviews: [
       {
         user: '普洱发烧友',
-        avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+        avatar: '/image/profile/avatar2.svg',
         content: '茶汤稠滑甜润，枣香明显，是我喜欢的口感。',
         date: '2024-02-18'
       }
@@ -81,18 +76,16 @@ const products = [
     specs: ['400g 饼茶', '7饼整提'],
     options: ['简装', '礼盒装'],
     images: [
-      'https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1508184989483-79e4e3327a2d?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80'
+      '/image/products/tea-mist.svg',
+      '/image/products/tea-green.svg',
+      '/image/products/tea-dark.svg'
     ],
-    detailImages: [
-      'https://images.unsplash.com/photo-1506972588595-124cdd7cddf6?auto=format&fit=crop&w=900&q=80'
-    ],
+    detailImages: ['/image/products/detail-leaf.svg', '/image/products/detail-cake.svg'],
     reviews: [
       {
         user: '茶语者',
-        avatar: 'https://randomuser.me/api/portraits/men/41.jpg',
-        content: '茶气充足，回甘持久，值得收藏。',
+        avatar: '/image/profile/avatar3.svg',
+        content: '茶气充，回甘持久，值得收藏。',
         date: '2024-01-06'
       }
     ]
@@ -110,13 +103,11 @@ const products = [
     specs: ['357g 饼茶', '200g 饼茶'],
     options: ['单饼', '礼盒装'],
     images: [
-      'https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1512427691650-1e0c2f7580d5?auto=format&fit=crop&w=900&q=80'
+      '/image/products/tea-amber.svg',
+      '/image/products/tea-green.svg',
+      '/image/products/tea-mist.svg'
     ],
-    detailImages: [
-      'https://images.unsplash.com/photo-1519119014075-6a69d2314ce4?auto=format&fit=crop&w=900&q=80'
-    ],
+    detailImages: ['/image/products/detail-tea-set.svg', '/image/products/detail-leaf.svg'],
     reviews: []
   },
   {
@@ -132,13 +123,11 @@ const products = [
     specs: ['357g 饼茶', '500g 散茶'],
     options: ['常规装', '收藏罐'],
     images: [
-      'https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=80'
+      '/image/products/tea-green.svg',
+      '/image/products/tea-red.svg',
+      '/image/products/tea-amber.svg'
     ],
-    detailImages: [
-      'https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=900&q=80'
-    ],
+    detailImages: ['/image/products/detail-cake.svg'],
     reviews: []
   },
   {
@@ -154,13 +143,11 @@ const products = [
     specs: ['357g 饼茶', '1kg 散茶'],
     options: ['常规装', '礼盒装'],
     images: [
-      'https://images.unsplash.com/photo-1484981138541-3d074aa97716?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1512427691650-1e0c2f7580d5?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80'
+      '/image/products/tea-dark.svg',
+      '/image/products/tea-amber.svg',
+      '/image/products/tea-mist.svg'
     ],
-    detailImages: [
-      'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=900&q=80'
-    ],
+    detailImages: ['/image/products/detail-tea-set.svg'],
     reviews: []
   },
   {
@@ -176,13 +163,11 @@ const products = [
     specs: ['357g 饼茶', '7饼整提'],
     options: ['收藏装', '礼盒装'],
     images: [
-      'https://images.unsplash.com/photo-1481391032119-d89fee407e44?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80'
+      '/image/products/tea-mist.svg',
+      '/image/products/tea-green.svg',
+      '/image/products/tea-red.svg'
     ],
-    detailImages: [
-      'https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=900&q=80'
-    ],
+    detailImages: ['/image/products/detail-leaf.svg', '/image/products/detail-tea-set.svg'],
     reviews: []
   },
   {
@@ -198,13 +183,11 @@ const products = [
     specs: ['250g 礼盒', '125g 铁罐'],
     options: ['经典装', '商务礼盒'],
     images: [
-      'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=80'
+      '/image/products/tea-red.svg',
+      '/image/products/tea-amber.svg',
+      '/image/products/tea-green.svg'
     ],
-    detailImages: [
-      'https://images.unsplash.com/photo-1484981138541-3d074aa97716?auto=format&fit=crop&w=900&q=80'
-    ],
+    detailImages: ['/image/products/detail-cake.svg', '/image/products/detail-tea-set.svg'],
     reviews: []
   }
 ];

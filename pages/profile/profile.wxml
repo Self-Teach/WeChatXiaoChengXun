@@ -1,5 +1,5 @@
 <view class="profile-header card">
-  <image class="avatar" mode="aspectFill" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=60" />
+  <image class="avatar" mode="aspectFill" src="/image/profile/user-cover.svg" />
   <view class="user-info">
     <view class="user-name">{{userName}}</view>
     <view class="user-desc">欢迎来到云茶汇，探索云南好茶。</view>

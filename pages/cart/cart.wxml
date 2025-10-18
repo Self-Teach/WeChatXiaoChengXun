@@ -30,7 +30,7 @@
   </view>
 
   <view wx:else class="empty">
-    <image class="empty-icon" mode="widthFix" src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=600&q=60" />
+    <image class="empty-icon" mode="widthFix" src="/image/empty/cart-empty.svg" />
     <view class="empty-text">购物车还是空的，去挑选心仪的茶叶吧～</view>
     <button class="go-shop" bindtap="goShop">去逛逛</button>
   </view>
