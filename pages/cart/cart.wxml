@@ -1,7 +1,13 @@
 <view class="cart-container">
+  <view class="page-badge card">
+    <!-- 页面徽章图标，可替换为 image/icons/icon-page-cart.svg -->
+    <image class="page-badge__icon" src="{{pageIcon}}" mode="aspectFit" />
+    <view class="page-badge__text">购物车</view>
+  </view>
   <view wx:if="{{items.length}}">
     <block wx:for="{{items}}" wx:key="{{index}}">
       <view class="cart-item card">
+        <!-- 购物车商品图片，可在 image/products 目录替换 -->
         <image class="item-image" mode="aspectFill" src="{{item.image}}" />
         <view class="item-content">
           <view class="item-title">{{item.name}}</view>
@@ -30,6 +36,7 @@
   </view>
 
   <view wx:else class="empty">
+    <!-- 购物车空态图，可替换 image/empty/cart-empty.svg -->
     <image class="empty-icon" mode="widthFix" src="/image/empty/cart-empty.svg" />
     <view class="empty-text">购物车还是空的，去挑选心仪的茶叶吧～</view>
     <button class="go-shop" bindtap="goShop">去逛逛</button>

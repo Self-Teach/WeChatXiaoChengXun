@@ -2,6 +2,7 @@
   <view class="tabs card">
     <block wx:for="{{tabs}}" wx:key="key">
       <view class="tab-item {{activeTab === item.key ? 'active' : ''}}" bindtap="switchTab" data-key="{{item.key}}">
+        <!-- 订单标签图标，可替换 image/icons/icon-pending-*.svg -->
         <image class="tab-icon" src="{{item.icon}}" mode="aspectFit" />
         <text class="tab-label">{{item.label}}</text>
       </view>

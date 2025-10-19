@@ -145,18 +145,21 @@ const quickFacts = [
     id: 'ancientTree',
     title: '370万亩古茶园',
     desc: '云南保有全国面积最大的古茶园资源，百年以上古茶树分布在西双版纳、普洱、临沧等地。',
+    // 速览卡片图标，可替换 image/icons/icon-fact-*.svg
     icon: '/image/icons/icon-fact-leaf.svg'
   },
   {
     id: 'highAltitude',
     title: '海拔1200m+高山云雾',
     desc: '大多数名山茶区海拔在1200-2000米，昼夜温差大，成就茶叶的甜度与耐泡度。',
+    // 速览卡片图标，可替换 image/icons/icon-fact-*.svg
     icon: '/image/icons/icon-fact-altitude.svg'
   },
   {
     id: 'fermentation',
     title: '双向发酵魅力',
     desc: '普洱既有自然陈化的“生茶”，也有人工渥堆的“熟茶”，一生一熟满足不同口味。',
+    // 速览卡片图标，可替换 image/icons/icon-fact-*.svg
     icon: '/image/icons/icon-fact-ferment.svg'
   }
 ];

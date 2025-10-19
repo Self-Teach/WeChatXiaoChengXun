@@ -73,6 +73,7 @@ Page({
         id: product.id,
         name: product.name,
         price: product.price,
+        // 购物车缩略图默认取首张主图，可在 data/products.js 中调整顺序或素材
         image: product.images[0],
         spec: selectedSpec,
         option: selectedOption,

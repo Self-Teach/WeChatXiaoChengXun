@@ -8,10 +8,14 @@ Page({
     ICONS,
     allProducts: [],
     filteredProducts: [],
-    teaTypes: ['茶叶精选', '特产精选'],
-    activeType: '茶叶精选',
+    // 首页分类标签，可在此调整展示顺序与文案
+    teaTypes: ['全部', '茶叶精选', '特产精选'],
+    activeType: '全部',
     searchKeyword: '',
     cartCount: 0,
+    // 页面顶部徽章图标，可替换 image/icons/icon-page-home.svg
+    pageIcon: ICONS.pageHome,
+    // 浮动购物车按钮的图标，可在 image/icons/icon-cart.svg 替换
     cartIcon: ICONS.cart
   },
 
@@ -59,7 +63,8 @@ Page({
     const keyword = searchKeyword.toLowerCase();
 
     const filteredProducts = allProducts.filter((product) => {
-      const matchType = product.category === activeType;
+      const matchType =
+        activeType === '全部' ? true : product.category === activeType;
       const matchKeyword =
         !keyword ||
         product.name.toLowerCase().includes(keyword) ||

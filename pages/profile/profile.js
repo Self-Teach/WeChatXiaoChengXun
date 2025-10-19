@@ -6,7 +6,10 @@ Page({
   data: {
     loggedIn: false,
     userName: '游客',
+    // 页面顶部徽章图标，可替换 image/icons/icon-page-profile.svg
+    pageIcon: ICONS.pageProfile,
     orderStatus: [
+      // 订单状态图标均来自 utils/icons.js，可替换 image/icons/icon-pending-*.svg
       { key: 'pendingPay', label: '待付款', icon: ICONS.pendingPay },
       { key: 'pendingSend', label: '待发货', icon: ICONS.pendingSend },
       { key: 'pendingReceive', label: '待收货', icon: ICONS.pendingReceive },
@@ -18,6 +21,7 @@ Page({
         key: 'address',
         label: '地址管理',
         desc: '常用收货地址一键更新',
+        // 常用工具图标，可替换 image/icons/icon-profile-address.svg
         icon: ICONS.profileAddress,
         action: 'goAddress'
       },
@@ -25,6 +29,7 @@ Page({
         key: 'security',
         label: '账号与安全',
         desc: '修改手机号与登录密码',
+        // 常用工具图标，可替换 image/icons/icon-profile-security.svg
         icon: ICONS.profileSecurity,
         action: 'goSecurity'
       },
@@ -32,6 +37,7 @@ Page({
         key: 'service',
         label: '客服服务',
         desc: '添加客服微信 SelfLearner',
+        // 常用工具图标，可替换 image/icons/icon-profile-service.svg
         icon: ICONS.profileService,
         action: 'openContact'
       }

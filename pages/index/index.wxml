@@ -1,14 +1,21 @@
 <view class="home">
+  <view class="page-badge card">
+    <!-- 页面徽章图标，可替换为 image/icons/icon-page-home.svg -->
+    <image class="page-badge__icon" src="{{pageIcon}}" mode="aspectFit" />
+    <view class="page-badge__text">精选</view>
+  </view>
   <view class="hero card">
     <view class="hero-text">
       <view class="subtitle">云南山野的好茶</view>
       <view class="title">云茶精选</view>
       <view class="desc">严选八款云南经典好茶，感受普洱的甜润与岁月的沉香。</view>
     </view>
+    <!-- 顶部横幅图片，可替换为 image/banners/hero-tea.svg -->
     <image class="hero-image" mode="aspectFill" src="/image/banners/hero-tea.svg" />
   </view>
 
   <view class="search card">
+    <!-- 搜索图标，可替换 image/icons/icon-search.svg -->
     <image class="search-icon" src="{{ICONS.search}}" mode="aspectFit" />
     <input
       class="search-input"
@@ -18,6 +25,7 @@
       bindinput="handleSearchInput"
     />
     <view class="search-actions">
+      <!-- 筛选图标，可替换 image/icons/icon-filter.svg -->
       <image class="filter-icon" src="{{ICONS.filter}}" mode="aspectFit" />
       <text wx:if="{{searchKeyword}}" class="clear-btn" bindtap="clearSearch">清空</text>
     </view>
@@ -39,6 +47,7 @@
   <view wx:if="{{filteredProducts.length}}" class="product-grid">
     <block wx:for="{{filteredProducts}}" wx:key="id">
       <view class="product-card" bindtap="handleProductTap" data-id="{{item.id}}">
+        <!-- 商品主图，可在 image/products 目录中替换对应 SVG -->
         <image class="product-image" mode="aspectFill" src="{{item.images[0]}}" />
         <view class="product-info">
           <view class="product-header">
@@ -69,6 +78,7 @@
   </view>
 
   <view class="cart-fab" bindtap="goCart">
+    <!-- 悬浮购物车图标，可替换 image/icons/icon-cart.svg -->
     <image class="cart-fab__icon" src="{{cartIcon}}" mode="aspectFit" />
     <view wx:if="{{cartCount > 0}}" class="cart-fab__badge">{{cartCount}}</view>
   </view>

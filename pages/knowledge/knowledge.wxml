@@ -1,3 +1,9 @@
+<view class="page-badge card">
+  <!-- 页面徽章图标，可替换为 image/icons/icon-page-knowledge.svg -->
+  <image class="page-badge__icon" src="{{pageIcon}}" mode="aspectFit" />
+  <view class="page-badge__text">科普</view>
+</view>
+
 <view class="intro card">
   <view class="title">茶山百科</view>
   <view class="desc">走近云南茶山，了解普洱茶的分类、产地与冲泡技巧，品味一杯茶的山野故事。</view>
@@ -11,6 +17,7 @@
   <scroll-view class="quick-scroll" scroll-x="true" enable-flex="true">
     <block wx:for="{{quickFacts}}" wx:key="id">
       <view class="fact-card">
+        <!-- 快速知识图标，可替换 image/icons 下的对应文件 -->
         <image class="fact-icon" src="{{item.icon}}" mode="aspectFit" />
         <view class="fact-title">{{item.title}}</view>
         <view class="fact-desc">{{item.desc}}</view>
@@ -62,6 +69,7 @@
   <view class="card section">
     <view class="section-header" bindtap="toggleSection" data-id="{{item.id}}">
       <view class="section-info">
+        <!-- 折叠面板图标，可替换 image/icons/icon-knowledge-*.svg -->
         <image class="section-icon" src="{{item.icon}}" mode="aspectFit" />
         <view>
           <view class="section-title">{{item.title}}</view>

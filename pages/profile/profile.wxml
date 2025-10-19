@@ -1,4 +1,11 @@
+<view class="page-badge card">
+  <!-- 页面徽章图标，可替换为 image/icons/icon-page-profile.svg -->
+  <image class="page-badge__icon" src="{{pageIcon}}" mode="aspectFit" />
+  <view class="page-badge__text">我的</view>
+</view>
+
 <view class="profile-header card">
+  <!-- 用户封面图，可替换 image/profile/user-cover.svg -->
   <image class="avatar" mode="aspectFill" src="/image/profile/user-cover.svg" />
   <view class="user-info">
     <view class="user-name">{{userName}}</view>
@@ -16,6 +23,7 @@
   <view class="order-status">
     <block wx:for="{{orderStatus}}" wx:key="key">
       <view class="status-item">
+        <!-- 订单状态图标，可在 utils/icons.js 中替换对应资源 -->
         <image class="status-icon" src="{{item.icon}}" mode="aspectFit" />
         <view class="status-label">{{item.label}}</view>
       </view>
@@ -28,6 +36,7 @@
   <view class="quick-grid">
     <block wx:for="{{quickEntries}}" wx:key="key">
       <view class="quick-item" data-action="{{item.action}}" bindtap="handleQuickEntry">
+        <!-- 常用工具图标，可替换 image/icons/icon-profile-*.svg -->
         <image class="quick-icon" src="{{item.icon}}" mode="aspectFit" />
         <view class="quick-text">
           <view class="quick-label">{{item.label}}</view>

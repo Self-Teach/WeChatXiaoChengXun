@@ -2,6 +2,25 @@
   padding-bottom: 220rpx;
 }
 
+.page-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 16rpx;
+  margin: 32rpx 32rpx 0;
+  padding: 20rpx 28rpx;
+}
+
+.page-badge__icon {
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.page-badge__text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #0a8a4a;
+}
+
 .hero {
   display: flex;
   align-items: center;
@@ -233,14 +252,14 @@
   position: fixed;
   right: 32rpx;
   bottom: 120rpx;
-  width: 112rpx;
-  height: 112rpx;
+  width: 96rpx;
+  height: 96rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0a8a4a, #1ac076);
+  background: #0a8a4a;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 16rpx 32rpx rgba(10, 138, 74, 0.26);
+  box-shadow: 0 16rpx 32rpx rgba(10, 138, 74, 0.2);
   color: #ffffff;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   z-index: 10;
@@ -248,12 +267,12 @@
 
 .cart-fab:active {
   transform: translateY(4rpx) scale(0.96);
-  box-shadow: 0 10rpx 24rpx rgba(10, 138, 74, 0.22);
+  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.18);
 }
 
 .cart-fab__icon {
-  width: 56rpx;
-  height: 56rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
 
 .cart-fab__badge {

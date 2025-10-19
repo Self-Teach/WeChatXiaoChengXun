@@ -21,17 +21,21 @@ const products = [
     specs: ['357g 饼茶', '200g 饼茶', '7饼整提'],
     options: ['单饼装', '礼盒装'],
     tags: ['柔甜', '收藏'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/tea-green.svg', '/image/products/tea-mist.svg', '/image/products/tea-amber.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-leaf.svg', '/image/products/detail-tea-set.svg'],
     reviews: [
       {
         user: '茶客阿明',
+        // 评价头像使用 image/profile 目录素材，可替换
         avatar: '/image/profile/avatar1.svg',
         content: '茶汤金黄清亮，花香高扬，回甘迅速，非常喜欢。',
         date: '2024-04-16'
       },
       {
         user: '普洱小师妹',
+        // 评价头像使用 image/profile 目录素材，可替换
         avatar: '/image/profile/avatar4.svg',
         content: '包装精美，茶香醇厚耐泡，送人自饮都合适。',
         date: '2024-03-02'
@@ -56,11 +60,14 @@ const products = [
     specs: ['357g 饼茶', '500g 散茶', '1kg 散茶'],
     options: ['常规包装', '锦盒礼装'],
     tags: ['醇厚', '即饮'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/tea-dark.svg', '/image/products/tea-amber.svg', '/image/products/tea-red.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-cake.svg', '/image/products/detail-tea-set.svg'],
     reviews: [
       {
         user: '普洱发烧友',
+        // 评价头像使用 image/profile 目录素材，可替换
         avatar: '/image/profile/avatar2.svg',
         content: '茶汤稠滑甜润，枣香明显，是我喜欢的口感。',
         date: '2024-02-18'
@@ -85,11 +92,14 @@ const products = [
     specs: ['400g 饼茶', '7饼整提'],
     options: ['简装', '礼盒装'],
     tags: ['山野气', '收藏'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/tea-mist.svg', '/image/products/tea-green.svg', '/image/products/tea-dark.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-leaf.svg', '/image/products/detail-cake.svg'],
     reviews: [
       {
         user: '茶语者',
+        // 评价头像使用 image/profile 目录素材，可替换
         avatar: '/image/profile/avatar3.svg',
         content: '茶气充，回甘持久，值得收藏。',
         date: '2024-01-06'
@@ -114,7 +124,9 @@ const products = [
     specs: ['357g 饼茶', '200g 饼茶'],
     options: ['单饼', '礼盒装'],
     tags: ['高端', '柔甜'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/tea-amber.svg', '/image/products/tea-green.svg', '/image/products/tea-mist.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-tea-set.svg', '/image/products/detail-leaf.svg'],
     reviews: []
   },
@@ -136,7 +148,9 @@ const products = [
     specs: ['357g 饼茶', '500g 散茶'],
     options: ['常规装', '收藏罐'],
     tags: ['性价比', '日饮'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/tea-green.svg', '/image/products/tea-red.svg', '/image/products/tea-amber.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-cake.svg'],
     reviews: []
   },
@@ -158,7 +172,9 @@ const products = [
     specs: ['357g 饼茶', '1kg 散茶'],
     options: ['常规装', '礼盒装'],
     tags: ['蜜香', '陈化'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/tea-dark.svg', '/image/products/tea-amber.svg', '/image/products/tea-mist.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-tea-set.svg'],
     reviews: []
   },
@@ -180,7 +196,9 @@ const products = [
     specs: ['357g 饼茶', '7饼整提'],
     options: ['收藏装', '礼盒装'],
     tags: ['花香', '收藏'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/tea-mist.svg', '/image/products/tea-green.svg', '/image/products/tea-red.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-leaf.svg', '/image/products/detail-tea-set.svg'],
     reviews: []
   },
@@ -202,7 +220,9 @@ const products = [
     specs: ['250g 礼盒', '125g 铁罐'],
     options: ['经典装', '商务礼盒'],
     tags: ['蜜香', '礼赠'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/tea-red.svg', '/image/products/tea-amber.svg', '/image/products/tea-green.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-cake.svg', '/image/products/detail-tea-set.svg'],
     reviews: []
   },
@@ -224,11 +244,14 @@ const products = [
     specs: ['12块礼盒', '24块礼盒'],
     options: ['经典装', '商务礼盒'],
     tags: ['伴手礼', '即溶'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/special-paste.svg', '/image/products/tea-dark.svg', '/image/products/detail-tea-set.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-cake.svg'],
     reviews: [
       {
         user: '茶旅人',
+        // 评价头像使用 image/profile 目录素材，可替换
         avatar: '/image/profile/avatar2.svg',
         content: '出差随身携带很方便，一块就能泡出熟茶香气。',
         date: '2024-04-22'
@@ -253,11 +276,14 @@ const products = [
     specs: ['12枚礼盒', '18枚组合装'],
     options: ['经典礼盒', '伴手提袋套装'],
     tags: ['伴手礼', '茶点'],
+    // 商品主图引用 image/products 目录，可按需替换本地素材
     images: ['/image/products/special-pastry.svg', '/image/products/tea-amber.svg', '/image/products/tea-green.svg'],
+    // 详情页补充图同样来自 image/products，可替换
     detailImages: ['/image/products/detail-tea-set.svg'],
     reviews: [
       {
         user: '茶会主持人',
+        // 评价头像使用 image/profile 目录素材，可替换
         avatar: '/image/profile/avatar1.svg',
         content: '茶点口味丰富，与普洱搭配不会抢味，客人反馈很好。',
         date: '2024-03-30'

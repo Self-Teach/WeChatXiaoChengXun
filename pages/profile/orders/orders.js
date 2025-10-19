@@ -2,6 +2,7 @@
 // 展示各类订单状态
 const { ICONS } = require('../../../utils/icons');
 
+// 订单标签图标使用 utils/icons.js 中的本地图标，可按需替换
 const orderTabs = [
   { key: 'pendingPay', label: '待付款', icon: ICONS.pendingPay },
   { key: 'pendingSend', label: '待发货', icon: ICONS.pendingSend },

@@ -1,9 +1,12 @@
 // pages/cart/cart.js
 // 购物车页面，展示本地存储的商品信息
+const { ICONS } = require('../../utils/icons');
 const app = getApp();
 
 Page({
   data: {
+    // 页面顶部徽章图标，可替换 image/icons/icon-page-cart.svg
+    pageIcon: ICONS.pageCart,
     items: [],
     totalPrice: 0
   },

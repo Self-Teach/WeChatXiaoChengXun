@@ -2,6 +2,7 @@
   <swiper class="banner" indicator-dots="true" autoplay="true" circular="true">
     <block wx:for="{{product.images}}" wx:key="*this">
       <swiper-item>
+        <!-- 商品轮播图，可在 data/products.js 中替换 image/products 素材 -->
         <image class="banner-image" mode="aspectFill" src="{{item}}" bindtap="previewImage" data-src="{{item}}" />
       </swiper-item>
     </block>
@@ -72,6 +73,7 @@
     <view class="option-title">茶友评价</view>
     <block wx:for="{{product.reviews}}" wx:key="user">
       <view class="review-item">
+        <!-- 评价头像，可替换 image/profile 目录素材 -->
         <image class="avatar" mode="aspectFill" src="{{item.avatar}}" />
         <view class="review-content">
           <view class="review-header">
@@ -88,6 +90,7 @@
     <view class="option-title">商品详情</view>
     <view class="detail-images">
       <block wx:for="{{product.detailImages.length ? product.detailImages : product.images}}" wx:key="*this">
+        <!-- 商品详情图，可替换 image/products 目录素材 -->
         <image class="detail-image" mode="aspectFill" src="{{item}}" />
       </block>
     </view>
