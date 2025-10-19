@@ -1,9 +1,3 @@
-<view class="page-badge card">
-  <!-- 页面徽章图标，可替换为 image/icons/icon-page-knowledge.svg -->
-  <image class="page-badge__icon" src="{{pageIcon}}" mode="aspectFit" />
-  <view class="page-badge__text">科普</view>
-</view>
-
 <view class="intro card">
   <view class="title">茶山百科</view>
   <view class="desc">走近云南茶山，了解普洱茶的分类、产地与冲泡技巧，品味一杯茶的山野故事。</view>

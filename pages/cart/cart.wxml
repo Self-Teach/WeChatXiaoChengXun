@@ -1,9 +1,4 @@
 <view class="cart-container">
-  <view class="page-badge card">
-    <!-- 页面徽章图标，可替换为 image/icons/icon-page-cart.svg -->
-    <image class="page-badge__icon" src="{{pageIcon}}" mode="aspectFit" />
-    <view class="page-badge__text">购物车</view>
-  </view>
   <view wx:if="{{items.length}}">
     <block wx:for="{{items}}" wx:key="{{index}}">
       <view class="cart-item card">

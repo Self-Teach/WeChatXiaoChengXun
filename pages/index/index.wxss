@@ -2,25 +2,6 @@
   padding-bottom: 220rpx;
 }
 
-.page-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 16rpx;
-  margin: 32rpx 32rpx 0;
-  padding: 20rpx 28rpx;
-}
-
-.page-badge__icon {
-  width: 72rpx;
-  height: 72rpx;
-}
-
-.page-badge__text {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-}
-
 .hero {
   display: flex;
   align-items: center;

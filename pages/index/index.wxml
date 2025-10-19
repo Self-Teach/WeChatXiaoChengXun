@@ -1,9 +1,4 @@
 <view class="home">
-  <view class="page-badge card">
-    <!-- 页面徽章图标，可替换为 image/icons/icon-page-home.svg -->
-    <image class="page-badge__icon" src="{{pageIcon}}" mode="aspectFit" />
-    <view class="page-badge__text">精选</view>
-  </view>
   <view class="hero card">
     <view class="hero-text">
       <view class="subtitle">云南山野的好茶</view>

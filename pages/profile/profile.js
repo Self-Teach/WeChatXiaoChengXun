@@ -6,8 +6,6 @@ Page({
   data: {
     loggedIn: false,
     userName: '游客',
-    // 页面顶部徽章图标，可替换 image/icons/icon-page-profile.svg
-    pageIcon: ICONS.pageProfile,
     orderStatus: [
       // 订单状态图标均来自 utils/icons.js，可替换 image/icons/icon-pending-*.svg
       { key: 'pendingPay', label: '待付款', icon: ICONS.pendingPay },

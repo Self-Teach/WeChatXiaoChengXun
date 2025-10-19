@@ -7,7 +7,7 @@ const {
   originHighlights,
   teaArtCulture
 } = require('../../data/knowledge');
-const { ICONS, SECTION_ICONS } = require('../../utils/icons');
+const { SECTION_ICONS } = require('../../utils/icons');
 
 Page({
   data: {
@@ -15,9 +15,7 @@ Page({
     quickFacts: [],
     brewSteps: [],
     originHighlights: [],
-    teaArtCulture: [],
-    // 页面顶部徽章图标，可替换 image/icons/icon-page-knowledge.svg
-    pageIcon: ICONS.pageKnowledge
+    teaArtCulture: []
   },
 
   onLoad() {

@@ -13,8 +13,6 @@ Page({
     activeType: '全部',
     searchKeyword: '',
     cartCount: 0,
-    // 页面顶部徽章图标，可替换 image/icons/icon-page-home.svg
-    pageIcon: ICONS.pageHome,
     // 浮动购物车按钮的图标，可在 image/icons/icon-cart.svg 替换
     cartIcon: ICONS.cart
   },
