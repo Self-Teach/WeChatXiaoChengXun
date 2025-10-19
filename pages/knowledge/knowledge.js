@@ -7,10 +7,16 @@ const {
   originHighlights,
   teaArtCulture
 } = require('../../data/knowledge');
-const { SECTION_ICONS } = require('../../utils/icons');
+const { ICONS, SECTION_ICONS } = require('../../utils/icons');
 
 Page({
   data: {
+    pageFooter: {
+      // 页面底部说明图标，可替换 image/icons/icon-page-knowledge.svg
+      icon: ICONS.pageKnowledge,
+      title: '茶学延伸',
+      desc: '继续探索云南茶旅、器具与礼俗，让品茗不仅是味觉享受，更成为生活美学。'
+    },
     sections: [],
     quickFacts: [],
     brewSteps: [],

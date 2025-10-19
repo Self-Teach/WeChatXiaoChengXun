@@ -85,18 +85,25 @@
 }
 
 .type-chip {
-  padding: 16rpx 32rpx;
-  border-radius: 999rpx;
-  background: #f1f5f3;
+  padding: 22rpx 36rpx;
+  border-radius: 20rpx;
+  background: #ffffff;
+  border: 2rpx solid rgba(10, 138, 74, 0.12);
   color: #4f5f58;
   font-size: 26rpx;
+  font-weight: 500;
   margin-right: 16rpx;
+  min-width: 176rpx;
+  text-align: center;
+  box-shadow: 0 12rpx 20rpx rgba(10, 138, 74, 0.06);
+  transition: all 0.2s ease;
 }
 
 .type-chip.active {
   background: linear-gradient(135deg, #0a8a4a, #13b067);
   color: #ffffff;
-  box-shadow: 0 10rpx 20rpx rgba(10, 138, 74, 0.2);
+  border-color: transparent;
+  box-shadow: 0 20rpx 32rpx rgba(10, 138, 74, 0.25);
 }
 
 .product-grid {
@@ -269,4 +276,31 @@
   font-weight: 600;
   text-align: center;
   box-shadow: 0 10rpx 20rpx rgba(255, 107, 61, 0.28);
+}
+
+.page-footer {
+  margin: 0 32rpx 160rpx;
+  padding: 32rpx 28rpx 36rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  text-align: center;
+}
+
+.page-footer__icon {
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.page-footer__title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #0a8a4a;
+}
+
+.page-footer__desc {
+  font-size: 26rpx;
+  color: #55625d;
+  line-height: 1.7;
 }

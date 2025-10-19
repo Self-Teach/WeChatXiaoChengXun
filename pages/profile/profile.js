@@ -39,7 +39,13 @@ Page({
         icon: ICONS.profileService,
         action: 'openContact'
       }
-    ]
+    ],
+    pageFooter: {
+      // 页面底部说明图标，可替换 image/icons/icon-page-profile.svg
+      icon: ICONS.pageProfile,
+      title: '账户贴士',
+      desc: '完善收货信息并关注账号安全设置，畅享专属云茶会员权益。'
+    }
   },
 
   handleLogin() {

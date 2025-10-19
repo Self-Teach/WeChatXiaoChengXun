@@ -1,11 +1,18 @@
 // pages/cart/cart.js
 // 购物车页面，展示本地存储的商品信息
 const app = getApp();
+const { ICONS } = require('../../utils/icons');
 
 Page({
   data: {
     items: [],
-    totalPrice: 0
+    totalPrice: 0,
+    pageFooter: {
+      // 页面底部说明图标，可替换 image/icons/icon-page-cart.svg
+      icon: ICONS.pageCart,
+      title: '结算温馨提示',
+      desc: '确认茶叶数量、规格与收货地址，再提交订单享受云南好茶。'
+    }
   },
 
   onShow() {

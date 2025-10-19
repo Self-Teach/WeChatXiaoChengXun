@@ -72,6 +72,13 @@
     <view class="empty-desc">试着更换关键词或切换茶类分类，探索更多云南好茶。</view>
   </view>
 
+  <view class="page-footer card">
+    <!-- 页面底部说明图标，可替换 image/icons/icon-page-home.svg -->
+    <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
+    <view class="page-footer__title">{{pageFooter.title}}</view>
+    <view class="page-footer__desc">{{pageFooter.desc}}</view>
+  </view>
+
   <view class="cart-fab" bindtap="goCart">
     <!-- 悬浮购物车图标，可替换 image/icons/icon-cart.svg -->
     <image class="cart-fab__icon" src="{{cartIcon}}" mode="aspectFit" />

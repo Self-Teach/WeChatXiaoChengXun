@@ -1,5 +1,5 @@
 <view class="cart-container">
-  <view wx:if="{{items.length}}">
+  <block wx:if="{{items.length}}">
     <block wx:for="{{items}}" wx:key="{{index}}">
       <view class="cart-item card">
         <!-- 购物车商品图片，可在 image/products 目录替换 -->
@@ -28,12 +28,21 @@
         <button class="checkout-btn" type="primary" bindtap="checkout">提交订单</button>
       </view>
     </view>
-  </view>
+  </block>
 
-  <view wx:else class="empty">
-    <!-- 购物车空态图，可替换 image/empty/cart-empty.svg -->
-    <image class="empty-icon" mode="widthFix" src="/image/empty/cart-empty.svg" />
-    <view class="empty-text">购物车还是空的，去挑选心仪的茶叶吧～</view>
-    <button class="go-shop" bindtap="goShop">去逛逛</button>
+  <block wx:else>
+    <view class="empty">
+      <!-- 购物车空态图，可替换 image/empty/cart-empty.svg -->
+      <image class="empty-icon" mode="widthFix" src="/image/empty/cart-empty.svg" />
+      <view class="empty-text">购物车还是空的，去挑选心仪的茶叶吧～</view>
+      <button class="go-shop" bindtap="goShop">去逛逛</button>
+    </view>
+  </block>
+
+  <view class="page-footer card">
+    <!-- 页面底部说明图标，可替换 image/icons/icon-page-cart.svg -->
+    <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
+    <view class="page-footer__title">{{pageFooter.title}}</view>
+    <view class="page-footer__desc">{{pageFooter.desc}}</view>
   </view>
 </view>

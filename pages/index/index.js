@@ -14,7 +14,13 @@ Page({
     searchKeyword: '',
     cartCount: 0,
     // 浮动购物车按钮的图标，可在 image/icons/icon-cart.svg 替换
-    cartIcon: ICONS.cart
+    cartIcon: ICONS.cart,
+    pageFooter: {
+      // 页面底部说明图标，可替换 image/icons/icon-page-home.svg
+      icon: ICONS.pageHome,
+      title: '选购小贴士',
+      desc: '结合季节挑选茶叶或伴手礼，关注风味标签与产地故事，收集心仪茶品更从容。'
+    }
   },
 
   onLoad() {
