@@ -6,6 +6,7 @@ const products = [
   {
     id: 'tea001',
     name: '易武古树普洱生茶',
+    category: '茶叶精选',
     type: '普洱生茶',
     price: 368,
     origin: '西双版纳·易武山',
@@ -40,6 +41,7 @@ const products = [
   {
     id: 'tea002',
     name: '勐海大树熟茶',
+    category: '茶叶精选',
     type: '普洱熟茶',
     price: 298,
     origin: '西双版纳·勐海县',
@@ -68,6 +70,7 @@ const products = [
   {
     id: 'tea003',
     name: '布朗山乔木生茶',
+    category: '茶叶精选',
     type: '普洱生茶',
     price: 428,
     origin: '西双版纳·布朗山',
@@ -96,6 +99,7 @@ const products = [
   {
     id: 'tea004',
     name: '冰岛古树春茶',
+    category: '茶叶精选',
     type: '普洱生茶',
     price: 998,
     origin: '临沧·双江县',
@@ -117,6 +121,7 @@ const products = [
   {
     id: 'tea005',
     name: '勐库冰岛拼配生茶',
+    category: '茶叶精选',
     type: '普洱生茶',
     price: 268,
     origin: '临沧·勐库',
@@ -138,6 +143,7 @@ const products = [
   {
     id: 'tea006',
     name: '景迈古树熟茶',
+    category: '茶叶精选',
     type: '普洱熟茶',
     price: 358,
     origin: '普洱市·澜沧县',
@@ -159,6 +165,7 @@ const products = [
   {
     id: 'tea007',
     name: '临沧昔归古树生茶',
+    category: '茶叶精选',
     type: '普洱生茶',
     price: 628,
     origin: '临沧·昔归村',
@@ -180,6 +187,7 @@ const products = [
   {
     id: 'tea008',
     name: '保山滇红工夫茶',
+    category: '茶叶精选',
     type: '滇红工夫',
     price: 168,
     origin: '保山市·昌宁县',
@@ -197,6 +205,64 @@ const products = [
     images: ['/image/products/tea-red.svg', '/image/products/tea-amber.svg', '/image/products/tea-green.svg'],
     detailImages: ['/image/products/detail-cake.svg', '/image/products/detail-tea-set.svg'],
     reviews: []
+  },
+  {
+    id: 'spec001',
+    name: '普洱茶膏礼盒',
+    category: '特产精选',
+    type: '茶礼臻品',
+    price: 268,
+    origin: '西双版纳·勐海',
+    stock: 70,
+    rating: 4.7,
+    brief: '以春茶熟膏压制小块，便于携带冲泡，适合作为伴手礼。',
+    description:
+      '选用勐海古树晒青毛茶渥堆发酵后低温浓缩，保留茶多酚与咖啡碱，再经传统手工压制定量茶膏，入口甜润顺滑，随身携带即可冲泡。',
+    tastingNotes: ['枣香', '甜润', '便携冲泡'],
+    brewTips: ['投入茶膏1块，注入90℃热水冲化', '可反复续水2-3次'],
+    pairing: '适合搭配奶香小食或坚果，凸显熟茶稠滑口感。',
+    specs: ['12块礼盒', '24块礼盒'],
+    options: ['经典装', '商务礼盒'],
+    tags: ['伴手礼', '即溶'],
+    images: ['/image/products/special-paste.svg', '/image/products/tea-dark.svg', '/image/products/detail-tea-set.svg'],
+    detailImages: ['/image/products/detail-cake.svg'],
+    reviews: [
+      {
+        user: '茶旅人',
+        avatar: '/image/profile/avatar2.svg',
+        content: '出差随身携带很方便，一块就能泡出熟茶香气。',
+        date: '2024-04-22'
+      }
+    ]
+  },
+  {
+    id: 'spec002',
+    name: '滇味手工茶点礼盒',
+    category: '特产精选',
+    type: '茶点伴侣',
+    price: 198,
+    origin: '昆明·官渡',
+    stock: 95,
+    rating: 4.6,
+    brief: '甄选玫瑰云腿饼与普洱茶曲奇，搭配品茶更添层次。',
+    description:
+      '礼盒内含云南经典玫瑰鲜花饼、云腿月饼与普洱茶曲奇，全部当天烘焙真空锁鲜。甜咸交融，搭配普洱茶饮能够平衡茶汤苦甜。',
+    tastingNotes: ['花香', '奶香', '云腿鲜'],
+    brewTips: ['建议搭配普洱熟茶或滇红茶', '拆封后冷藏保存，尽早食用'],
+    pairing: '可与冰岛生茶对比体验甜润回甘，也适合茶会分食。',
+    specs: ['12枚礼盒', '18枚组合装'],
+    options: ['经典礼盒', '伴手提袋套装'],
+    tags: ['伴手礼', '茶点'],
+    images: ['/image/products/special-pastry.svg', '/image/products/tea-amber.svg', '/image/products/tea-green.svg'],
+    detailImages: ['/image/products/detail-tea-set.svg'],
+    reviews: [
+      {
+        user: '茶会主持人',
+        avatar: '/image/profile/avatar1.svg',
+        content: '茶点口味丰富，与普洱搭配不会抢味，客人反馈很好。',
+        date: '2024-03-30'
+      }
+    ]
   }
 ];
 

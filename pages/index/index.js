@@ -2,32 +2,31 @@
 // 商品列表页面，负责展示主要茶叶商品
 const app = getApp();
 const { ICONS } = require('../../utils/icons');
-const { originHighlights } = require('../../data/knowledge');
 
 Page({
   data: {
     ICONS,
     allProducts: [],
     filteredProducts: [],
-    teaTypes: [],
-    activeType: '全部',
+    teaTypes: ['茶叶精选', '特产精选'],
+    activeType: '茶叶精选',
     searchKeyword: '',
     cartCount: 0,
-    cartIcon: ICONS.cart,
-    originHighlights: []
+    cartIcon: ICONS.cart
   },
 
   onLoad() {
     // 从全局数据中读取商品列表，确保与本地“数据库”同步
     const products = app.globalData.products;
-    const teaTypes = ['全部', ...new Set(products.map((item) => item.type))];
 
-    this.setData({
-      allProducts: products,
-      filteredProducts: products,
-      teaTypes,
-      originHighlights
-    });
+    this.setData(
+      {
+        allProducts: products
+      },
+      () => {
+        this.applyFilters();
+      }
+    );
     this.updateCartCount();
   },
 
@@ -60,7 +59,7 @@ Page({
     const keyword = searchKeyword.toLowerCase();
 
     const filteredProducts = allProducts.filter((product) => {
-      const matchType = activeType === '全部' || product.type === activeType;
+      const matchType = product.category === activeType;
       const matchKeyword =
         !keyword ||
         product.name.toLowerCase().includes(keyword) ||

@@ -38,8 +38,3 @@
   </view>
 </view>
 
-<view class="card helper-card">
-  <view class="helper-title">贴心服务</view>
-  <view class="helper-desc">关注公众号获取新茶预告，或直接联系客服安排专属茶礼方案。</view>
-  <button class="contact-btn" bindtap="openContact">联系客服</button>
-</view>

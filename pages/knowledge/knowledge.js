@@ -1,6 +1,12 @@
 // pages/knowledge/knowledge.js
 // 科普知识展示页面
-const { knowledgeSections, quickFacts, brewSteps, originHighlights } = require('../../data/knowledge');
+const {
+  knowledgeSections,
+  quickFacts,
+  brewSteps,
+  originHighlights,
+  teaArtCulture
+} = require('../../data/knowledge');
 const { SECTION_ICONS } = require('../../utils/icons');
 
 Page({
@@ -8,7 +14,8 @@ Page({
     sections: [],
     quickFacts: [],
     brewSteps: [],
-    originHighlights: []
+    originHighlights: [],
+    teaArtCulture: []
   },
 
   onLoad() {
@@ -23,7 +30,8 @@ Page({
       sections,
       quickFacts,
       brewSteps,
-      originHighlights
+      originHighlights,
+      teaArtCulture
     });
   },
 

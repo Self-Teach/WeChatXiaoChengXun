@@ -120,11 +120,17 @@ const knowledgeSections = [
     items: [
       {
         name: '古茶园茶旅',
-        content: '易武、景迈等地保留完整古茶林，村寨常提供采茶、制茶体验路线，了解古树保护与生态茶园。'
+        content:
+          '2023年被列入世界遗产名录的景迈山古茶林文化景观，及易武等古茶村均提供采茶、制茶体验，强调古树保护与生态共生。'
       },
       {
         name: '傣族与哈尼族茶俗',
-        content: '傣族擅长以竹筒贮茶、烤茶待客；哈尼族以茶迎宾，讲究“三泡三味”，体现敬客礼仪。'
+        content:
+          '傣族竹筒茶、哈尼族烤茶等茶俗被列入各地非物质文化遗产，重视以茶迎客，“三泡三味”表达敬意与祝福。'
+      },
+      {
+        name: '白族三道茶',
+        content: '白族“三道茶”2006年入选国家级非遗，以“苦茶、甜茶、回味茶”寓意人生三味，是云南茶艺文化的代表。'
       },
       {
         name: '品鉴礼仪',
@@ -196,9 +202,31 @@ const originHighlights = [
   }
 ];
 
+const teaArtCulture = [
+  {
+    id: 'heritage-jingmai',
+    title: '景迈山古茶林世界遗产',
+    excerpt:
+      '2023年9月，景迈山古茶林文化景观被联合国教科文组织列入《世界遗产名录》，体现“千年茶文化”与村寨生态的共生。'
+  },
+  {
+    id: 'intangible-san-dao',
+    title: '白族三道茶的礼数',
+    excerpt:
+      '国家级非遗“三道茶”以“先苦后甜再回味”象征人生哲理，常在喜庆宴席或迎宾场合奉上，展示云南民族的待客之道。'
+  },
+  {
+    id: 'gongfu-utensils',
+    title: '功夫茶具与茶席布置',
+    excerpt:
+      '茶席常配盖碗、公道杯、公平杯与闻香杯等器具，配合竹制茶则、茶夹保持卫生，强调从备具到收具的有序礼仪。'
+  }
+];
+
 module.exports = {
   knowledgeSections,
   quickFacts,
   brewSteps,
-  originHighlights
+  originHighlights,
+  teaArtCulture
 };

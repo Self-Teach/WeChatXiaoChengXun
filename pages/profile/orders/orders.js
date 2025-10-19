@@ -11,24 +11,8 @@ const orderTabs = [
 ];
 
 const mockOrders = {
-  pendingPay: [
-    {
-      id: 'order001',
-      productName: '易武古树普洱生茶',
-      price: 368,
-      status: '待付款',
-      time: '2024-05-10 19:30'
-    }
-  ],
-  pendingSend: [
-    {
-      id: 'order002',
-      productName: '勐海大树熟茶',
-      price: 298,
-      status: '待发货',
-      time: '2024-05-08 11:10'
-    }
-  ],
+  pendingPay: [],
+  pendingSend: [],
   pendingReceive: [],
   pendingReview: [],
   afterSale: []

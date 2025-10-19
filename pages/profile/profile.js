@@ -31,7 +31,7 @@ Page({
       {
         key: 'service',
         label: '客服服务',
-        desc: '联系茶艺顾问答疑',
+        desc: '添加客服微信 SelfLearner',
         icon: ICONS.profileService,
         action: 'openContact'
       }
@@ -75,9 +75,11 @@ Page({
   },
 
   openContact() {
-    wx.showToast({
-      title: '稍后将有客服与您联系',
-      icon: 'none'
+    wx.showModal({
+      title: '客服咨询',
+      content: '请添加微信号 SelfLearner 进行咨询，我们会尽快回复您的需求。',
+      showCancel: false,
+      confirmText: '知道了'
     });
   }
 });

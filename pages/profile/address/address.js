@@ -10,14 +10,6 @@ Page({
         region: '云南省 昆明市 五华区',
         detail: '翠湖西路88号云茶汇体验店',
         isDefault: true
-      },
-      {
-        id: 'addr002',
-        name: '王品茶',
-        phone: '139****8846',
-        region: '云南省 西双版纳州 勐海县',
-        detail: '茶山大道18号',
-        isDefault: false
       }
     ]
   },

@@ -31,6 +31,18 @@
   </view>
 </view>
 
+<view class="card culture-card">
+  <view class="section-title">茶艺文化速读</view>
+  <view class="culture-list">
+    <block wx:for="{{teaArtCulture}}" wx:key="id">
+      <view class="culture-item">
+        <view class="culture-title">{{item.title}}</view>
+        <view class="culture-excerpt">{{item.excerpt}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
 <view class="card brew-guide">
   <view class="section-title">一泡好茶的流程</view>
   <view class="brew-steps">

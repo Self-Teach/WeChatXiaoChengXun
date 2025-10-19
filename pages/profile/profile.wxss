@@ -139,25 +139,6 @@
   line-height: 1.4;
 }
 
-.helper-card {
-  margin: 24rpx 32rpx 120rpx;
-  text-align: center;
-}
 
-.helper-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  margin-bottom: 12rpx;
-}
 
-.helper-desc {
-  font-size: 26rpx;
-  color: #666666;
-  margin-bottom: 20rpx;
-}
 
-.contact-btn {
-  border-radius: 999rpx;
-  background: #0a8a4a;
-  color: #ffffff;
-}

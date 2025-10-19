@@ -68,21 +68,8 @@
     <view class="empty-desc">试着更换关键词或切换茶类分类，探索更多云南好茶。</view>
   </view>
 
-  <view class="card origin-digest">
-    <view class="section-title">茶区风味笔记</view>
-    <view class="origin-digest__list">
-      <block wx:for="{{originHighlights}}" wx:key="id">
-        <view class="digest-item">
-          <view class="digest-name">{{item.name}}</view>
-          <view class="digest-summary">{{item.summary}}</view>
-        </view>
-      </block>
-    </view>
-  </view>
-
   <view class="cart-fab" bindtap="goCart">
     <image class="cart-fab__icon" src="{{cartIcon}}" mode="aspectFit" />
-    <view class="cart-fab__label">购物车</view>
     <view wx:if="{{cartCount > 0}}" class="cart-fab__badge">{{cartCount}}</view>
   </view>
 </view>
