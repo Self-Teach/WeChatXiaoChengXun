@@ -1,11 +1,14 @@
 // pages/knowledge/knowledge.js
 // 科普知识展示页面
-const { knowledgeSections } = require('../../data/knowledge');
+const { knowledgeSections, quickFacts, brewSteps, originHighlights } = require('../../data/knowledge');
 const { SECTION_ICONS } = require('../../utils/icons');
 
 Page({
   data: {
-    sections: []
+    sections: [],
+    quickFacts: [],
+    brewSteps: [],
+    originHighlights: []
   },
 
   onLoad() {
@@ -15,14 +18,20 @@ Page({
       icon: SECTION_ICONS[section.id],
       expanded: index === 0
     }));
-    this.setData({ sections });
+
+    this.setData({
+      sections,
+      quickFacts,
+      brewSteps,
+      originHighlights
+    });
   },
 
   toggleSection(event) {
     const { id } = event.currentTarget.dataset;
     const sections = this.data.sections.map((section) => ({
       ...section,
-      expanded: section.id === id ? !section.expanded : section.expanded
+      expanded: section.id === id ? !section.expanded : false
     }));
     this.setData({ sections });
   }

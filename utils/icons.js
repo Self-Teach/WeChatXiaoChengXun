@@ -3,18 +3,24 @@
 
 const ICONS = {
   cart: '/image/icons/icon-cart.svg',
+  search: '/image/icons/icon-search.svg',
+  filter: '/image/icons/icon-filter.svg',
   pendingPay: '/image/icons/icon-pending-pay.svg',
   pendingSend: '/image/icons/icon-pending-send.svg',
   pendingReceive: '/image/icons/icon-pending-receive.svg',
   pendingReview: '/image/icons/icon-pending-review.svg',
-  afterSale: '/image/icons/icon-after-sale.svg'
+  afterSale: '/image/icons/icon-after-sale.svg',
+  profileAddress: '/image/icons/icon-profile-address.svg',
+  profileSecurity: '/image/icons/icon-profile-security.svg',
+  profileService: '/image/icons/icon-profile-service.svg'
 };
 
 const SECTION_ICONS = {
   category: '/image/icons/icon-knowledge-category.svg',
   origin: '/image/icons/icon-knowledge-origin.svg',
   storage: '/image/icons/icon-knowledge-storage.svg',
-  brew: '/image/icons/icon-knowledge-brew.svg'
+  brew: '/image/icons/icon-knowledge-brew.svg',
+  culture: '/image/icons/icon-knowledge-culture.svg'
 };
 
 module.exports = {

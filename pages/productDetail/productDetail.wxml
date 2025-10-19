@@ -9,9 +9,34 @@
 
   <view class="card info-card">
     <view class="title">{{product.name}}</view>
+    <view class="meta-line">
+      <view class="type-tag">{{product.type}}</view>
+      <view class="meta">产地：{{product.origin}} · 库存：{{product.stock}}</view>
+    </view>
     <view class="price">￥{{product.price}}</view>
-    <view class="meta">产地：{{product.origin}} · 库存：{{product.stock}}</view>
     <view class="desc">{{product.description}}</view>
+  </view>
+
+  <view class="card flavor-card" wx:if="{{product.tastingNotes.length || product.pairing}}">
+    <view class="option-title">风味亮点</view>
+    <view wx:if="{{product.tastingNotes.length}}" class="flavor-tags">
+      <block wx:for="{{product.tastingNotes}}" wx:key="*this">
+        <view class="flavor-chip">{{item}}</view>
+      </block>
+    </view>
+    <view wx:if="{{product.pairing}}" class="pairing">搭配建议：{{product.pairing}}</view>
+  </view>
+
+  <view class="card brew-card" wx:if="{{product.brewTips.length}}">
+    <view class="option-title">冲泡建议</view>
+    <view class="brew-list">
+      <block wx:for="{{product.brewTips}}" wx:key="*this">
+        <view class="brew-item">
+          <view class="brew-index">{{index + 1}}</view>
+          <view class="brew-text">{{item}}</view>
+        </view>
+      </block>
+    </view>
   </view>
 
   <view class="card option-card" wx:if="{{product.specs.length}}">

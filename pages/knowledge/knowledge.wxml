@@ -3,6 +3,49 @@
   <view class="desc">走近云南茶山，了解普洱茶的分类、产地与冲泡技巧，品味一杯茶的山野故事。</view>
 </view>
 
+<view class="card quick-facts">
+  <view class="quick-header">
+    <view class="quick-title">云南好茶小知识</view>
+    <view class="quick-desc">轻松掌握核心信息，再深入阅读详解。</view>
+  </view>
+  <scroll-view class="quick-scroll" scroll-x="true" enable-flex="true">
+    <block wx:for="{{quickFacts}}" wx:key="id">
+      <view class="fact-card">
+        <image class="fact-icon" src="{{item.icon}}" mode="aspectFit" />
+        <view class="fact-title">{{item.title}}</view>
+        <view class="fact-desc">{{item.desc}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+
+<view class="card origin-highlights">
+  <view class="section-title">热门产区速览</view>
+  <view class="origin-list">
+    <block wx:for="{{originHighlights}}" wx:key="id">
+      <view class="origin-item">
+        <view class="origin-name">{{item.name}}</view>
+        <view class="origin-summary">{{item.summary}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="card brew-guide">
+  <view class="section-title">一泡好茶的流程</view>
+  <view class="brew-steps">
+    <block wx:for="{{brewSteps}}" wx:key="id">
+      <view class="brew-step">
+        <view class="step-index">{{index + 1}}</view>
+        <view class="step-content">
+          <view class="step-title">{{item.title}}</view>
+          <view class="step-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
 <block wx:for="{{sections}}" wx:key="id">
   <view class="card section">
     <view class="section-header" bindtap="toggleSection" data-id="{{item.id}}">

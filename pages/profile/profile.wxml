@@ -23,19 +23,23 @@
   </view>
 </view>
 
-<view class="card setting-card">
-  <navigator class="setting-item" url="/pages/profile/address/address">
-    <view>地址管理</view>
-    <text class="more">管理收货地址 ></text>
-  </navigator>
-  <navigator class="setting-item" url="/pages/profile/security/security">
-    <view>账号与安全</view>
-    <text class="more">手机/密码设置 ></text>
-  </navigator>
+<view class="card quick-card">
+  <view class="quick-title">常用工具</view>
+  <view class="quick-grid">
+    <block wx:for="{{quickEntries}}" wx:key="key">
+      <view class="quick-item" data-action="{{item.action}}" bindtap="handleQuickEntry">
+        <image class="quick-icon" src="{{item.icon}}" mode="aspectFit" />
+        <view class="quick-text">
+          <view class="quick-label">{{item.label}}</view>
+          <view class="quick-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
 </view>
 
 <view class="card helper-card">
   <view class="helper-title">贴心服务</view>
-  <view class="helper-desc">关注我们的公众号或联系客服，获取更多云南茶资讯。</view>
-  <button class="contact-btn" open-type="contact">联系客服</button>
+  <view class="helper-desc">关注公众号获取新茶预告，或直接联系客服安排专属茶礼方案。</view>
+  <button class="contact-btn" bindtap="openContact">联系客服</button>
 </view>

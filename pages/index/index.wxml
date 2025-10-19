@@ -1,32 +1,88 @@
-<view class="hero card">
-  <view class="hero-text">
-    <view class="subtitle">云南山野的好茶</view>
-    <view class="title">云茶精选</view>
-    <view class="desc">严选八款云南经典好茶，感受普洱的甜润与岁月的沉香。</view>
+<view class="home">
+  <view class="hero card">
+    <view class="hero-text">
+      <view class="subtitle">云南山野的好茶</view>
+      <view class="title">云茶精选</view>
+      <view class="desc">严选八款云南经典好茶，感受普洱的甜润与岁月的沉香。</view>
+    </view>
+    <image class="hero-image" mode="aspectFill" src="/image/banners/hero-tea.svg" />
   </view>
-  <image class="hero-image" mode="aspectFill" src="/image/banners/hero-tea.svg" />
-</view>
 
-<view class="section-title">经典推荐</view>
+  <view class="search card">
+    <image class="search-icon" src="{{ICONS.search}}" mode="aspectFit" />
+    <input
+      class="search-input"
+      placeholder="搜索茶名、风味或标签"
+      placeholder-class="placeholder"
+      value="{{searchKeyword}}"
+      bindinput="handleSearchInput"
+    />
+    <view class="search-actions">
+      <image class="filter-icon" src="{{ICONS.filter}}" mode="aspectFit" />
+      <text wx:if="{{searchKeyword}}" class="clear-btn" bindtap="clearSearch">清空</text>
+    </view>
+  </view>
 
-<view class="product-grid">
-  <block wx:for="{{products}}" wx:key="id">
-    <view class="product-card" bindtap="handleProductTap" data-id="{{item.id}}">
-      <image class="product-image" mode="aspectFill" src="{{item.images[0]}}" />
-      <view class="product-info">
-        <view class="product-name">{{item.name}}</view>
-        <view class="product-brief text-muted">{{item.brief}}</view>
-        <view class="product-meta">
-          <text class="price">￥{{item.price}}</text>
-          <text class="rating">⭐ {{item.rating}}</text>
+  <scroll-view class="type-tabs" scroll-x="true" enable-flex="true">
+    <block wx:for="{{teaTypes}}" wx:key="*this">
+      <view
+        class="type-chip {{activeType === item ? 'active' : ''}}"
+        data-type="{{item}}"
+        bindtap="handleTypeChange"
+      >
+        {{item}}
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="section-title">精选推荐</view>
+  <view wx:if="{{filteredProducts.length}}" class="product-grid">
+    <block wx:for="{{filteredProducts}}" wx:key="id">
+      <view class="product-card" bindtap="handleProductTap" data-id="{{item.id}}">
+        <image class="product-image" mode="aspectFill" src="{{item.images[0]}}" />
+        <view class="product-info">
+          <view class="product-header">
+            <view class="product-name">{{item.name}}</view>
+            <view class="product-type">{{item.type}}</view>
+          </view>
+          <view class="product-brief text-muted">{{item.brief}}</view>
+          <view wx:if="{{item.tags.length}}" class="tag-list">
+            <text class="tag" wx:for="{{item.tags}}" wx:key="*this">#{{item}}</text>
+          </view>
+          <view wx:if="{{item.tastingNotes.length}}" class="tasting-list">
+            <block wx:for="{{item.tastingNotes}}" wx:key="*this">
+              <view class="tasting-chip">{{item}}</view>
+            </block>
+          </view>
+          <view class="product-meta">
+            <text class="price">￥{{item.price}}</text>
+            <text class="rating">⭐ {{item.rating}}</text>
+          </view>
+          <view class="product-origin">产地：{{item.origin}}</view>
         </view>
       </view>
-    </view>
-  </block>
-</view>
+    </block>
+  </view>
+  <view wx:else class="empty-state card">
+    <view class="empty-title">未找到相关茶品</view>
+    <view class="empty-desc">试着更换关键词或切换茶类分类，探索更多云南好茶。</view>
+  </view>
 
-<view class="cart-fab" bindtap="goCart">
-  <image class="cart-fab__icon" src="{{cartIcon}}" mode="aspectFit" />
-  <view class="cart-fab__label">购物车</view>
-  <view wx:if="{{cartCount > 0}}" class="cart-fab__badge">{{cartCount}}</view>
+  <view class="card origin-digest">
+    <view class="section-title">茶区风味笔记</view>
+    <view class="origin-digest__list">
+      <block wx:for="{{originHighlights}}" wx:key="id">
+        <view class="digest-item">
+          <view class="digest-name">{{item.name}}</view>
+          <view class="digest-summary">{{item.summary}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="cart-fab" bindtap="goCart">
+    <image class="cart-fab__icon" src="{{cartIcon}}" mode="aspectFit" />
+    <view class="cart-fab__label">购物车</view>
+    <view wx:if="{{cartCount > 0}}" class="cart-fab__badge">{{cartCount}}</view>
+  </view>
 </view>

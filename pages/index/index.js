@@ -2,24 +2,75 @@
 // 商品列表页面，负责展示主要茶叶商品
 const app = getApp();
 const { ICONS } = require('../../utils/icons');
+const { originHighlights } = require('../../data/knowledge');
 
 Page({
   data: {
-    products: [],
+    ICONS,
+    allProducts: [],
+    filteredProducts: [],
+    teaTypes: [],
+    activeType: '全部',
+    searchKeyword: '',
     cartCount: 0,
-    cartIcon: ICONS.cart
+    cartIcon: ICONS.cart,
+    originHighlights: []
   },
 
   onLoad() {
     // 从全局数据中读取商品列表，确保与本地“数据库”同步
+    const products = app.globalData.products;
+    const teaTypes = ['全部', ...new Set(products.map((item) => item.type))];
+
     this.setData({
-      products: app.globalData.products
+      allProducts: products,
+      filteredProducts: products,
+      teaTypes,
+      originHighlights
     });
     this.updateCartCount();
   },
 
   onShow() {
     this.updateCartCount();
+  },
+
+  handleSearchInput(event) {
+    const searchKeyword = event.detail.value.trim();
+    this.setData({ searchKeyword }, () => {
+      this.applyFilters();
+    });
+  },
+
+  clearSearch() {
+    this.setData({ searchKeyword: '' }, () => {
+      this.applyFilters();
+    });
+  },
+
+  handleTypeChange(event) {
+    const { type } = event.currentTarget.dataset;
+    this.setData({ activeType: type }, () => {
+      this.applyFilters();
+    });
+  },
+
+  applyFilters() {
+    const { allProducts, activeType, searchKeyword } = this.data;
+    const keyword = searchKeyword.toLowerCase();
+
+    const filteredProducts = allProducts.filter((product) => {
+      const matchType = activeType === '全部' || product.type === activeType;
+      const matchKeyword =
+        !keyword ||
+        product.name.toLowerCase().includes(keyword) ||
+        product.brief.toLowerCase().includes(keyword) ||
+        (product.tastingNotes || []).some((note) => note.toLowerCase().includes(keyword)) ||
+        (product.tags || []).some((tag) => tag.toLowerCase().includes(keyword));
+      return matchType && matchKeyword;
+    });
+
+    this.setData({ filteredProducts });
   },
 
   /**

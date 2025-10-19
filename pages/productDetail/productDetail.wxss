@@ -11,9 +11,31 @@
   height: 520rpx;
 }
 
+.info-card {
+  margin: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
 .info-card .title {
   font-size: 40rpx;
   font-weight: 700;
+}
+
+.meta-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.type-tag {
+  padding: 8rpx 20rpx;
+  border-radius: 999rpx;
+  background: #ecf8f0;
+  color: #0a8a4a;
+  font-size: 24rpx;
 }
 
 .info-card .price {
@@ -25,11 +47,70 @@
 .info-card .meta {
   font-size: 24rpx;
   color: #666666;
-  margin-bottom: 12rpx;
 }
 
 .info-card .desc {
   font-size: 28rpx;
+  line-height: 1.6;
+}
+
+.flavor-card,
+.brew-card {
+  margin: 0 32rpx 24rpx;
+}
+
+.flavor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.flavor-chip {
+  padding: 10rpx 20rpx;
+  border-radius: 999rpx;
+  background: rgba(19, 176, 103, 0.12);
+  color: #0a8a4a;
+  font-size: 24rpx;
+}
+
+.pairing {
+  font-size: 26rpx;
+  color: #55625d;
+  line-height: 1.6;
+}
+
+.brew-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.brew-item {
+  display: flex;
+  gap: 16rpx;
+  align-items: flex-start;
+}
+
+.brew-index {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: #0a8a4a;
+  color: #ffffff;
+  text-align: center;
+  line-height: 44rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.brew-text {
+  flex: 1;
+  background: #f4fbf6;
+  border-radius: 16rpx;
+  padding: 16rpx 20rpx;
+  font-size: 26rpx;
+  color: #44534c;
   line-height: 1.6;
 }
 
