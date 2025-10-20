@@ -14,6 +14,9 @@ Page({
     ]
   },
 
+  /**
+   * 设为默认地址，确保同时只有一条记录为默认状态。
+   */
   setDefault(event) {
     const { id } = event.currentTarget.dataset;
     const addresses = this.data.addresses.map((item) => ({
@@ -27,6 +30,9 @@ Page({
     });
   },
 
+  /**
+   * 示例环境下提示不可新增，真实业务可替换为表单或跳转。
+   */
   addAddress() {
     wx.showToast({
       title: '示例环境，暂不支持新增',

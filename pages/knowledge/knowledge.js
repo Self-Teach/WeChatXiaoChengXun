@@ -24,6 +24,9 @@ Page({
     teaArtCulture: []
   },
 
+  /**
+   * 页面加载：注入本地科普数据，并标记默认展开项。
+   */
   onLoad() {
     // 初始化时给每个模块增加展开状态，默认首个展开
     const sections = knowledgeSections.map((section, index) => ({
@@ -41,6 +44,9 @@ Page({
     });
   },
 
+  /**
+   * 折叠面板切换，始终保持仅有一项展开，提升阅读聚焦。
+   */
   toggleSection(event) {
     const { id } = event.currentTarget.dataset;
     const sections = this.data.sections.map((section) => ({

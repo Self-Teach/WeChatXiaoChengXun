@@ -26,6 +26,9 @@ Page({
     orders: mockOrders
   },
 
+  /**
+   * 切换订单状态标签，仅更新当前展示的订单分组。
+   */
   switchTab(event) {
     const { key } = event.currentTarget.dataset;
     this.setData({

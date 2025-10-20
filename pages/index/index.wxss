@@ -85,8 +85,9 @@
 }
 
 .type-chip {
+  /* 分类标签样式，可在此调整背景、圆角以及阴影风格 */
   padding: 22rpx 36rpx;
-  border-radius: 20rpx;
+  border-radius: 16rpx;
   background: #ffffff;
   border: 2rpx solid rgba(10, 138, 74, 0.12);
   color: #4f5f58;
@@ -100,6 +101,7 @@
 }
 
 .type-chip.active {
+  /* 激活态渐变背景，形成更具层次的方形卡片效果 */
   background: linear-gradient(135deg, #0a8a4a, #13b067);
   color: #ffffff;
   border-color: transparent;

@@ -2,6 +2,7 @@
 // 商品列表页面，负责展示主要茶叶商品
 const app = getApp();
 const { ICONS } = require('../../utils/icons');
+const { getCartItems, computeCartCount } = require('../../utils/cartStorage');
 
 Page({
   data: {
@@ -23,6 +24,9 @@ Page({
     }
   },
 
+  /**
+   * 页面初始化：同步全局商品数据并应用默认筛选条件。
+   */
   onLoad() {
     // 从全局数据中读取商品列表，确保与本地“数据库”同步
     const products = app.globalData.products;
@@ -38,10 +42,16 @@ Page({
     this.updateCartCount();
   },
 
+  /**
+   * 页面显示时刷新购物车数量，以捕捉其他页面的改动。
+   */
   onShow() {
     this.updateCartCount();
   },
 
+  /**
+   * 监听搜索框输入，实时更新关键字并触发筛选。
+   */
   handleSearchInput(event) {
     const searchKeyword = event.detail.value.trim();
     this.setData({ searchKeyword }, () => {
@@ -49,12 +59,18 @@ Page({
     });
   },
 
+  /**
+   * 清空搜索关键字并恢复默认列表。
+   */
   clearSearch() {
     this.setData({ searchKeyword: '' }, () => {
       this.applyFilters();
     });
   },
 
+  /**
+   * 切换分类标签时更新当前分类并重新过滤商品。
+   */
   handleTypeChange(event) {
     const { type } = event.currentTarget.dataset;
     this.setData({ activeType: type }, () => {
@@ -62,6 +78,9 @@ Page({
     });
   },
 
+  /**
+   * 将搜索词与分类组合，得到当前可展示的商品集合。
+   */
   applyFilters() {
     const { allProducts, activeType, searchKeyword } = this.data;
     const keyword = searchKeyword.toLowerCase();
@@ -104,8 +123,8 @@ Page({
    * 更新购物车数量，保持浮动按钮与本地数据同步
    */
   updateCartCount() {
-    const items = wx.getStorageSync('cartItems') || app.globalData.cart || [];
-    const cartCount = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
+    const items = getCartItems();
+    const cartCount = computeCartCount(items);
     this.setData({ cartCount });
   }
 });

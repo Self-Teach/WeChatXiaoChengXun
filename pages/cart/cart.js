@@ -1,7 +1,7 @@
 // pages/cart/cart.js
 // 购物车页面，展示本地存储的商品信息
-const app = getApp();
 const { ICONS } = require('../../utils/icons');
+const { getCartItems, setCartItems } = require('../../utils/cartStorage');
 
 Page({
   data: {
@@ -15,21 +15,33 @@ Page({
     }
   },
 
+  /**
+   * 每次进入购物车页面都重新读取本地缓存，避免数据不同步。
+   */
   onShow() {
     this.loadCart();
   },
 
+  /**
+   * 从缓存中读取购物车数据并更新金额。
+   */
   loadCart() {
-    const items = wx.getStorageSync('cartItems') || [];
+    const items = getCartItems();
     this.setData({ items });
     this.updateTotalPrice(items);
   },
 
+  /**
+   * 根据商品单价与数量计算总价，保留两位小数。
+   */
   updateTotalPrice(items = this.data.items) {
     const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
     this.setData({ totalPrice: total.toFixed(2) });
   },
 
+  /**
+   * 增加单个商品数量。
+   */
   increaseQty(event) {
     const { index } = event.currentTarget.dataset;
     const items = [...this.data.items];
@@ -37,6 +49,9 @@ Page({
     this.persistCart(items);
   },
 
+  /**
+   * 减少单个商品数量，最少为 1。
+   */
   decreaseQty(event) {
     const { index } = event.currentTarget.dataset;
     const items = [...this.data.items];
@@ -47,6 +62,9 @@ Page({
     this.persistCart(items);
   },
 
+  /**
+   * 删除指定索引的商品行。
+   */
   removeItem(event) {
     const { index } = event.currentTarget.dataset;
     const items = [...this.data.items];
@@ -54,6 +72,9 @@ Page({
     this.persistCart(items);
   },
 
+  /**
+   * 清空购物车前弹窗确认，防止误触。
+   */
   clearCart() {
     wx.showModal({
       title: '清空购物车',
@@ -66,6 +87,9 @@ Page({
     });
   },
 
+  /**
+   * 结算按钮示例，实际项目可跳转至下单流程。
+   */
   checkout() {
     wx.showToast({
       title: '提交订单成功',
@@ -73,16 +97,21 @@ Page({
     });
   },
 
+  /**
+   * 当购物车为空时引导返回精选页继续挑选。
+   */
   goShop() {
     wx.switchTab({
       url: '/pages/index/index'
     });
   },
 
+  /**
+   * 将最新的购物车状态写回缓存与全局数据。
+   */
   persistCart(items) {
-    this.setData({ items });
-    this.updateTotalPrice(items);
-    wx.setStorageSync('cartItems', items);
-    app.globalData.cart = items;
+    const normalized = setCartItems(items);
+    this.setData({ items: normalized });
+    this.updateTotalPrice(normalized);
   }
 });

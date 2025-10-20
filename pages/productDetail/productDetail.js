@@ -1,6 +1,7 @@
 // pages/productDetail/productDetail.js
 // 展示单个商品的详细信息与购买操作
 const app = getApp();
+const { getCartItems, setCartItems, upsertCartItem } = require('../../utils/cartStorage');
 
 Page({
   data: {
@@ -10,6 +11,9 @@ Page({
     quantity: 1
   },
 
+  /**
+   * 页面初始化：根据传入的商品 id 拉取详细数据。
+   */
   onLoad(options) {
     const { id } = options;
     const product = app.globalData.products.find((item) => item.id === id);
@@ -28,24 +32,36 @@ Page({
     }
   },
 
+  /**
+   * 下拉框选择新的规格。
+   */
   handleSpecChange(event) {
     this.setData({
       selectedSpec: event.detail.value
     });
   },
 
+  /**
+   * 下拉框选择新的包装或选项。
+   */
   handleOptionChange(event) {
     this.setData({
       selectedOption: event.detail.value
     });
   },
 
+  /**
+   * 增加购买数量。
+   */
   increaseQty() {
     this.setData({
       quantity: this.data.quantity + 1
     });
   },
 
+  /**
+   * 减少购买数量，确保不少于 1。
+   */
   decreaseQty() {
     if (this.data.quantity === 1) {
       return;
@@ -55,34 +71,28 @@ Page({
     });
   },
 
+  /**
+   * 将当前商品加入购物车，若已存在相同规格则叠加数量。
+   */
   addToCart() {
     const { product, selectedSpec, selectedOption, quantity } = this.data;
     if (!product) {
       return;
     }
 
-    const cartItems = wx.getStorageSync('cartItems') || [];
-    const index = cartItems.findIndex(
-      (item) => item.id === product.id && item.spec === selectedSpec && item.option === selectedOption
-    );
+    const cartItems = getCartItems();
+    const updatedItems = upsertCartItem(cartItems, {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      // 购物车缩略图默认取首张主图，可在 data/products.js 中调整顺序或素材
+      image: product.images[0],
+      spec: selectedSpec,
+      option: selectedOption,
+      quantity
+    });
 
-    if (index >= 0) {
-      cartItems[index].quantity += quantity;
-    } else {
-      cartItems.push({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        // 购物车缩略图默认取首张主图，可在 data/products.js 中调整顺序或素材
-        image: product.images[0],
-        spec: selectedSpec,
-        option: selectedOption,
-        quantity
-      });
-    }
-
-    wx.setStorageSync('cartItems', cartItems);
-    app.globalData.cart = cartItems;
+    setCartItems(updatedItems);
 
     wx.showToast({
       title: '已加入购物车',
@@ -90,6 +100,9 @@ Page({
     });
   },
 
+  /**
+   * 点击详情图预览大图。
+   */
   previewImage(event) {
     const { src } = event.currentTarget.dataset;
     wx.previewImage({
@@ -98,6 +111,9 @@ Page({
     });
   },
 
+  /**
+   * 小程序原生分享配置。
+   */
   onShareAppMessage() {
     const { product } = this.data;
     return {

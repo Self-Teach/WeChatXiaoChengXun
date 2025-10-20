@@ -48,6 +48,9 @@ Page({
     }
   },
 
+  /**
+   * 模拟登录流程，实际项目可替换为接口请求。
+   */
   handleLogin() {
     this.setData({
       loggedIn: true,
@@ -59,24 +62,36 @@ Page({
     });
   },
 
+  /**
+   * 跳转订单列表，查看不同状态的订单详情。
+   */
   goOrders() {
     wx.navigateTo({
       url: '/pages/profile/orders/orders'
     });
   },
 
+  /**
+   * 跳转地址管理，维护默认地址与收货信息。
+   */
   goAddress() {
     wx.navigateTo({
       url: '/pages/profile/address/address'
     });
   },
 
+  /**
+   * 跳转账号安全设置，提供密码与手机号修改入口。
+   */
   goSecurity() {
     wx.navigateTo({
       url: '/pages/profile/security/security'
     });
   },
 
+  /**
+   * 根据入口配置触发对应的页面跳转或功能。
+   */
   handleQuickEntry(event) {
     const { action } = event.currentTarget.dataset;
     if (action && typeof this[action] === 'function') {
@@ -84,6 +99,9 @@ Page({
     }
   },
 
+  /**
+   * 提示用户添加客服微信，方便人工咨询。
+   */
   openContact() {
     wx.showModal({
       title: '客服咨询',
