@@ -1,4 +1,8 @@
 <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：商品评价与个人中心随机头像资源之三。
+    修改指引：替换面部或背景颜色时请保持描边一致，确保头像风格统一。
+  -->
   <rect width="160" height="160" rx="48" fill="#eef1ff" />
   <circle cx="80" cy="68" r="32" fill="#6d74dd" opacity="0.7" />
   <path d="M34 132c10-28 30-44 46-44s36 16 46 44" fill="#a3a7f7" opacity="0.8" />

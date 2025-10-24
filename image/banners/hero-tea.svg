@@ -1,4 +1,8 @@
 <svg width="360" height="360" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：精选页顶部横幅插画，营造品牌氛围。
+    修改指引：可替换山峦、茶杯等路径颜色形成新主题，务必保持视窗比率以避免拉伸。
+  -->
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#f4f9f6" />

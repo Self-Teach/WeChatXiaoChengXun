@@ -1,4 +1,8 @@
 <svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：商品详情页“产地工艺”模块的茶饼插图。
+    修改指引：更换茶饼配色时请修改饼面与背景圆环的 fill，保持 360×240 画布比例以与模块布局贴合。
+  -->
   <rect width="360" height="240" rx="32" fill="#fff5eb" />
   <ellipse cx="180" cy="168" rx="140" ry="36" fill="#f4d7b5" />
   <path d="M96 90h168v78c0 28-36 50-84 50s-84-22-84-50z" fill="#de8c34" />

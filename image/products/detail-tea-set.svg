@@ -1,4 +1,8 @@
 <svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：商品详情页“器具搭配”模块的茶具插图。
+    修改指引：如需调整茶具颜色请同步更新多个 <path> 的 fill，维持柔和阴影以保持质感。
+  -->
   <rect width="360" height="240" rx="32" fill="#f6f8f4" />
   <ellipse cx="180" cy="180" rx="140" ry="32" fill="#d8e7dc" />
   <circle cx="120" cy="128" r="52" fill="#0a8a4a" opacity="0.16" />

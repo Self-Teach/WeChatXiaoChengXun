@@ -1,4 +1,8 @@
 <svg width="320" height="180" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：个人中心顶部背景封面插画。
+    修改指引：可替换山水或云雾路径颜色营造新主题，保持渐变 stop-color 渐层过渡顺滑。
+  -->
   <defs>
     <linearGradient id="cover" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0a8a4a" />

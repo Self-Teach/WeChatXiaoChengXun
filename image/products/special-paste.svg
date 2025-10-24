@@ -1,4 +1,8 @@
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：特产精选列表中的云南蜂蜜玫瑰酱插画。
+    修改指引：如需替换罐体配色请同步调整标签与盖子路径的 fill，保留 200×200 画布以适配卡片。
+  -->
   <defs>
     <linearGradient id="pasteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#5c3317" />

@@ -1,4 +1,8 @@
 <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：商品评价与个人中心随机头像资源之二。
+    修改指引：可调整衣领与头发颜色形成差异化，建议保留浅色背景以保证字迹可读。
+  -->
   <rect width="160" height="160" rx="48" fill="#fff5eb" />
   <circle cx="80" cy="66" r="34" fill="#de8c34" opacity="0.7" />
   <path d="M32 132c12-30 32-46 48-46s36 16 48 46" fill="#f2c572" opacity="0.8" />

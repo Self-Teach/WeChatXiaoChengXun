@@ -1,4 +1,8 @@
 <svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：茶叶精选分类中“冰岛古树”商品主图。
+    修改指引：可变更山景或茶杯颜色营造雾气氛围，保持 320×320 画布以适配产品宫格。
+  -->
   <defs>
     <linearGradient id="mist" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#b3e5d1" />

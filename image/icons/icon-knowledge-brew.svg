@@ -1,4 +1,8 @@
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：知识页“冲泡方法”卡片图标。
+    修改指引：调整茶壶或蒸汽颜色时请更新 fill/stroke 属性，保留 120×120 画布以适应卡片。
+  -->
   <path d="M32 52h56v14c0 28-18 42-28 42s-28-14-28-42z" fill="#e8f6f0" />
   <path d="M44 40a16 16 0 0 1 32 0" stroke="#0a8a4a" stroke-width="6" stroke-linecap="round" fill="none" />
   <rect x="44" y="56" width="32" height="12" fill="#13b067" />

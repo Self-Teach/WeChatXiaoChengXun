@@ -1,4 +1,8 @@
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：订单页“待发货”标签的信封图标。
+    修改指引：如需调整色彩请同步修改信封主体与轮廓的 fill/stroke，保持描边宽度 6 维持识别度。
+  -->
   <rect x="16" y="32" width="88" height="56" rx="16" fill="#f0f7f4" />
   <path d="M32 46h44l16 16v16H32z" fill="#0a8a4a" />
   <path d="M76 46v16h16" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />

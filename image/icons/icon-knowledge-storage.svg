@@ -1,4 +1,8 @@
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：知识页“存储事项”卡片图标。
+    修改指引：如需调整阴影或罐体颜色请修改对应路径的 fill，保持 120×120 尺寸兼容布局。
+  -->
   <rect x="34" y="24" width="52" height="76" rx="16" fill="#f0f7f4" />
   <path d="M44 44h32v12H44z" fill="#0a8a4a" />
   <path d="M44 68h32v12H44z" fill="#13b067" />

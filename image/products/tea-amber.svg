@@ -1,4 +1,8 @@
 <svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：茶叶精选分类中“滇琥”商品主图。
+    修改指引：替换暖色渐变需同步调整多个 stop-color，保留柔和高光体现琥珀质感。
+  -->
   <defs>
     <linearGradient id="amber" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffd69b" />

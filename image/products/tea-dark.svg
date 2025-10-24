@@ -1,4 +1,8 @@
 <svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：茶叶精选分类中“熟普”商品主图。
+    修改指引：调整深色茶汤层次时请同步更新渐变 stop-color，防止在浅底上过暗。
+  -->
   <defs>
     <linearGradient id="dark" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#4d2c1d" />

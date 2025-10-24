@@ -1,4 +1,8 @@
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：个人中心地址管理入口图标。
+    修改指引：可调整定位水滴与圆心的颜色，保持 48×48 画布与滴形轮廓以契合当前卡片风格。
+  -->
   <path d="M24 6C17.4 6 12 11.4 12 18C12 27 24 42 24 42C24 42 36 27 36 18C36 11.4 30.6 6 24 6Z" fill="#CFF3DE" stroke="#0A8A4A" stroke-width="2"/>
   <circle cx="24" cy="18" r="5" fill="#13B067"/>
 </svg>

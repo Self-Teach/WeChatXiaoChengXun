@@ -1,4 +1,8 @@
 <svg width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图标用途：购物车为空状态插画，用于提示用户还未添加商品。
+    修改指引：可替换杯子与叶子路径描边颜色，保持浅色背景以免与页面提示文案冲突。
+  -->
   <rect width="280" height="220" rx="32" fill="#f4f7fb" />
   <path d="M72 86h24l14 66h80l18-50H118" fill="none" stroke="#9bbdd1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
   <circle cx="124" cy="172" r="10" fill="#9bbdd1" />
