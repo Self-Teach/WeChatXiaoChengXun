@@ -1,7 +1,9 @@
+/* 页面容器，负责整体内边距和底部留白，确保悬浮购物车不遮挡内容 */
 .home {
   padding-bottom: 220rpx;
 }
 
+/* 顶部横幅卡片，用于展示宣传标题和主题插画 */
 .hero {
   display: flex;
   align-items: center;
@@ -11,6 +13,7 @@
   background: linear-gradient(135deg, #f1fbf5 0%, #ffffff 100%);
 }
 
+/* 横幅中的文案区域，采用纵向排列呈现 */
 .hero-text {
   flex: 1;
   display: flex;
@@ -18,23 +21,27 @@
   gap: 12rpx;
 }
 
+/* 副标题文字样式，强调产地信息 */
 .subtitle {
   font-size: 26rpx;
   color: #0a8a4a;
   letter-spacing: 4rpx;
 }
 
+/* 主标题字号较大以吸引视线 */
 .title {
   font-size: 52rpx;
   font-weight: 700;
 }
 
+/* 横幅说明文字，配合浅灰色形成轻量阅读感 */
 .desc {
   font-size: 26rpx;
   color: #666666;
   line-height: 1.6;
 }
 
+/* 横幅插画尺寸及圆角控制 */
 .hero-image {
   width: 220rpx;
   height: 220rpx;
@@ -42,6 +49,7 @@
   margin-left: 24rpx;
 }
 
+/* 搜索条容器，圆角与内边距营造贴心感 */
 .search {
   margin: 0 32rpx 24rpx;
   display: flex;
@@ -51,32 +59,38 @@
   padding: 18rpx 24rpx;
 }
 
+/* 搜索与筛选图标的统一尺寸 */
 .search-icon,
 .filter-icon {
   width: 40rpx;
   height: 40rpx;
 }
 
+/* 搜索输入框样式，拉伸占满剩余空间 */
 .search-input {
   flex: 1;
   font-size: 26rpx;
 }
 
+/* 输入提示文字颜色，提示仍可修改 */
 .placeholder {
   color: #a8b5ad;
 }
 
+/* 搜索操作区域，用于容纳筛选图标与清空按钮 */
 .search-actions {
   display: flex;
   align-items: center;
   gap: 16rpx;
 }
 
+/* 清空按钮颜色呼应品牌主色 */
 .clear-btn {
   font-size: 26rpx;
   color: #0a8a4a;
 }
 
+/* 分类标签外层滚动容器，支持横向滚动 */
 .type-tabs {
   display: flex;
   gap: 16rpx;
@@ -84,8 +98,8 @@
   padding-bottom: 8rpx;
 }
 
+/* 分类标签样式，可在此调整背景、圆角以及阴影风格 */
 .type-chip {
-  /* 分类标签样式，可在此调整背景、圆角以及阴影风格 */
   padding: 22rpx 36rpx;
   border-radius: 16rpx;
   background: #ffffff;
@@ -100,14 +114,15 @@
   transition: all 0.2s ease;
 }
 
+/* 激活态渐变背景，形成更具层次的方形卡片效果 */
 .type-chip.active {
-  /* 激活态渐变背景，形成更具层次的方形卡片效果 */
   background: linear-gradient(135deg, #0a8a4a, #13b067);
   color: #ffffff;
   border-color: transparent;
   box-shadow: 0 20rpx 32rpx rgba(10, 138, 74, 0.25);
 }
 
+/* 商品宫格容器，使用网格布局排列卡片 */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -115,6 +130,7 @@
   padding: 0 32rpx 32rpx;
 }
 
+/* 单个商品卡片的基础视觉样式 */
 .product-card {
   background: #ffffff;
   border-radius: 24rpx;

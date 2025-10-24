@@ -1,16 +1,20 @@
+/* 商品详情页面外层容器，预留底部操作栏空间 */
 .container {
   padding-bottom: 160rpx;
 }
 
+/* 顶部轮播容器高度 */
 .banner {
   height: 520rpx;
 }
 
+/* 轮播图铺满宽高，展示商品视觉 */
 .banner-image {
   width: 100%;
   height: 520rpx;
 }
 
+/* 商品信息卡片布局 */
 .info-card {
   margin: 32rpx;
   display: flex;
@@ -18,11 +22,13 @@
   gap: 16rpx;
 }
 
+/* 商品名称样式 */
 .info-card .title {
   font-size: 40rpx;
   font-weight: 700;
 }
 
+/* 产地与库存信息行，支持换行 */
 .meta-line {
   display: flex;
   align-items: center;
@@ -30,6 +36,7 @@
   gap: 16rpx;
 }
 
+/* 茶类标签样式，可替换背景色适配其他主题 */
 .type-tag {
   padding: 8rpx 20rpx;
   border-radius: 999rpx;
@@ -38,27 +45,32 @@
   font-size: 24rpx;
 }
 
+/* 商品价格显眼展示 */
 .info-card .price {
   font-size: 44rpx;
   color: #e08b22;
   margin: 12rpx 0;
 }
 
+/* 产地与库存文字样式 */
 .info-card .meta {
   font-size: 24rpx;
   color: #666666;
 }
 
+/* 商品详情描述段落 */
 .info-card .desc {
   font-size: 28rpx;
   line-height: 1.6;
 }
 
+/* 风味与冲泡模块使用统一外边距 */
 .flavor-card,
 .brew-card {
   margin: 0 32rpx 24rpx;
 }
 
+/* 风味标签容器，自动换行 */
 .flavor-tags {
   display: flex;
   flex-wrap: wrap;
@@ -66,6 +78,7 @@
   margin-bottom: 12rpx;
 }
 
+/* 风味标签样式，渐变背景与圆角匹配文案宽度 */
 .flavor-chip {
   padding: 14rpx 28rpx;
   border-radius: 24rpx;
@@ -78,24 +91,28 @@
   box-shadow: inset 0 0 0 1rpx rgba(255, 255, 255, 0.4);
 }
 
+/* 搭配建议文字说明 */
 .pairing {
   font-size: 26rpx;
   color: #55625d;
   line-height: 1.6;
 }
 
+/* 冲泡步骤列表采用纵向排列 */
 .brew-list {
   display: flex;
   flex-direction: column;
   gap: 16rpx;
 }
 
+/* 单条冲泡步骤结构：序号 + 文案 */
 .brew-item {
   display: flex;
   gap: 16rpx;
   align-items: flex-start;
 }
 
+/* 冲泡步骤序号圆点样式 */
 .brew-index {
   width: 44rpx;
   height: 44rpx;
@@ -108,6 +125,7 @@
   font-weight: 600;
 }
 
+/* 冲泡文字提示卡片样式 */
 .brew-text {
   flex: 1;
   background: #f4fbf6;
@@ -118,6 +136,7 @@
   line-height: 1.6;
 }
 
+/* 规格、数量、评价与详情等卡片共享的外边距设定 */
 .option-card,
 .quantity-card,
 .reviews-card,
@@ -125,18 +144,21 @@
   margin: 24rpx 32rpx;
 }
 
+/* 各卡片标题通用样式 */
 .option-title {
   font-size: 30rpx;
   font-weight: 600;
   margin-bottom: 16rpx;
 }
 
+/* 规格与包装选项行内排列 */
 .option-group {
   display: flex;
   flex-wrap: wrap;
   gap: 24rpx;
 }
 
+/* 单个选项的胶囊样式 */
 .option-item {
   display: flex;
   align-items: center;
@@ -146,12 +168,14 @@
   background: #f1f5f3;
 }
 
+/* 数量调节按钮容器 */
 .quantity-control {
   display: flex;
   align-items: center;
   gap: 24rpx;
 }
 
+/* 数量增减按钮造型 */
 .quantity-btn {
   width: 64rpx;
   height: 64rpx;
@@ -161,16 +185,19 @@
   color: #0a8a4a;
 }
 
+/* 当前购买数量字体设置 */
 .quantity-value {
   font-size: 36rpx;
   font-weight: 600;
 }
 
+/* 单条评价布局：头像 + 文案 */
 .review-item {
   display: flex;
   margin-bottom: 24rpx;
 }
 
+/* 评价头像样式，可替换为 image/profile 素材 */
 .avatar {
   width: 72rpx;
   height: 72rpx;
@@ -178,34 +205,40 @@
   margin-right: 20rpx;
 }
 
+/* 评价用户名字体 */
 .review-user {
   font-size: 28rpx;
   font-weight: 600;
 }
 
+/* 评价日期样式 */
 .review-date {
   font-size: 24rpx;
   color: #888888;
 }
 
+/* 评价正文样式 */
 .review-text {
   font-size: 26rpx;
   color: #444444;
   margin-top: 8rpx;
 }
 
+/* 商品详情图使用两列网格呈现 */
 .detail-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16rpx;
 }
 
+/* 单张详情图尺寸与圆角 */
 .detail-image {
   width: 100%;
   height: 240rpx;
   border-radius: 12rpx;
 }
 
+/* 底部操作栏固定在视口底部 */
 .bottom-bar {
   position: fixed;
   left: 0;
@@ -219,6 +252,7 @@
   box-shadow: 0 -12rpx 24rpx rgba(0, 0, 0, 0.06);
 }
 
+/* 分享按钮保留描边样式，突出轻量操作 */
 .share-btn {
   flex: 1;
   border: 1rpx solid #0a8a4a;
@@ -226,12 +260,14 @@
   border-radius: 999rpx;
 }
 
+/* 加入购物车与立即购买按钮共享圆角比例 */
 .add-btn,
 .buy-btn {
   flex: 2;
   border-radius: 999rpx;
 }
 
+/* 立即购买按钮采用浅色背景，与加入购物车形成对比 */
 .buy-btn {
   background: #f5f8f7;
   color: #0a8a4a;
