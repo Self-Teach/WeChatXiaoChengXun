@@ -1,8 +1,11 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：个人中心-账号与安全入口的小盾牌图标。
     修改指引：可调节盾牌填充与勾形线条颜色，保持描边宽度 2-3 以确保在小尺寸上清晰。
   -->
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M24 6L10 12V22C10 30.4 16 38.2 24 40C32 38.2 38 30.4 38 22V12L24 6Z" fill="#F1F8F3" stroke="#0A8A4A" stroke-width="2"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M18 24L22 28L30 20" stroke="#13B067" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

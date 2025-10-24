@@ -1,16 +1,24 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：茶叶精选分类中“熟普”商品主图。
     修改指引：调整深色茶汤层次时请同步更新渐变 stop-color，防止在浅底上过暗。
   -->
   <defs>
+  <!-- 定义线性渐变，提供更有层次的填充效果 -->
     <linearGradient id="dark" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="0%" stop-color="#4d2c1d" />
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="100%" stop-color="#a0623d" />
     </linearGradient>
   </defs>
+  <!-- 绘制矩形区域，通常用于背景或装饰块 -->
   <rect width="320" height="320" rx="40" fill="#f4efe9" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="160" cy="160" r="116" fill="#e9ded4" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M120 112h80v60c0 32-24 60-40 60s-40-28-40-60z" fill="url(#dark)" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M112 220c20 36 48 52 48 52s28-16 48-52" fill="none" stroke="#a0623d" stroke-width="8" stroke-linecap="round" />
 </svg>

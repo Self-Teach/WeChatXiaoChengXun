@@ -1,10 +1,15 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：订单页“待付款”标签的钱包图标。
     修改指引：可修改圆形背景与钱包弧线的颜色，保持 6 像素描边厚度以突出层次。
   -->
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="60" cy="60" r="54" fill="#f9f5ec" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M60 30c10 0 18 6 18 16 0 12-10 16-18 16" fill="none" stroke="#c9791f" stroke-width="6" stroke-linecap="round" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M60 62c-10 0-18 6-18 16 0 12 10 16 18 16" fill="none" stroke="#c9791f" stroke-width="6" stroke-linecap="round" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M60 30v60" stroke="#c9791f" stroke-width="6" stroke-linecap="round" />
 </svg>

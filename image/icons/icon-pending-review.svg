@@ -1,10 +1,15 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：订单页“待评价”标签的清单勾选图标。
     修改指引：可替换文本线条与勾选描边颜色，保留 120×120 画布尺寸便于与其他状态图标对齐。
   -->
+  <!-- 绘制矩形区域，通常用于背景或装饰块 -->
   <rect x="24" y="24" width="72" height="72" rx="16" fill="#f5f3ff" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M44 48h32" stroke="#5857b2" stroke-width="6" stroke-linecap="round" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M44 64h20" stroke="#5857b2" stroke-width="6" stroke-linecap="round" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M60 78h28l-14 14" fill="none" stroke="#5857b2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

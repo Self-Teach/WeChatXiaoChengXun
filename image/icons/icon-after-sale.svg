@@ -1,10 +1,15 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：订单页“退款/售后”入口的循环箭头图标。
     修改指引：如需换色请同步调整圆环与箭头的描边颜色，保持 6 像素线宽确保箭头清晰。
   -->
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="60" cy="60" r="54" fill="#e8f6f0" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M78 38h18v18" stroke="#0a8a4a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M42 82H24V64" stroke="#0a8a4a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M82 38L38 82" stroke="#13b067" stroke-width="6" stroke-linecap="round" />
 </svg>

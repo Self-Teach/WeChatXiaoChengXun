@@ -1,16 +1,24 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：茶叶精选分类中“滇绿”商品主图。
     修改指引：可替换茶汤与茶罐颜色打造新款式，保持 320×320 画布避免在列表中变形。
   -->
   <defs>
+  <!-- 定义线性渐变，提供更有层次的填充效果 -->
     <linearGradient id="leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="0%" stop-color="#8ed694" />
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="100%" stop-color="#0a8a4a" />
     </linearGradient>
   </defs>
+  <!-- 绘制矩形区域，通常用于背景或装饰块 -->
   <rect width="320" height="320" rx="40" fill="#f1fbf4" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="160" cy="160" r="108" fill="#d5f1dd" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M160 80c48 36 72 80 32 160-48-36-72-80-32-160z" fill="url(#leaf)" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M140 128c-28 44-28 92 12 120" stroke="#0a8a4a" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.6" />
 </svg>

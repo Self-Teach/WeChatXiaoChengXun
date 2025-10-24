@@ -1,27 +1,44 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="360" height="360" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：精选页顶部横幅插画，营造品牌氛围。
     修改指引：可替换山峦、茶杯等路径颜色形成新主题，务必保持视窗比率以避免拉伸。
   -->
   <defs>
+  <!-- 定义线性渐变，提供更有层次的填充效果 -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="0%" stop-color="#f4f9f6" />
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="100%" stop-color="#d7f1e4" />
     </linearGradient>
+  <!-- 定义线性渐变，提供更有层次的填充效果 -->
     <linearGradient id="cup" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="0%" stop-color="#f2c572" />
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="100%" stop-color="#de8c34" />
     </linearGradient>
   </defs>
+  <!-- 绘制矩形区域，通常用于背景或装饰块 -->
   <rect width="360" height="360" rx="48" fill="url(#bg)" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="220" cy="120" r="60" fill="#0a8a4a" opacity="0.12" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="140" cy="220" r="90" fill="#0a8a4a" opacity="0.08" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M96 220h168c0 46-38 84-84 84s-84-38-84-84z" fill="#0a8a4a" opacity="0.14" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M126 160h108v54c0 40-32 72-54 72s-54-32-54-72z" fill="#ffffff" />
   <ellipse cx="180" cy="214" rx="54" ry="18" fill="#0a8a4a" opacity="0.08" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M138 178h84v28c0 18-16 32-42 32s-42-14-42-32z" fill="url(#cup)" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M144 150c0-12 14-18 14-30 0-10-10-16-10-24 0-6 4-10 10-12" stroke="#0a8a4a" stroke-width="6" stroke-linecap="round" fill="none" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M192 150c0-12 14-18 14-30 0-10-10-16-10-24 0-6 4-10 10-12" stroke="#0a8a4a" stroke-width="6" stroke-linecap="round" fill="none" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="258" cy="226" r="32" fill="#ffffff" opacity="0.6" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="108" cy="142" r="18" fill="#ffffff" opacity="0.6" />
 </svg>

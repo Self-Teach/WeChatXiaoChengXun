@@ -1,16 +1,24 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="320" height="180" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：个人中心顶部背景封面插画。
     修改指引：可替换山水或云雾路径颜色营造新主题，保持渐变 stop-color 渐层过渡顺滑。
   -->
   <defs>
+  <!-- 定义线性渐变，提供更有层次的填充效果 -->
     <linearGradient id="cover" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="0%" stop-color="#0a8a4a" />
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="100%" stop-color="#1ac076" />
     </linearGradient>
   </defs>
+  <!-- 绘制矩形区域，通常用于背景或装饰块 -->
   <rect width="320" height="180" rx="28" fill="url(#cover)" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="80" cy="90" r="36" fill="#ffffff" opacity="0.28" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="170" cy="70" r="28" fill="#ffffff" opacity="0.16" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="250" cy="118" r="40" fill="#ffffff" opacity="0.2" />
 </svg>

@@ -1,9 +1,13 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：知识页“茶叶形态”提示图标。
     修改指引：更换配色可直接修改两片叶子的 fill，保留 56×56 画布与叠叶结构以呼应文案。
   -->
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M14 40C14 24 24 14 40 14C40 30 30 40 14 40Z" fill="#CFF3DE"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M14 40C14 24 24 14 40 14" stroke="#0A8A4A" stroke-width="3" stroke-linecap="round"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M22 30C26 30 30 34 30 38" stroke="#13B067" stroke-width="3" stroke-linecap="round"/>
 </svg>

@@ -1,16 +1,24 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：首页浮动购物车按钮与购物车入口的统一标识。
     修改指引：调整渐变配色需修改 <stop> stop-color，维持 28 的圆角矩形防止外观失真。
   -->
   <defs>
+  <!-- 定义线性渐变，提供更有层次的填充效果 -->
     <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="0%" stop-color="#1ac076" />
+    <!-- 渐变色的断点配置，决定颜色过渡 -->
       <stop offset="100%" stop-color="#0a8a4a" />
     </linearGradient>
   </defs>
+  <!-- 绘制矩形区域，通常用于背景或装饰块 -->
   <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#grad)" />
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M42 40h10l8 36h36l10-28H58" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="62" cy="92" r="7" fill="#ffffff" />
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="94" cy="92" r="7" fill="#ffffff" />
 </svg>

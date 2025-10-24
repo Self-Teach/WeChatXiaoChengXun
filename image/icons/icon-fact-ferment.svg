@@ -1,10 +1,15 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：知识页“发酵程度”提示的小桶插画。
     修改指引：修改木桶或叶子颜色时请更新对应路径的 fill，保持 56×56 画布以配合提示卡片。
   -->
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="20" cy="26" r="10" fill="#CFF3DE" stroke="#0A8A4A" stroke-width="2"/>
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="36" cy="30" r="10" fill="#E1F9EE" stroke="#13B067" stroke-width="2"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M16 26C16 24 17.5 22.5 19.5 22.5" stroke="#0A8A4A" stroke-width="2" stroke-linecap="round"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M32 30C32 28 33.5 26.5 35.5 26.5" stroke="#13B067" stroke-width="2" stroke-linecap="round"/>
 </svg>

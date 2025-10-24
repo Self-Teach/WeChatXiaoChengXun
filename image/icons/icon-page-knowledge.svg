@@ -1,11 +1,17 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：底部导航“科普”标签的书页图标。
     修改指引：替换主色时需同步修改书本与书签路径填充，维持 96×96 画布保证清晰。
   -->
+  <!-- 绘制矩形区域，通常用于背景或装饰块 -->
   <rect width="96" height="96" rx="24" fill="#E9F3FF"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M28 30H68C71.3137 30 74 32.6863 74 36V66C74 66.5523 73.5523 67 73 67H54L48 72L42 67H23C22.4477 67 22 66.5523 22 66V36C22 32.6863 24.6863 30 28 30Z" fill="#2F74FF"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M34 38H62" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M34 48H62" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M34 58H50" stroke="white" stroke-width="4" stroke-linecap="round"/>
 </svg>

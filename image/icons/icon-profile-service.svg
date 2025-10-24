@@ -1,10 +1,15 @@
+<!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：个人中心客服服务入口的耳机图标。
     修改指引：调整耳机或话筒颜色时请同步修改各路径的 fill/stroke，并维持圆角线帽展现柔和风格。
   -->
+  <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
   <circle cx="24" cy="18" r="10" fill="#CFF3DE" stroke="#0A8A4A" stroke-width="2"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M18 40C18 34.5 21.5 32 24 32C26.5 32 30 34.5 30 40" stroke="#0A8A4A" stroke-width="2" stroke-linecap="round"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M32 22H36C37.657 22 39 20.657 39 19V17C39 15.343 37.657 14 36 14H34" stroke="#13B067" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 绘制自定义路径线条，描述图标的关键造型 -->
   <path d="M12 22H16" stroke="#13B067" stroke-width="2" stroke-linecap="round"/>
 </svg>
