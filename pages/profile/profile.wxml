@@ -1,50 +1,94 @@
-<view class="profile-header card">
-  <!-- 用户封面图，可替换 image/profile/user-cover.svg -->
-  <image class="avatar" mode="aspectFill" src="/image/profile/user-cover.svg" />
-  <view class="user-info">
-    <view class="user-name">{{userName}}</view>
-    <view class="user-desc">欢迎来到云茶汇，探索云南好茶。</view>
+<!-- pages/profile/profile.wxml
+  功能：展示个人中心首页，包含登录状态、订单标签页、地址管理占位与常用工具入口。
+  用法：配合 profile.js 的数据结构渲染；使用 util 工具类组合布局并在 profile.wxss 中补充细节。
+  尺寸：头部卡片 padding 24rpx、头像 120rpx；订单标签宽 160rpx；可在 profile.wxss 调整。
+  背景/配色：卡片使用 .card；主色与强调色来自 styles/vars.wxss 的 --color-primary 与 --color-accent。
+  位置/布局：订单标签 scroll-view 横向排列；地址列表纵向卡片；底部留白展示 page-footer。
+  交互：登录按钮 bindtap="handleLogin"；订单标签 handleOrderTab；示例地址按钮 handleAddressMock/clearAddressMock。
+  依赖/风险：依赖 utils/icons.js 提供的图标与本地存储地址数据；未来接入接口时需保持字段一致。
+  后期修改指引：接入后端后在 profile.js loadAddresses 中替换为接口调用，并在 README 更新同步方案。
+-->
+<view class="page-container profile-page">
+  <view class="card profile-header p-24">
+    <image class="avatar" mode="aspectFill" src="/image/profile/user-cover.svg" />
+    <view class="user-info">
+      <view class="user-name text-lg text-bold">{{userName}}</view>
+      <view class="user-desc text-sm text-muted">欢迎来到云茶汇，探索云南好茶。</view>
+    </view>
+    <button wx:if="{{!loggedIn}}" class="btn btn-primary" size="mini" bindtap="handleLogin">登录</button>
+    <view wx:else class="login-state badge">已登录</view>
   </view>
-  <button wx:if="{{!loggedIn}}" class="login-btn" size="mini" bindtap="handleLogin">登录</button>
-  <view wx:else class="login-state">已登录</view>
-</view>
 
-<view class="card order-card" bindtap="goOrders">
-  <view class="order-header">
-    <view class="order-title">订单详情</view>
-    <text class="more">全部订单 ></text>
-  </view>
-  <view class="order-status">
-    <block wx:for="{{orderStatus}}" wx:key="key">
-      <view class="status-item">
-        <!-- 订单状态图标，可在 utils/icons.js 中替换对应资源 -->
-        <image class="status-icon" src="{{item.icon}}" mode="aspectFit" />
-        <view class="status-label">{{item.label}}</view>
-      </view>
-    </block>
-  </view>
-</view>
-
-<view class="card quick-card">
-  <view class="quick-title">常用工具</view>
-  <view class="quick-grid">
-    <block wx:for="{{quickEntries}}" wx:key="key">
-      <view class="quick-item" data-action="{{item.action}}" bindtap="handleQuickEntry">
-        <!-- 常用工具图标，可替换 image/icons/icon-profile-*.svg -->
-        <image class="quick-icon" src="{{item.icon}}" mode="aspectFit" />
-        <view class="quick-text">
-          <view class="quick-label">{{item.label}}</view>
-          <view class="quick-desc">{{item.desc}}</view>
+  <view class="card order-tabs p-24 mt-24">
+    <view class="text-md text-bold">订单概览</view>
+    <scroll-view class="order-tab-scroll" scroll-x="true" enable-flex="true">
+      <block wx:for="{{orderTabs}}" wx:key="key">
+        <view
+          class="order-tab {{activeOrderTab === item.key ? 'is-active' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="handleOrderTab"
+        >
+          {{item.label}}
         </view>
+      </block>
+    </scroll-view>
+    <view class="divider mt-20"></view>
+    <view class="order-status flex-between mt-20">
+      <block wx:for="{{orderStatus}}" wx:key="key">
+        <view class="status-item" data-key="{{item.key}}" bindtap="handleOrderCardTap">
+          <image class="status-icon" src="{{item.icon}}" mode="aspectFit" />
+          <view class="status-label text-sm">{{item.label}}</view>
+          <view class="status-count text-md text-bold">{{item.count}}</view>
+        </view>
+      </block>
+    </view>
+    <button class="btn btn-outline mt-24" bindtap="goOrders">查看全部订单</button>
+  </view>
+
+  <view class="card address-card p-24 mt-24">
+    <view class="flex-between">
+      <view class="text-md text-bold">地址管理（本地示例）</view>
+      <view class="address-actions flex gap-12">
+        <button class="btn btn-ghost" bindtap="handleAddressMock">新增示例</button>
+        <button class="btn btn-ghost" bindtap="clearAddressMock">清空</button>
       </view>
-    </block>
+    </view>
+    <view wx:if="{{addressList.length}}" class="address-list mt-20">
+      <block wx:for="{{addressList}}" wx:key="id">
+        <view class="address-item">
+          <view class="address-header flex-between">
+            <view class="text-md text-bold">{{item.contact}}</view>
+            <view class="badge">{{item.tag || '常用'}}</view>
+          </view>
+          <view class="text-sm text-muted mt-12">{{item.phone}}</view>
+          <view class="text-sm mt-12">{{item.detail}}</view>
+        </view>
+      </block>
+    </view>
+    <view wx:else class="address-empty text-sm text-muted mt-20">
+      暂无地址，点击“新增示例”体验占位流程，接入后端后替换为真实接口。
+    </view>
+    <view class="text-xs text-muted mt-16">{{addressTips}}</view>
+  </view>
+
+  <view class="card quick-card p-24 mt-24">
+    <view class="text-md text-bold">常用工具</view>
+    <view class="quick-grid">
+      <block wx:for="{{quickEntries}}" wx:key="key">
+        <view class="quick-item" data-action="{{item.action}}" bindtap="handleQuickEntry">
+          <image class="quick-icon" src="{{item.icon}}" mode="aspectFit" />
+          <view class="quick-text">
+            <view class="quick-label text-md text-bold">{{item.label}}</view>
+            <view class="quick-desc text-sm text-muted">{{item.desc}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="page-footer card p-24 mt-24 text-center">
+    <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
+    <view class="page-footer__title text-md text-bold mt-16">{{pageFooter.title}}</view>
+    <view class="page-footer__desc text-sm text-muted mt-16">{{pageFooter.desc}}</view>
   </view>
 </view>
-
-<view class="page-footer card">
-  <!-- 页面底部说明图标，可替换 image/icons/icon-page-profile.svg -->
-  <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
-  <view class="page-footer__title">{{pageFooter.title}}</view>
-  <view class="page-footer__desc">{{pageFooter.desc}}</view>
-</view>
-

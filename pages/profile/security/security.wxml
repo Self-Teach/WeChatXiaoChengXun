@@ -1,14 +1,24 @@
-<view class="security-page">
-  <view class="intro card">
-    <view class="title">账号安全提示</view>
-    <view class="desc">为确保账户安全，请定期检查账号信息，开启登录保护，谨防钓鱼链接。</view>
+<!-- pages/profile/security/security.wxml
+  功能：提供账号安全操作的占位提示与操作入口。
+  用法：循环 securityOptions 输出卡片，点击调用 handleAction。
+  尺寸：卡片 padding 24rpx；字体大小在 security.wxss 中定义。
+  背景/配色：intro 区域使用渐变背景；按钮提示使用 text-primary。
+  位置/布局：列表纵向排列。
+  交互：点击卡片触发 handleAction；接入真实功能后可跳转。
+  依赖/风险：当前无实际安全操作；上线前需接入真实验证。
+  后期修改指引：新增安全项时在 securityOptions 中补充并更新此模板。
+-->
+<view class="security-page page-container">
+  <view class="intro card p-24">
+    <view class="title text-md text-bold">账号安全提示</view>
+    <view class="desc text-sm text-muted mt-12">为确保账户安全，请定期检查账号信息，开启登录保护，谨防钓鱼链接。</view>
   </view>
 
   <block wx:for="{{securityOptions}}" wx:key="title">
-    <view class="card option" bindtap="handleAction">
-      <view class="option-title">{{item.title}}</view>
-      <view class="option-desc">{{item.desc}}</view>
-      <text class="more">立即设置 ></text>
+    <view class="card option p-24 mt-24" bindtap="handleAction">
+      <view class="option-title text-md text-bold">{{item.title}}</view>
+      <view class="option-desc text-sm text-muted mt-12">{{item.desc}}</view>
+      <text class="more text-primary mt-12">立即设置 ></text>
     </view>
   </block>
 </view>

@@ -1,143 +1,84 @@
-.cart-container {
-  padding: 24rpx 32rpx 160rpx;
+/**
+ * pages/cart/cart.wxss
+ * 功能：定义购物车页面列表、选中状态、数量步进器与吸底结算条的样式，确保与设计令牌一致。
+ * 用法：与 cart.wxml 配合；复用 util.wxss 工具类，页面特有样式在此维护。
+ * 尺寸（可调）：卡片间距 var(--spacing-24)、图片 180rpx、步进器按钮 64rpx；修改时请保持与注释同步。
+ * 背景/配色：选中态使用 --color-accent；分割线与卡片边框使用 --color-line；避免写死其他色值。
+ * 位置/布局：list 预留底部空间防止被吸底条遮挡；selection-pill 绝对定位靠左。
+ * 交互：选中态增加阴影与颜色，按钮 :active 继承 util.wxss 设置；步进器输入框提供边框反馈。
+ * 依赖/风险：需保证 .page-container 已导入；若修改 sticky-bottom，请同步调整 safe-area 处理。
+ * 后期修改指引：如需支持滑动删除，可在 .cart-item 上加上 swiper 组件并保持 selection-pill 对齐。
+ */
+.cart-page { padding-bottom: calc(var(--spacing-48) + 200rpx); }
+.cart-list { display: flex; flex-direction: column; gap: var(--spacing-20); }
+
+.cart-item { display: flex; gap: var(--spacing-16); position: relative; padding-left: calc(var(--spacing-24) + 48rpx); }
+.selection-pill {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--color-line);
+  position: absolute;
+  left: var(--spacing-24);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+}
+.selection-pill.is-selected {
+  border-color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-press));
+  box-shadow: 0 6rpx 20rpx rgba(0, 163, 129, 0.28);
 }
 
-.cart-item {
-  display: flex;
-  margin-bottom: 24rpx;
-  gap: 20rpx;
-}
+.item-image { width: 180rpx; height: 180rpx; border-radius: var(--radius-md); }
+.item-meta { color: var(--color-muted); }
+.item-price { color: var(--color-accent); font-weight: 600; }
 
-.item-image {
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 20rpx;
-}
-
-.item-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12rpx;
-}
-
-.item-title {
-  font-size: 30rpx;
-  font-weight: 600;
-}
-
-.item-spec {
-  font-size: 24rpx;
-  color: #888888;
-}
-
-.item-price {
-  font-size: 32rpx;
-  color: #e08b22;
-  font-weight: 600;
-}
-
-.quantity-row {
-  display: flex;
+.quantity-row { align-items: center; }
+.quantity-stepper {
+  display: inline-flex;
   align-items: center;
-  gap: 16rpx;
+  background: rgba(107, 78, 61, 0.06);
+  border-radius: var(--radius-pill);
+  padding: 0 var(--spacing-8);
 }
-
-.quantity-btn {
+.step-btn {
   width: 64rpx;
   height: 64rpx;
-  border-radius: 32rpx;
-  background: #f2f6f4;
-  color: #0a8a4a;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-primary);
 }
-
-.quantity-value {
-  font-size: 30rpx;
-  font-weight: 600;
-}
-
-.remove-btn {
-  color: #ff6b6b;
-}
-
-.summary {
-  margin-top: 32rpx;
-}
-
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #222222;
-}
-
-.summary-price {
-  color: #0a8a4a;
-}
-
-.summary-actions {
-  display: flex;
-  gap: 20rpx;
-  margin-top: 24rpx;
-}
-
-.clear-btn {
-  flex: 1;
-  border: 1rpx solid #cccccc;
-  border-radius: 999rpx;
-}
-
-.checkout-btn {
-  flex: 1;
-  border-radius: 999rpx;
-  background: linear-gradient(135deg, #0a8a4a, #13b067);
-  color: #ffffff;
-}
-
-.empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24rpx;
-  margin-top: 160rpx;
-  color: #666666;
-}
-
-.empty-icon {
-  width: 320rpx;
-}
-
-.go-shop {
-  width: 260rpx;
-  border-radius: 999rpx;
-  background: #0a8a4a;
-  color: #ffffff;
-}
-
-.page-footer {
-  margin: 32rpx 32rpx 96rpx;
-  padding: 32rpx 28rpx 36rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16rpx;
+.step-input {
+  width: 96rpx;
   text-align: center;
+  border: none;
+  background: transparent;
+  font-size: var(--font-md);
+  line-height: var(--line-md);
+}
+.step-input:focus {
+  outline: none;
+  border-bottom: 2rpx solid var(--color-primary);
 }
 
-.page-footer__icon {
-  width: 88rpx;
-  height: 88rpx;
-}
+.empty-card { align-items: center; gap: var(--spacing-16); }
+.empty-icon { width: 320rpx; }
 
-.page-footer__title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: #0a8a4a;
+.cart-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
 }
+.toolbar-left { align-items: center; }
+.divider-vertical {
+  width: 2rpx;
+  height: 48rpx;
+  background: var(--color-line);
+}
+.toolbar-right .btn { min-width: 200rpx; }
+.summary view { white-space: nowrap; }
 
-.page-footer__desc {
-  font-size: 26rpx;
-  color: #4f5f58;
-  line-height: 1.7;
-}
+.page-footer { margin-top: var(--spacing-32); }
+.page-footer__icon { width: 96rpx; height: 96rpx; }

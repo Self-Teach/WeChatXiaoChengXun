@@ -1,97 +1,34 @@
-.orders-page {
-  padding: 24rpx 32rpx 80rpx;
-}
-
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16rpx;
-  padding: 24rpx;
-}
-
+/**
+ * pages/profile/orders/orders.wxss
+ * 功能：为订单列表标签与卡片提供布局与配色，配合设计令牌保持一致。
+ * 用法：与 orders.wxml 组合使用；标签与卡片均复用 util 工具类。
+ * 尺寸（可调）：标签宽 160rpx、高 96rpx；卡片间距 var(--spacing-24)。
+ * 背景/配色：选中标签使用 --color-primary；空态卡片使用 text-muted。
+ * 位置/布局：tabs 使用横向滚动；列表纵向排列。
+ * 交互：标签 active 态添加阴影；按钮 hover 使用 util 定义。
+ * 依赖/风险：确保 app.wxss 已引入 util 类。
+ */
+.tab-scroll { display: flex; gap: var(--spacing-16); }
 .tab-item {
-  flex: 1 1 45%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12rpx;
-  padding: 20rpx 24rpx;
-  border-radius: 999rpx;
-  background: #f3f7f4;
-  color: #666666;
-  transition: all 0.2s ease;
-}
-
-.tab-item.active {
-  background: linear-gradient(135deg, #0a8a4a, #13b067);
-  color: #ffffff;
-  font-weight: 600;
-  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.18);
-}
-
-.tab-icon {
-  width: 48rpx;
-  height: 48rpx;
-}
-
-.tab-label {
-  font-size: 26rpx;
-}
-
-.order-list {
-  margin-top: 24rpx;
+  min-width: 160rpx;
+  height: 96rpx;
+  border-radius: var(--radius-md);
+  border: 1rpx solid var(--color-line);
   display: flex;
   flex-direction: column;
-  gap: 24rpx;
-}
-
-.order-item {
-  padding: 24rpx;
-}
-
-.order-id {
-  font-size: 24rpx;
-  color: #888888;
-}
-
-.order-name {
-  font-size: 30rpx;
-  font-weight: 600;
-  margin: 12rpx 0;
-}
-
-.order-meta {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 12rpx 0;
+  justify-content: center;
+  gap: var(--spacing-8);
+  color: var(--color-muted);
+  background: #fff;
 }
-
-.order-price {
-  font-size: 32rpx;
-  font-weight: 700;
-  color: #0a8a4a;
+.tab-item.active {
+  color: #fff;
+  background: var(--color-primary);
+  border-color: transparent;
+  box-shadow: 0 12rpx 30rpx rgba(107, 78, 61, 0.2);
 }
-
-.order-status {
-  font-size: 26rpx;
-  color: #ff8a34;
-}
-
-.order-time {
-  font-size: 24rpx;
-  color: #999999;
-}
-
-.order-action {
-  margin-top: 16rpx;
-  border-radius: 999rpx;
-  background: #0a8a4a;
-  color: #ffffff;
-}
-
-.empty {
-  text-align: center;
-  color: #999999;
-  margin-top: 160rpx;
-}
+.tab-icon { width: 56rpx; height: 56rpx; }
+.order-list { display: flex; flex-direction: column; }
+.order-meta .badge { background: rgba(0, 163, 129, 0.18); color: var(--color-accent); }
+.empty-card { color: var(--color-muted); }

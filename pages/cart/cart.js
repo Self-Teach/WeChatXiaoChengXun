@@ -1,117 +1,187 @@
-// pages/cart/cart.js
-// 购物车页面，展示本地存储的商品信息
+/**
+ * pages/cart/cart.js
+ * 功能：管理购物车页面的商品展示、数量调节、防抖持久化、选择状态机与批量操作，并输出吸底结算条。
+ * 用法：在 app.json 注册为 tabBar 页面；依赖 utils/cartStorage.js 提供的读写 API，WXML 通过 items/selectedIds 渲染。
+ * 尺寸（可调）：商品卡片高度 200rpx、图片宽高 180rpx；吸底条高度 160rpx 均在 cart.wxss 中以设计令牌调整。
+ * 背景/配色（可调）：统一使用 styles/vars.wxss 的色板；底部按钮复用 .btn/.btn-primary 样式。
+ * 位置/布局：列表采用纵向卡片，左侧多选指示；底部 sticky-bottom + safe-area-bottom 适配刘海屏。
+ * 交互（事件/回调）：handleQuantityStep 防抖更新数量、toggleItemSelection 维护选中集合、toggleSelectAll/handleBatchDelete 管理批量；checkout 显示选中结果。
+ * 依赖/风险：依赖 utils/icons.js 图标、utils/cartStorage.js 存储；需确保每个购物车条目包含唯一 id 字段。
+ * 后期修改指引：接入后端时可将 loadCart 改为请求接口并在 persistCart 中调用接口同步；优惠券/满减请在 computeSummary 中集中计算。
+ */
 const { ICONS } = require('../../utils/icons');
-const { getCartItems, setCartItems } = require('../../utils/cartStorage');
+const { getCartItems, setCartItems, computeCartCount } = require('../../utils/cartStorage');
 
 Page({
   data: {
+    ICONS,
     items: [],
-    totalPrice: 0,
+    selectedIds: [],
+    selectAll: true,
+    totalPrice: '0.00',
+    selectedAmount: '0.00',
+    selectedCount: 0,
+    isEditing: false,
+    cartCount: 0,
     pageFooter: {
-      // 页面底部说明图标，可替换 image/icons/icon-page-cart.svg
       icon: ICONS.pageCart,
       title: '结算温馨提示',
-      desc: '确认茶叶数量、规格与收货地址，再提交订单享受云南好茶。'
+      desc: '确认茶叶规格、收货信息与配送时间，付款后请留意物流通知。'
     }
   },
 
-  /**
-   * 每次进入购物车页面都重新读取本地缓存，避免数据不同步。
-   */
   onShow() {
     this.loadCart();
   },
 
-  /**
-   * 从缓存中读取购物车数据并更新金额。
-   */
+  onUnload() {
+    if (this.persistTimer) {
+      clearTimeout(this.persistTimer);
+    }
+  },
+
   loadCart() {
     const items = getCartItems();
-    this.setData({ items });
-    this.updateTotalPrice(items);
+    const selectedIds = items.map((item) => item.id);
+    this.applyCartState(items, selectedIds);
   },
 
-  /**
-   * 根据商品单价与数量计算总价，保留两位小数。
-   */
-  updateTotalPrice(items = this.data.items) {
-    const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    this.setData({ totalPrice: total.toFixed(2) });
+  toggleEditMode() {
+    this.setData({ isEditing: !this.data.isEditing });
   },
 
-  /**
-   * 增加单个商品数量。
-   */
-  increaseQty(event) {
-    const { index } = event.currentTarget.dataset;
-    const items = [...this.data.items];
-    items[index].quantity += 1;
-    this.persistCart(items);
-  },
-
-  /**
-   * 减少单个商品数量，最少为 1。
-   */
-  decreaseQty(event) {
-    const { index } = event.currentTarget.dataset;
-    const items = [...this.data.items];
-    if (items[index].quantity === 1) {
+  handleQuantityStep(event) {
+    const { id, step } = event.currentTarget.dataset;
+    const items = this.data.items.map((item) => ({ ...item }));
+    const target = items.find((item) => item.id === id);
+    if (!target) {
       return;
     }
-    items[index].quantity -= 1;
-    this.persistCart(items);
+    const nextQuantity = target.quantity + Number(step);
+    if (nextQuantity < 1) {
+      wx.showToast({ title: '至少保留 1 件', icon: 'none' });
+      return;
+    }
+    target.quantity = nextQuantity;
+    this.schedulePersist(items, this.data.selectedIds);
   },
 
-  /**
-   * 删除指定索引的商品行。
-   */
+  handleQuantityInput(event) {
+    const { id } = event.currentTarget.dataset;
+    const value = Number(event.detail.value);
+    const items = this.data.items.map((item) => ({ ...item }));
+    const target = items.find((item) => item.id === id);
+    if (!target) {
+      return;
+    }
+    target.quantity = value > 0 ? value : 1;
+    this.schedulePersist(items, this.data.selectedIds);
+  },
+
+  toggleItemSelection(event) {
+    const { id } = event.currentTarget.dataset;
+    const selectedIds = this.data.selectedIds.includes(id)
+      ? this.data.selectedIds.filter((itemId) => itemId !== id)
+      : this.data.selectedIds.concat(id);
+    this.applyCartState(this.data.items, selectedIds);
+  },
+
+  toggleSelectAll() {
+    const selectAll = !this.data.selectAll;
+    const selectedIds = selectAll ? this.data.items.map((item) => item.id) : [];
+    this.applyCartState(this.data.items, selectedIds);
+  },
+
   removeItem(event) {
-    const { index } = event.currentTarget.dataset;
-    const items = [...this.data.items];
-    items.splice(index, 1);
-    this.persistCart(items);
+    const { id } = event.currentTarget.dataset;
+    const items = this.data.items.filter((item) => item.id !== id);
+    const selectedIds = this.data.selectedIds.filter((itemId) => itemId !== id);
+    this.schedulePersist(items, selectedIds);
   },
 
-  /**
-   * 清空购物车前弹窗确认，防止误触。
-   */
+  handleBatchDelete() {
+    if (!this.data.selectedIds.length) {
+      wx.showToast({ title: '请选择要删除的商品', icon: 'none' });
+      return;
+    }
+    const items = this.data.items.filter((item) => !this.data.selectedIds.includes(item.id));
+    this.schedulePersist(items, []);
+  },
+
   clearCart() {
     wx.showModal({
       title: '清空购物车',
       content: '是否确定清空购物车内的所有商品？',
       success: (res) => {
         if (res.confirm) {
-          this.persistCart([]);
+          this.schedulePersist([], []);
         }
       }
     });
   },
 
-  /**
-   * 结算按钮示例，实际项目可跳转至下单流程。
-   */
   checkout() {
+    if (!this.data.selectedIds.length) {
+      wx.showToast({ title: '请选择商品', icon: 'none' });
+      return;
+    }
     wx.showToast({
-      title: '提交订单成功',
-      icon: 'success'
+      title: `共 ${this.data.selectedCount} 件，￥${this.data.selectedAmount}`,
+      icon: 'none'
     });
   },
 
-  /**
-   * 当购物车为空时引导返回精选页继续挑选。
-   */
   goShop() {
-    wx.switchTab({
-      url: '/pages/index/index'
+    wx.switchTab({ url: '/pages/index/index' });
+  },
+
+  schedulePersist(items, selectedIds) {
+    if (this.persistTimer) {
+      clearTimeout(this.persistTimer);
+    }
+    this.pendingItems = items;
+    this.pendingSelectedIds = selectedIds;
+    this.persistTimer = setTimeout(() => {
+      const normalized = setCartItems(this.pendingItems);
+      const cleanedSelection = this.pendingSelectedIds.filter((id) => normalized.some((item) => item.id === id));
+      this.applyCartState(normalized, cleanedSelection);
+      this.persistTimer = null;
+      this.pendingItems = null;
+      this.pendingSelectedIds = null;
+    }, 180);
+  },
+
+  applyCartState(items, selectedIds) {
+    const totalPrice = this.computeAmount(items);
+    const selectedSummary = this.computeAmount(items.filter((item) => selectedIds.includes(item.id)), true);
+    const cartCount = computeCartCount(items);
+    this.setData({
+      items,
+      selectedIds,
+      selectAll: items.length ? selectedIds.length === items.length : false,
+      totalPrice: totalPrice,
+      selectedAmount: selectedSummary.amount,
+      selectedCount: selectedSummary.count,
+      cartCount
     });
   },
 
-  /**
-   * 将最新的购物车状态写回缓存与全局数据。
-   */
-  persistCart(items) {
-    const normalized = setCartItems(items);
-    this.setData({ items: normalized });
-    this.updateTotalPrice(normalized);
+  computeAmount(items, withCount = false) {
+    const summary = items.reduce(
+      (acc, item) => {
+        const subtotal = (item.price || 0) * (item.quantity || 0);
+        acc.amount += subtotal;
+        acc.count += item.quantity || 0;
+        return acc;
+      },
+      { amount: 0, count: 0 }
+    );
+    if (withCount) {
+      return {
+        amount: summary.amount.toFixed(2),
+        count: summary.count
+      };
+    }
+    return summary.amount.toFixed(2);
   }
 });

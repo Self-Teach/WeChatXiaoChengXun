@@ -96,46 +96,49 @@
   </view>
 
   <!-- 商品列表：当数据准备完毕且有内容时渲染 -->
-  <view wx:elif="{{filteredProducts.length}}" class="product-grid">
-    <block wx:for="{{filteredProducts}}" wx:key="id">
-      <view class="product-card card" bindtap="handleProductTap" data-id="{{item.id}}">
-        <image class="product-image" mode="aspectFill" src="{{item.images[0]}}" />
-        <view class="product-info flex-col gap-16">
-          <view class="product-header flex-between">
-            <view class="product-name text-lg">{{item.name}}</view>
-            <view class="product-type">{{item.type}}</view>
-          </view>
-          <view class="product-brief text-sm text-muted">{{item.brief}}</view>
-          <view wx:if="{{item.tags.length}}" class="tag-list flex-wrap">
-            <text class="tag" wx:for="{{item.tags}}" wx:key="*this">#{{item}}</text>
-          </view>
-          <view wx:if="{{item.tastingNotes.length}}" class="tasting-list flex-wrap gap-12">
-            <block wx:for="{{item.tastingNotes}}" wx:key="*this">
-              <view class="tasting-chip">{{item}}</view>
-            </block>
-          </view>
-          <view class="product-meta flex-between">
-            <text class="price text-bold">￥{{item.price}}</text>
-            <text class="rating text-sm">⭐ {{item.rating}}</text>
-          </view>
-          <view class="product-origin text-xs text-muted">产地：{{item.origin}}</view>
-          <view class="product-actions flex-between">
-            <button
-              class="product-actions__add btn btn-primary flex-center gap-12"
-              catchtap="handleQuickAdd"
-              data-id="{{item.id}}"
-            >
-              <image class="product-actions__icon icon-28" src="{{cartIcon}}" mode="aspectFit" />
-              <text class="product-actions__label text-sm">加入购物车</text>
-            </button>
-          </view>
-        </view>
-      </view>
-    </block>
-  </view>
-  <view wx:else class="empty-state card p-24">
+  <view wx:elif="{{isEmpty}}" class="empty-state card p-24">
     <view class="empty-title text-lg">未找到相关茶品</view>
     <view class="empty-desc text-sm text-muted">试着更换关键词或切换茶类分类，探索更多云南好茶。</view>
+  </view>
+  <view wx:else>
+    <view class="product-grid">
+      <block wx:for="{{visibleProducts}}" wx:key="id">
+        <view class="product-card card" bindtap="handleProductTap" data-id="{{item.id}}">
+          <image class="product-image" mode="aspectFill" src="{{item.images[0]}}" />
+          <view class="product-info flex-col gap-16">
+            <view class="product-header flex-between">
+              <view class="product-name text-lg">{{item.name}}</view>
+              <view class="product-type">{{item.type}}</view>
+            </view>
+            <view class="product-brief text-sm text-muted">{{item.brief}}</view>
+            <view wx:if="{{item.tags.length}}" class="tag-list flex-wrap">
+              <text class="tag" wx:for="{{item.tags}}" wx:key="*this">#{{item}}</text>
+            </view>
+            <view wx:if="{{item.tastingNotes.length}}" class="tasting-list flex-wrap gap-12">
+              <block wx:for="{{item.tastingNotes}}" wx:key="*this">
+                <view class="tasting-chip">{{item}}</view>
+              </block>
+            </view>
+            <view class="product-meta flex-between">
+              <text class="price text-bold">￥{{item.price}}</text>
+              <text class="rating text-sm">⭐ {{item.rating}}</text>
+            </view>
+            <view class="product-origin text-xs text-muted">产地：{{item.origin}}</view>
+            <view class="product-actions flex-between">
+              <button
+                class="product-actions__add btn btn-primary flex-center gap-12"
+                catchtap="handleQuickAdd"
+                data-id="{{item.id}}"
+              >
+                <image class="product-actions__icon icon-28" src="{{cartIcon}}" mode="aspectFit" />
+                <text class="product-actions__label text-sm">加入购物车</text>
+              </button>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:if="{{hasMore}}" class="load-more" bindtap="loadMoreProducts">继续加载更多</view>
   </view>
 
   <!-- 页面底部说明区域：图标+文案，文案与 icon 在 data.pageFooter 中维护 -->

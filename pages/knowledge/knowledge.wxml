@@ -1,95 +1,139 @@
-<view class="intro card">
-  <view class="title">茶山百科</view>
-  <view class="desc">走近云南茶山，了解普洱茶的分类、产地与冲泡技巧，品味一杯茶的山野故事。</view>
-</view>
-
-<view class="card quick-facts">
-  <view class="quick-header">
-    <view class="quick-title">云南好茶小知识</view>
-    <view class="quick-desc">轻松掌握核心信息，再深入阅读详解。</view>
-  </view>
-  <scroll-view class="quick-scroll" scroll-x="true" enable-flex="true">
-    <block wx:for="{{quickFacts}}" wx:key="id">
-      <view class="fact-card">
-        <!-- 快速知识图标，可替换 image/icons 下的对应文件 -->
-        <image class="fact-icon" src="{{item.icon}}" mode="aspectFit" />
-        <view class="fact-title">{{item.title}}</view>
-        <view class="fact-desc">{{item.desc}}</view>
+<!-- pages/knowledge/knowledge.wxml
+  功能：呈现云南茶科普目录、速览卡片、产区/文化等内容块，支持锚点定位与分享。
+  用法：依赖 knowledge.js 注入的数据（catalog/sections/quickFacts 等），页面通过组合 util 工具类完成布局。
+  尺寸：目录芯片宽度 220rpx、高度 72rpx；卡片间距统一使用 --spacing-24，可在 knowledge.wxss 调整。
+  背景/配色：背景使用 page-container 的浅色底，卡片使用 .card + 主题色变量；若要换肤优先修改 styles/vars.wxss。
+  位置/布局：目录水平滚动；章节以卡片形式堆叠，并在 view 上绑定 id="section-*" 供锚点滚动。
+  交互：目录点击触发 scrollToSection，折叠面板 bindtap="toggleSection"；底部分享按钮 open-type="share"。
+  依赖/风险：依赖 data/knowledge.js 的字段结构、utils/icons.js 图标路径；scrollToSection 要求对应节点添加 knowledge-section 类。
+  后期修改指引：新增模块→在 knowledge.js 构造 sections 时加入 anchor，同时在 knowledge.wxss 内增添对应样式类。
+-->
+<view class="page-container knowledge-page">
+  <view class="card catalog-card p-24">
+    <view class="catalog-header flex-between">
+      <view>
+        <view class="text-lg text-bold text-primary">章节速览</view>
+        <view class="text-sm text-muted mt-12">点击快速跳转到对应知识块，支持小程序锚点定位。</view>
       </view>
-    </block>
-  </scroll-view>
-</view>
-
-<view class="card origin-highlights">
-  <view class="section-title">热门产区速览</view>
-  <view class="origin-list">
-    <block wx:for="{{originHighlights}}" wx:key="id">
-      <view class="origin-item">
-        <view class="origin-name">{{item.name}}</view>
-        <view class="origin-summary">{{item.summary}}</view>
-      </view>
-    </block>
-  </view>
-</view>
-
-<view class="card culture-card">
-  <view class="section-title">茶艺文化速读</view>
-  <view class="culture-list">
-    <block wx:for="{{teaArtCulture}}" wx:key="id">
-      <view class="culture-item">
-        <view class="culture-title">{{item.title}}</view>
-        <view class="culture-excerpt">{{item.excerpt}}</view>
-      </view>
-    </block>
-  </view>
-</view>
-
-<view class="card brew-guide">
-  <view class="section-title">一泡好茶的流程</view>
-  <view class="brew-steps">
-    <block wx:for="{{brewSteps}}" wx:key="id">
-      <view class="brew-step">
-        <view class="step-index">{{index + 1}}</view>
-        <view class="step-content">
-          <view class="step-title">{{item.title}}</view>
-          <view class="step-desc">{{item.desc}}</view>
+      <button class="btn btn-outline" bindtap="handleShareButton">分享提示</button>
+    </view>
+    <scroll-view class="catalog-scroll" scroll-x="true" enable-flex="true">
+      <block wx:for="{{catalog}}" wx:key="id">
+        <view
+          class="catalog-chip {{activeAnchor === item.anchor ? 'is-active' : ''}}"
+          data-anchor="{{item.anchor}}"
+          bindtap="scrollToSection"
+        >
+          <view class="chip-index badge">{{index + 1}}</view>
+          <view class="chip-label">{{item.label}}</view>
         </view>
-      </view>
-    </block>
+      </block>
+    </scroll-view>
   </view>
-</view>
 
-<block wx:for="{{sections}}" wx:key="id">
-  <view class="card section">
-    <view class="section-header" bindtap="toggleSection" data-id="{{item.id}}">
-      <view class="section-info">
-        <!-- 折叠面板图标，可替换 image/icons/icon-knowledge-*.svg -->
-        <image class="section-icon" src="{{item.icon}}" mode="aspectFit" />
-        <view>
-          <view class="section-title">{{item.title}}</view>
-          <view class="section-desc">{{item.description}}</view>
-        </view>
-      </view>
-      <view class="section-toggle">
-        <text>{{item.expanded ? '收起' : '展开'}}</text>
-        <view class="toggle-arrow {{item.expanded ? 'expanded' : ''}}"></view>
+  <view class="card intro-card p-24 mt-24">
+    <view class="text-xl text-bold">茶山百科</view>
+    <view class="text-sm text-muted mt-12">
+      走近云南茶山，了解普洱茶的分类、产地与冲泡技巧，品味山野故事与民族茶礼。
+    </view>
+  </view>
+
+  <view class="card quick-facts-card p-24 mt-24">
+    <view class="flex-between">
+      <view>
+        <view class="text-lg text-bold">云南好茶小知识</view>
+        <view class="text-sm text-muted mt-12">滑动卡片快速记忆核心事实，结合章节阅读形成知识网络。</view>
       </view>
     </view>
+    <scroll-view class="quick-scroll" scroll-x="true" enable-flex="true">
+      <block wx:for="{{quickFacts}}" wx:key="id">
+        <view class="fact-card">
+          <image class="fact-icon" src="{{item.icon}}" mode="aspectFit" />
+          <view class="fact-title text-md text-bold">{{item.title}}</view>
+          <view class="fact-desc text-sm text-muted">{{item.desc}}</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
 
-    <view wx:if="{{item.expanded}}" class="section-body">
-      <block wx:for="{{item.items}}" wx:key="name">
-        <view class="knowledge-item">
-          <view class="item-name">{{item.name}}</view>
-          <view class="item-content">{{item.content}}</view>
+  <view class="card origin-card p-24 mt-24">
+    <view class="text-lg text-bold text-primary">热门产区速览</view>
+    <view class="text-sm text-muted mt-12">按产区了解茶味差异，可结合地图或旅程设计路线。</view>
+    <view class="origin-list">
+      <block wx:for="{{originHighlights}}" wx:key="id">
+        <view class="origin-item">
+          <view class="origin-name text-md text-bold">{{item.name}}</view>
+          <view class="origin-summary text-sm text-muted">{{item.summary}}</view>
         </view>
       </block>
     </view>
   </view>
-</block>
 
-<view class="page-footer card">
-  <!-- 页面底部说明图标，可替换 image/icons/icon-page-knowledge.svg -->
-  <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
-  <view class="page-footer__title">{{pageFooter.title}}</view>
-  <view class="page-footer__desc">{{pageFooter.desc}}</view>
+  <view class="card culture-card p-24 mt-24">
+    <view class="text-lg text-bold text-primary">茶艺文化速读</view>
+    <view class="text-sm text-muted mt-12">洞悉民族茶俗与礼仪，将好茶分享给朋友。</view>
+    <view class="culture-list">
+      <block wx:for="{{teaArtCulture}}" wx:key="id">
+        <view class="culture-item">
+          <view class="culture-title text-md text-bold">{{item.title}}</view>
+          <view class="culture-excerpt text-sm text-muted">{{item.excerpt}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="card brew-card p-24 mt-24">
+    <view class="text-lg text-bold text-primary">一泡好茶的流程</view>
+    <view class="text-sm text-muted mt-12">按步骤准备器具、注水与出汤，便于培训新茶友。</view>
+    <view class="brew-steps">
+      <block wx:for="{{brewSteps}}" wx:key="id">
+        <view class="brew-step">
+          <view class="step-index text-lg text-bold">{{index + 1}}</view>
+          <view class="step-content">
+            <view class="step-title text-md text-bold">{{item.title}}</view>
+            <view class="step-desc text-sm text-muted">{{item.desc}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <block wx:for="{{sections}}" wx:key="id">
+    <view
+      class="card knowledge-section p-24 mt-24"
+      id="{{item.anchor}}"
+      data-anchor="{{item.anchor}}"
+    >
+      <view class="section-header flex-between" bindtap="toggleSection" data-id="{{item.id}}">
+        <view class="section-info flex gap-16">
+          <image class="section-icon" src="{{item.icon}}" mode="aspectFit" />
+          <view>
+            <view class="text-md text-bold">{{item.title}}</view>
+            <view class="text-sm text-muted mt-12">{{item.description}}</view>
+          </view>
+        </view>
+        <view class="toggle-indicator {{item.expanded ? 'expanded' : ''}}"></view>
+      </view>
+      <view wx:if="{{item.expanded}}" class="section-body mt-20">
+        <block wx:for="{{item.items}}" wx:key="name">
+          <view class="knowledge-item">
+            <view class="item-name text-md text-bold">{{item.name}}</view>
+            <view class="item-content text-sm text-muted">{{item.content}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+
+  <view class="card share-card p-24 mt-24">
+    <view class="text-lg text-bold">与茶友分享</view>
+    <view class="text-sm text-muted mt-12">点击按钮生成小程序卡片，可附加营销二维码。</view>
+    <button class="btn btn-primary mt-16" open-type="share">立即分享</button>
+  </view>
+
+  <view class="page-footer card p-24 mt-24 text-center">
+    <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
+    <view class="page-footer__title text-md text-bold mt-16">{{pageFooter.title}}</view>
+    <view class="page-footer__desc text-sm text-muted mt-16">{{pageFooter.desc}}</view>
+  </view>
 </view>

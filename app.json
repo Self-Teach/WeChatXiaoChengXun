@@ -21,32 +21,40 @@
   ],
   "window": {
     "navigationBarTitleText": "云茶汇",
-    "navigationBarBackgroundColor": "#0a8a4a",
+    "navigationBarBackgroundColor": "#6B4E3D",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#f6f7fb",
+    "backgroundColor": "#F7F8FA",
     "backgroundTextStyle": "light"
   },
   "tabBar": {
-    "color": "#666666",
-    "selectedColor": "#0a8a4a",
-    "backgroundColor": "#ffffff",
+    "color": "#6F6F6F",
+    "selectedColor": "#00A381",
+    "backgroundColor": "#FFFFFF",
     "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "精选"
+        "text": "精选",
+        "iconPath": "/image/icons/icon-page-home.svg",
+        "selectedIconPath": "/image/icons/icon-page-home.svg"
       },
       {
         "pagePath": "pages/knowledge/knowledge",
-        "text": "科普"
+        "text": "科普",
+        "iconPath": "/image/icons/icon-page-knowledge.svg",
+        "selectedIconPath": "/image/icons/icon-page-knowledge.svg"
       },
       {
         "pagePath": "pages/cart/cart",
-        "text": "购物车"
+        "text": "购物车",
+        "iconPath": "/image/icons/icon-page-cart.svg",
+        "selectedIconPath": "/image/icons/icon-page-cart.svg"
       },
       {
         "pagePath": "pages/profile/profile",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "/image/icons/icon-page-profile.svg",
+        "selectedIconPath": "/image/icons/icon-page-profile.svg"
       }
     ]
   },

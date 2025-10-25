@@ -1,19 +1,29 @@
-<view class="address-page">
+<!-- pages/profile/address/address.wxml
+  功能：展示收货地址列表与示例操作按钮，供后续接入真实接口时参考。
+  用法：与 address.js 配合，通过 addresses 数组循环输出卡片；样式在 address.wxss 中定义。
+  尺寸：卡片 padding 24rpx，按钮高度 64rpx；可根据设计在 address.wxss 中调整。
+  背景/配色：卡片使用 .card 结合 --color-line；默认标签使用主题色。
+  位置/布局：列表纵向排列；底部新增按钮保持固定间距。
+  交互：setDefault 设置默认地址；addAddress 提示示例环境。
+  依赖/风险：当前数据为静态示例，接入接口需处理分页与加载状态。
+  后期修改指引：如需支持长按删除，可在 address-item 外层使用 swipe-cell 组件。
+-->
+<view class="address-page page-container">
   <block wx:for="{{addresses}}" wx:key="id">
-    <view class="address-item card">
-      <view class="address-header">
-        <view class="name">{{item.name}}</view>
-        <view class="phone">{{item.phone}}</view>
-        <view wx:if="{{item.isDefault}}" class="tag">默认</view>
+    <view class="address-item card p-24 mt-24">
+      <view class="address-header flex-between">
+        <view class="text-md text-bold">{{item.name}}</view>
+        <view class="text-sm text-muted">{{item.phone}}</view>
+        <view wx:if="{{item.isDefault}}" class="badge">默认</view>
       </view>
-      <view class="region">{{item.region}}</view>
-      <view class="detail">{{item.detail}}</view>
-      <view class="actions">
-        <button size="mini" data-id="{{item.id}}" bindtap="setDefault">设为默认</button>
-        <button size="mini" class="edit">编辑</button>
+      <view class="text-sm text-muted mt-12">{{item.region}}</view>
+      <view class="text-sm mt-12">{{item.detail}}</view>
+      <view class="actions flex gap-12 mt-16">
+        <button class="btn btn-ghost" size="mini" data-id="{{item.id}}" bindtap="setDefault">设为默认</button>
+        <button class="btn btn-ghost" size="mini" bindtap="addAddress">编辑</button>
       </view>
     </view>
   </block>
 
-  <button class="add-btn" type="primary" bindtap="addAddress">新增地址</button>
+  <button class="btn btn-primary add-btn mt-24" bindtap="addAddress">新增地址（示例）</button>
 </view>

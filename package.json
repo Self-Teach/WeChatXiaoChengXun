@@ -1,0 +1,17 @@
+{
+  "name": "yuncha-mini-program",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Yunnan tea mini program with design tokens and annotated modules",
+  "scripts": {
+    "lint": "eslint --ext .js pages utils data",
+    "format": "prettier --write \"{pages,utils,data,styles}/**/*.{js,json,wxml,wxss,md}\"",
+    "build:screenshots": "echo 'Add screenshot generation command here'"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "prettier": "^3.2.5"
+  }
+}

@@ -1,3 +1,9 @@
 {
-  "navigationBarTitleText": "茶叶科普"
+  "$comment": {
+    "功能": "配置科普页导航标题与启用页面分享",
+    "用法": "如需更换标题请同步更新 README 中的导航说明"
+  },
+  "navigationBarTitleText": "茶叶科普",
+  "enableShareAppMessage": true,
+  "enableShareTimeline": true
 }

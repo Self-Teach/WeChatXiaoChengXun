@@ -1,58 +1,15 @@
-.address-page {
-  padding: 24rpx 32rpx 80rpx;
-  display: flex;
-  flex-direction: column;
-  gap: 24rpx;
-}
-
-.address-item {
-  padding: 24rpx;
-}
-
-.address-header {
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
-  margin-bottom: 12rpx;
-}
-
-.name {
-  font-size: 32rpx;
-  font-weight: 600;
-}
-
-.phone {
-  font-size: 26rpx;
-  color: #666666;
-}
-
-.tag {
-  font-size: 22rpx;
-  color: #ffffff;
-  background: #0a8a4a;
-  padding: 4rpx 12rpx;
-  border-radius: 999rpx;
-}
-
-.region,
-.detail {
-  font-size: 26rpx;
-  color: #444444;
-  margin-bottom: 8rpx;
-}
-
-.actions {
-  display: flex;
-  gap: 12rpx;
-}
-
-.edit {
-  color: #0a8a4a;
-}
-
-.add-btn {
-  margin-top: 32rpx;
-  border-radius: 999rpx;
-  background: linear-gradient(135deg, #0a8a4a, #13b067);
-  color: #ffffff;
-}
+/**
+ * pages/profile/address/address.wxss
+ * 功能：控制地址列表卡片的间距、排版和按钮样式，与设计令牌保持一致。
+ * 用法：在 address.wxml 中组合 .card/.btn 等工具类；此处仅补充页面专属布局。
+ * 尺寸（可调）：卡片间距 var(--spacing-24)、按钮高度 64rpx，按需调整。
+ * 背景/配色：标签 badge 使用主题色；背景为 page-container 默认浅色。
+ * 位置/布局：整页使用 column 布局；按钮宽度 100%。
+ * 交互：按钮采用 btn 类，focus/active 状态由 util.wxss 控制。
+ * 依赖/风险：确保 app.wxss 已引入 util 类；若新增滑动删除请注意与 card 阴影的冲突。
+ */
+.address-page { display: flex; flex-direction: column; }
+.address-item { border: 1rpx solid var(--color-line); border-radius: var(--radius-lg); background: #fff; }
+.address-header { align-items: center; gap: var(--spacing-12); }
+.actions button { flex: 1; }
+.add-btn { width: 100%; }

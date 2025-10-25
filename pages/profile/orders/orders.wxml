@@ -1,29 +1,46 @@
-<view class="orders-page">
-  <view class="tabs card">
-    <block wx:for="{{tabs}}" wx:key="key">
-      <view class="tab-item {{activeTab === item.key ? 'active' : ''}}" bindtap="switchTab" data-key="{{item.key}}">
-        <!-- 订单标签图标，可替换 image/icons/icon-pending-*.svg -->
-        <image class="tab-icon" src="{{item.icon}}" mode="aspectFit" />
-        <text class="tab-label">{{item.label}}</text>
-      </view>
-    </block>
+<!-- pages/profile/orders/orders.wxml
+  功能：展示订单状态标签页与对应订单列表的占位内容。
+  用法：与 orders.js 数据配合，使用 tabs/activeTab 渲染；样式在 orders.wxss。
+  尺寸：标签高度 96rpx、卡片间距 24rpx，可在 orders.wxss 调整。
+  背景/配色：卡片复用 .card；空态使用 text-muted。
+  位置/布局：标签横向滚动；订单列表纵向堆叠。
+  交互：switchTab 切换当前标签；查看详情按钮可在接入后端后跳转。
+  依赖/风险：当前订单数据为空；接入接口时需注意分页。
+  后期修改指引：若需支持下拉刷新，请在 orders.js 中启用 onPullDownRefresh 并调用 stopPullDownRefresh。
+-->
+<view class="orders-page page-container">
+  <view class="tabs card p-24">
+    <scroll-view class="tab-scroll" scroll-x="true" enable-flex="true">
+      <block wx:for="{{tabs}}" wx:key="key">
+        <view
+          class="tab-item {{activeTab === item.key ? 'active' : ''}}"
+          bindtap="switchTab"
+          data-key="{{item.key}}"
+        >
+          <image class="tab-icon" src="{{item.icon}}" mode="aspectFit" />
+          <view class="tab-label text-sm">{{item.label}}</view>
+        </view>
+      </block>
+    </scroll-view>
   </view>
 
   <view class="order-list">
     <block wx:if="{{orders[activeTab].length}}">
       <block wx:for="{{orders[activeTab]}}" wx:key="id">
-        <view class="order-item card">
-          <view class="order-id">订单编号：{{item.id}}</view>
-          <view class="order-name">{{item.productName}}</view>
-          <view class="order-meta">
-            <text class="order-price">￥{{item.price}}</text>
-            <text class="order-status">{{item.status}}</text>
+        <view class="order-item card p-24 mt-24">
+          <view class="text-sm text-muted">订单编号：{{item.id}}</view>
+          <view class="text-md text-bold mt-12">{{item.productName}}</view>
+          <view class="order-meta flex-between mt-12">
+            <view class="text-md text-accent">￥{{item.price}}</view>
+            <view class="badge">{{item.status}}</view>
           </view>
-          <view class="order-time">下单时间：{{item.time}}</view>
-          <button class="order-action" size="mini">查看详情</button>
+          <view class="text-xs text-muted mt-12">下单时间：{{item.time}}</view>
+          <button class="btn btn-outline mt-16" size="mini">查看详情</button>
         </view>
       </block>
     </block>
-    <view wx:else class="empty">暂无此类订单</view>
+    <view wx:else class="empty-card card p-24 mt-24 text-center text-sm text-muted">
+      暂无此类订单，接入后端后在此展示真实数据。
+    </view>
   </view>
 </view>

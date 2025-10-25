@@ -1,171 +1,55 @@
+/**
+ * pages/profile/profile.wxss
+ * 功能：为个人中心页面的头部、订单标签、地址卡片与工具栅格提供样式实现。
+ * 用法：结合 util 工具类使用，确保所有色值/间距引用设计令牌。
+ * 尺寸（可调）：头像 120rpx、订单标签宽 160rpx、高 72rpx；地址卡片间距 16rpx。
+ * 背景/配色：头部卡片采用渐变背景突出身份信息；标签选中态使用 --color-primary。
+ * 位置/布局：头部使用 flex 布局；订单标签 scroll-view 保留内边距；地址列表纵向卡片。
+ * 交互：选中标签添加阴影和色彩；工具卡片 hover 可通过 :active 调整透明度。
+ * 依赖/风险：需确保 app.wxss 已引入 util 样式；后续若引入后端数据需保证类名不冲突。
+ */
 .profile-header {
   display: flex;
   align-items: center;
-  gap: 24rpx;
-  margin: 32rpx;
-  background: linear-gradient(135deg, #f1fbf5, #ffffff);
+  gap: var(--spacing-16);
+  background: linear-gradient(135deg, rgba(107, 78, 61, 0.14), rgba(0, 163, 129, 0.12));
 }
+.avatar { width: 120rpx; height: 120rpx; border-radius: 50%; }
+.user-info { flex: 1; display: flex; flex-direction: column; gap: var(--spacing-8); }
+.login-state { margin-left: auto; }
 
-.avatar {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 50%;
-}
-
-.user-info {
-  flex: 1;
-}
-
-.user-name {
-  font-size: 34rpx;
-  font-weight: 700;
-}
-
-.user-desc {
-  font-size: 26rpx;
-  color: #666666;
-  margin-top: 8rpx;
-}
-
-.login-btn {
-  border-radius: 999rpx;
-  background: linear-gradient(135deg, #0a8a4a, #13b067);
-  color: #ffffff;
-}
-
-.login-state {
-  font-size: 24rpx;
-  color: #0a8a4a;
-}
-
-.order-card {
-  margin: 0 32rpx;
-}
-
-.order-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20rpx;
-}
-
-.order-title {
-  font-size: 32rpx;
-  font-weight: 600;
-}
-
-.more {
-  font-size: 24rpx;
-  color: #888888;
-}
-
-.order-status {
-  display: flex;
-  justify-content: space-between;
-  gap: 16rpx;
-}
-
-.status-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16rpx;
-  padding: 24rpx 12rpx;
-  border-radius: 24rpx;
-  background: linear-gradient(180deg, #f6fbf8 0%, #ffffff 100%);
-  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.08);
-}
-
-.status-icon {
-  width: 72rpx;
-  height: 72rpx;
-}
-
-.status-label {
-  font-size: 24rpx;
-  color: #555555;
-}
-
-.quick-card {
-  margin: 24rpx 32rpx;
-}
-
-.quick-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  margin-bottom: 20rpx;
-}
-
-.quick-grid {
-  display: flex;
-  gap: 20rpx;
-  flex-wrap: wrap;
-}
-
-.quick-item {
-  flex: 1 1 calc(50% - 20rpx);
-  min-width: 280rpx;
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
-  padding: 24rpx 20rpx;
-  border-radius: 20rpx;
-  background: linear-gradient(180deg, #f7fbf8 0%, #ffffff 100%);
-  box-shadow: 0 12rpx 22rpx rgba(10, 138, 74, 0.08);
-}
-
-.quick-icon {
-  width: 72rpx;
-  height: 72rpx;
-}
-
-.quick-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8rpx;
-}
-
-.quick-label {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-}
-
-.quick-desc {
-  font-size: 24rpx;
-  color: #607068;
-  line-height: 1.4;
-}
-
-.page-footer {
-  margin: 32rpx 32rpx 96rpx;
-  padding: 32rpx 28rpx 36rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16rpx;
+.order-tabs { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.order-tab-scroll { display: flex; gap: var(--spacing-16); margin-top: var(--spacing-12); }
+.order-tab {
+  min-width: 160rpx;
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: var(--radius-pill);
   text-align: center;
+  border: 1rpx solid var(--color-line);
+  color: var(--color-muted);
+  background: #fff;
 }
-
-.page-footer__icon {
-  width: 96rpx;
-  height: 96rpx;
+.order-tab.is-active {
+  color: #fff;
+  background: var(--color-primary);
+  border-color: transparent;
+  box-shadow: 0 10rpx 30rpx rgba(107, 78, 61, 0.22);
 }
+.order-status { gap: var(--spacing-12); }
+.status-item { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-8); }
+.status-icon { width: 72rpx; height: 72rpx; }
+.status-count { color: var(--color-primary); }
 
-.page-footer__title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-}
+.address-card { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.address-actions button { padding: var(--spacing-8) var(--spacing-16); }
+.address-list { display: flex; flex-direction: column; gap: var(--spacing-16); }
+.address-item { border: 1rpx solid var(--color-line); border-radius: var(--radius-md); padding: var(--spacing-16); background: #fff; }
+.address-header { align-items: center; }
+.address-empty { padding: var(--spacing-12) var(--spacing-16); background: rgba(107, 78, 61, 0.06); border-radius: var(--radius-md); }
 
-.page-footer__desc {
-  font-size: 26rpx;
-  color: #4f5f58;
-  line-height: 1.8;
-}
+.quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-20); margin-top: var(--spacing-20); }
+.quick-item { display: flex; gap: var(--spacing-12); padding: var(--spacing-16); border: 1rpx solid var(--color-line); border-radius: var(--radius-lg); background: #fff; }
+.quick-icon { width: 72rpx; height: 72rpx; }
+.quick-text { display: flex; flex-direction: column; gap: var(--spacing-8); }
 
-
-
-
+.page-footer__icon { width: 96rpx; height: 96rpx; }

@@ -25,7 +25,7 @@
   align-items: center;
   justify-content: space-between;
   overflow: hidden; /* 确保圆角卡片不溢出 */
-  background: linear-gradient(135deg, rgba(10, 138, 74, 0.08), #ffffff); /* 横幅背景渐变，可替换为纯色 */
+  background: linear-gradient(135deg, rgba(107, 78, 61, 0.08), #ffffff); /* 横幅背景渐变，可替换为纯色 */
 }
 
 .hero-text {
@@ -61,7 +61,7 @@
 }
 
 .placeholder {
-  color: rgba(10, 138, 74, 0.36); /* 提示文字使用主色的 36% 透明度，若嫌过浅可调高 */
+  color: rgba(107, 78, 61, 0.36); /* 提示文字使用主色的 36% 透明度，若嫌过浅可调高 */
 }
 
 .clear-btn {
@@ -86,7 +86,7 @@
 .suggestion-chip {
   padding: var(--spacing-8) var(--spacing-16);
   border-radius: var(--radius-md);
-  background: rgba(10, 138, 74, 0.08);
+  background: rgba(107, 78, 61, 0.08);
   font-size: var(--font-sm);
 }
 
@@ -105,7 +105,7 @@
 .sort-chip {
   min-width: 220rpx; /* 排序卡片宽度，可视需求增减 */
   border-radius: var(--radius-md);
-  border: 1rpx solid rgba(10, 138, 74, 0.12);
+  border: 1rpx solid rgba(107, 78, 61, 0.12);
   padding: var(--spacing-12) var(--spacing-16);
   background: #ffffff;
   transition: all 0.2s ease;
@@ -126,7 +126,7 @@
   width: 152rpx;
   height: 88rpx;
   border-radius: var(--radius-md);
-  border: 1rpx dashed rgba(10, 138, 74, 0.4); /* 虚线边框突出为筛选入口 */
+  border: 1rpx dashed rgba(107, 78, 61, 0.4); /* 虚线边框突出为筛选入口 */
   color: var(--color-primary);
   gap: var(--spacing-8);
 }
@@ -144,16 +144,16 @@
   background: #ffffff;
   font-size: var(--font-sm);
   font-weight: 600;
-  color: #4f5f58;
-  border: 1rpx solid rgba(10, 138, 74, 0.2);
+  color: var(--color-muted);
+  border: 1rpx solid rgba(107, 78, 61, 0.2);
   min-width: 180rpx;
   text-align: center;
-  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.06);
+  box-shadow: 0 12rpx 24rpx rgba(107, 78, 61, 0.06);
   transition: all 0.2s ease;
 }
 
 .type-chip.active {
-  background: linear-gradient(135deg, #f1fbf5, rgba(10, 138, 74, 0.16));
+  background: linear-gradient(135deg, #f1fbf5, rgba(107, 78, 61, 0.16));
   color: var(--color-primary);
   border-color: transparent;
 }
@@ -168,7 +168,7 @@
 .skeleton-card {
   height: 360rpx; /* 占位高度接近真实卡片高度，后续可根据图片比例调整 */
   border-radius: var(--radius-lg);
-  background: linear-gradient(120deg, rgba(10, 138, 74, 0.08), rgba(255, 255, 255, 0.5));
+  background: linear-gradient(120deg, rgba(107, 78, 61, 0.08), rgba(255, 255, 255, 0.5));
   animation: pulse 1.6s ease-in-out infinite;
 }
 
@@ -200,7 +200,7 @@
   color: var(--color-primary);
   padding: 6rpx 16rpx;
   border-radius: 999rpx;
-  background: rgba(10, 138, 74, 0.12);
+  background: rgba(107, 78, 61, 0.12);
 }
 
 .product-brief {
@@ -216,7 +216,7 @@
 .tag {
   padding: var(--spacing-4) var(--spacing-12);
   border-radius: 999rpx;
-  background: rgba(10, 138, 74, 0.1);
+  background: rgba(107, 78, 61, 0.1);
   font-size: var(--font-xs);
 }
 
@@ -278,7 +278,7 @@
   right: 12rpx;
   min-width: 36rpx;
   padding: 4rpx 8rpx;
-  background: #ff5f5f;
+  background: var(--color-danger);
   color: #ffffff;
   border-radius: 999rpx;
   font-size: var(--font-xs);
@@ -324,7 +324,7 @@
 .filter-chip {
   padding: var(--spacing-8) var(--spacing-16);
   border-radius: var(--radius-md);
-  border: 1rpx solid rgba(10, 138, 74, 0.2);
+  border: 1rpx solid rgba(107, 78, 61, 0.2);
   background: #ffffff;
   font-size: var(--font-sm);
   transition: all 0.2s;
@@ -339,4 +339,11 @@
 
 .filter-actions {
   gap: var(--spacing-16);
+}
+
+.load-more {
+  margin-top: var(--spacing-24);
+  text-align: center;
+  color: var(--color-primary);
+  font-size: var(--font-sm);
 }

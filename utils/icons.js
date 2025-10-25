@@ -1,14 +1,17 @@
-// utils/icons.js
-// 定义项目中复用的图标路径，统一管理，便于在多个页面使用本地资源。
-
+/**
+ * 功能：集中维护项目中重复使用的本地图标路径，避免在页面硬编码字符串并便于统一替换资源。
+ * 用法：在需要展示图标的页面/组件中 require ICONS 或 SECTION_ICONS；新增图标时先将素材置于 image/icons 下再在此登记。
+ * 尺寸（可调）：tabBar 图标建议 81×81px；信息卡片/按钮图标常用 64-96rpx，可在页面 WXSS 控制。
+ * 背景/配色（可调）：若要切换主题风格，可直接替换 SVG 文件或增加不同色阶的 icon 版本，在此新增键名区分。
+ * 位置/布局：分类字段与 data/knowledge.js 的 section id 对应；tabBar iconPath 在 app.json 读取这些路径。
+ * 交互（事件/回调）：无直接交互；页面通过 open-type="share" 等原生能力触发分享时可引用 share 图标。
+ * 依赖/风险：确保所有路径在 image/icons 存在；若迁移到 CDN，请统一更改此文件以免遗漏。
+ * 后期修改指引：批量替换图标可通过脚本读取本文件生成清单；新增品类请同步更新 README 的资源说明。
+ */
 const ICONS = {
-  // 购物车悬浮按钮与导航栏可用图标，位于 image/icons 目录
   cart: '/image/icons/icon-cart.svg',
-  // 搜索框左侧图标，可替换为 image/icons/icon-search.svg
   search: '/image/icons/icon-search.svg',
-  // 搜索框筛选图标，可替换 image/icons/icon-filter.svg
   filter: '/image/icons/icon-filter.svg',
-  // 页面顶部徽章使用的图标，可在 image/icons 目录中替换为本地素材
   pageHome: '/image/icons/icon-page-home.svg',
   pageKnowledge: '/image/icons/icon-page-knowledge.svg',
   pageCart: '/image/icons/icon-page-cart.svg',
@@ -24,7 +27,6 @@ const ICONS = {
 };
 
 const SECTION_ICONS = {
-  // 科普页折叠面板的配图，可替换 image/icons/icon-knowledge-*.svg
   category: '/image/icons/icon-knowledge-category.svg',
   origin: '/image/icons/icon-knowledge-origin.svg',
   storage: '/image/icons/icon-knowledge-storage.svg',

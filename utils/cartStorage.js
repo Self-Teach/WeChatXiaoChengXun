@@ -1,24 +1,20 @@
 /**
- * utils/cartStorage.js
- * 统一维护购物车读写逻辑，避免在各页面重复硬编码本地存储键名。
- * 通过集中管理，方便后续扩展离线同步、优惠计算等进阶功能。
+ * 功能：统一封装购物车在本地缓存的读写与数量计算逻辑，为各页面提供稳定 API，减少 setData 次数与重复代码。
+ * 用法：在需要操作购物车的页面通过 require 引入 getCartItems/setCartItems/upsertCartItem/computeCartCount 等函数。
+ * 尺寸（可调）：不涉及视觉；若购物车数据结构新增字段，请在此统一扩展，避免页面手动维护。
+ * 背景/配色（可调）：无视觉输出，如需在页面提示状态请在页面 WXSS 使用设计令牌。
+ * 位置/布局：无 UI；但全局数据挂载在 app.globalData.cart，页面读取时保持与此文件同步。
+ * 交互（事件/回调）：setCartItems 会同步全局数据并返回标准化数组；外部可结合 wx.showToast 显示反馈。
+ * 依赖/风险：依赖 wx.getStorageSync/wx.setStorageSync；若迁移到云开发或接口，请在此替换存储逻辑。
+ * 后期修改指引：新增优惠或多店铺逻辑时，可增加额外 helper（如 applyDiscount）并在导出对象补充。
  */
-const CART_STORAGE_KEY = 'cartItems'; // 本地缓存键名，可在此统一修改，避免页面间写死不同名称
+const CART_STORAGE_KEY = 'cartItems';
 
-/**
- * 从本地缓存中读取购物车数据。
- * 若首次使用或缓存异常，返回空数组，保证调用方逻辑稳定。
- */
 function getCartItems() {
   const stored = wx.getStorageSync(CART_STORAGE_KEY);
   return Array.isArray(stored) ? stored : [];
 }
 
-/**
- * 将购物车数据写入本地缓存，并同步更新全局数据，方便不同页面共享。
- * @param {Array} items - 购物车商品列表，包含 id/spec/option/quantity 等字段。
- * @returns {Array} 写入后的标准化列表，便于链式调用。
- */
 function setCartItems(items = []) {
   const normalized = Array.isArray(items) ? items : [];
   wx.setStorageSync(CART_STORAGE_KEY, normalized);
@@ -29,18 +25,10 @@ function setCartItems(items = []) {
   return normalized;
 }
 
-/**
- * 计算购物车商品总件数，可用于徽章显示或结算校验。
- */
 function computeCartCount(items = []) {
   return items.reduce((sum, item) => sum + (item.quantity || 0), 0);
 }
 
-/**
- * 将商品加入购物车：
- * - 若已存在同 id+规格+选项的商品，则叠加数量；
- * - 否则以新条目推入，保持 immutability 便于调试。
- */
 function upsertCartItem(items = [], payload) {
   const list = Array.isArray(items) ? [...items] : [];
   const { id, spec, option } = payload;

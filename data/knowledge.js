@@ -1,5 +1,12 @@
 /**
- * 云南茶叶科普内容数据，便于在本地直接使用。
+ * 功能：提供科普页面的结构化数据源，涵盖章节目录、速览知识、冲泡步骤与文化介绍，便于本地模拟真实接口返回。
+ * 用法：在 pages/knowledge/knowledge.js 中 require 使用；若接入后端，可将该文件改为请求占位并保留字段结构。
+ * 尺寸（可调）：速览图标建议 88rpx × 88rpx；章节 items 控制数量 4-6 条，超出时可分页或拆分新 section。
+ * 背景/配色（可调）：图标路径引用 image/icons 目录，若需要纹理底图请在 styles/vars.wxss 中新增变量并在页面调用。
+ * 位置/布局：sections 数组顺序决定页面呈现顺序；新增章节时保持 id 唯一并与 utils/icons SECTION_ICONS 对应。
+ * 交互（事件/回调）：knowledge 页面通过 expanded 字段控制折叠状态，初始数据无需包含；可附加 shareLink 字段用于分享组件。
+ * 依赖/风险：依赖 utils/icons.js 中的图标别名；如迁移到接口请确保字段名与页面逻辑一致，避免运行时报错。
+ * 后期修改指引：需要批量更新内容时可将本文件拆分为 YAML/JSON 并在脚本中转换，集中维护在 data/ 目录。
  */
 const knowledgeSections = [
   {
@@ -145,21 +152,18 @@ const quickFacts = [
     id: 'ancientTree',
     title: '370万亩古茶园',
     desc: '云南保有全国面积最大的古茶园资源，百年以上古茶树分布在西双版纳、普洱、临沧等地。',
-    // 速览卡片图标，可替换 image/icons/icon-fact-*.svg
     icon: '/image/icons/icon-fact-leaf.svg'
   },
   {
     id: 'highAltitude',
     title: '海拔1200m+高山云雾',
     desc: '大多数名山茶区海拔在1200-2000米，昼夜温差大，成就茶叶的甜度与耐泡度。',
-    // 速览卡片图标，可替换 image/icons/icon-fact-*.svg
     icon: '/image/icons/icon-fact-altitude.svg'
   },
   {
     id: 'fermentation',
     title: '双向发酵魅力',
     desc: '普洱既有自然陈化的“生茶”，也有人工渥堆的“熟茶”，一生一熟满足不同口味。',
-    // 速览卡片图标，可替换 image/icons/icon-fact-*.svg
     icon: '/image/icons/icon-fact-ferment.svg'
   }
 ];
@@ -200,29 +204,26 @@ const originHighlights = [
   },
   {
     id: 'yunnan-puer',
-    name: '普洱古茶林',
-    summary: '景迈古茶园入选世界遗产，兰香蜜韵持久，后期陈化潜力大。'
+    name: '普洱陈化之旅',
+    summary: '澜沧、景迈等地仓储条件优越，可体验生熟茶的陈化差异。'
   }
 ];
 
 const teaArtCulture = [
   {
-    id: 'heritage-jingmai',
-    title: '景迈山古茶林世界遗产',
-    excerpt:
-      '2023年9月，景迈山古茶林文化景观被联合国教科文组织列入《世界遗产名录》，体现“千年茶文化”与村寨生态的共生。'
+    id: 'tea-tasting',
+    title: '茶席礼仪',
+    excerpt: '以观形、闻香、品汤、赏叶底的流程品鉴，双手奉杯体现尊重。'
   },
   {
-    id: 'intangible-san-dao',
-    title: '白族三道茶的礼数',
-    excerpt:
-      '国家级非遗“三道茶”以“先苦后甜再回味”象征人生哲理，常在喜庆宴席或迎宾场合奉上，展示云南民族的待客之道。'
+    id: 'tea-tour',
+    title: '山野茶旅',
+    excerpt: '跟随向导探访古茶园，了解古树保护与少数民族茶俗。'
   },
   {
-    id: 'gongfu-utensils',
-    title: '功夫茶具与茶席布置',
-    excerpt:
-      '茶席常配盖碗、公道杯、公平杯与闻香杯等器具，配合竹制茶则、茶夹保持卫生，强调从备具到收具的有序礼仪。'
+    id: 'tea-festival',
+    title: '节庆与市集',
+    excerpt: '每年春秋两季的茶博会、斗茶赛是了解行业动态的最佳窗口。'
   }
 ];
 

@@ -1,48 +1,89 @@
-<view class="cart-container">
+<!-- pages/cart/cart.wxml
+  功能：展示购物车列表、数量调节控件、批量操作与吸底结算条，支持空态与跳转首页。
+  用法：依赖 cart.js 的 items/selectedIds/selectAll 状态；样式组合 util 工具类与 cart.wxss。
+  尺寸：卡片内边距 24rpx、图片 180rpx；吸底条高度 160rpx，均可在 cart.wxss 调整。
+  背景/配色：整体背景延续 page-container；选中态使用 --color-accent；按钮复用 .btn/.btn-primary。
+  位置/布局：列表上方留出吸底条高度；selection-pill 左侧对齐；底部 sticky-bottom + safe-area-bottom。
+  交互：bindtap="toggleItemSelection" 控制多选，handleQuantityStep/handleQuantityInput 调整数量，handleBatchDelete 批量删除。
+  依赖/风险：每个 item 需提供 id/name/spec/option/price/quantity/thumb 字段；若连接后端需保持字段一致。
+  后期修改指引：新增优惠券或配送方式可在 sticky bar 内扩展；吸底条按钮如需改为跳转请在 cart.js 修改 checkout。
+-->
+<view class="page-container cart-page">
   <block wx:if="{{items.length}}">
-    <block wx:for="{{items}}" wx:key="{{index}}">
-      <view class="cart-item card">
-        <!-- 购物车商品图片，可在 image/products 目录替换 -->
-        <image class="item-image" mode="aspectFill" src="{{item.image}}" />
-        <view class="item-content">
-          <view class="item-title">{{item.name}}</view>
-          <view class="item-spec">{{item.spec}} · {{item.option}}</view>
-          <view class="item-price">￥{{item.price}}</view>
-          <view class="quantity-row">
-            <button class="quantity-btn" size="mini" bindtap="decreaseQty" data-index="{{index}}">-</button>
-            <view class="quantity-value">{{item.quantity}}</view>
-            <button class="quantity-btn" size="mini" bindtap="increaseQty" data-index="{{index}}">+</button>
-            <button class="remove-btn" size="mini" bindtap="removeItem" data-index="{{index}}">删除</button>
+    <view class="cart-list">
+      <block wx:for="{{items}}" wx:key="id">
+        <view class="cart-item card p-24">
+          <view
+            class="selection-pill {{selectedIds.indexOf(item.id) > -1 ? 'is-selected' : ''}}"
+            data-id="{{item.id}}"
+            bindtap="toggleItemSelection"
+          ></view>
+          <image class="item-image" mode="aspectFill" src="{{item.thumb || item.image}}" />
+          <view class="item-content flex-col gap-12">
+            <view class="item-title text-md text-bold">{{item.name}}</view>
+            <view class="item-meta text-sm text-muted">{{item.spec}} · {{item.option}}</view>
+            <view class="item-price text-md text-accent">￥{{item.price}}</view>
+            <view class="quantity-row flex-between">
+              <view class="quantity-stepper">
+                <button
+                  class="step-btn"
+                  size="mini"
+                  data-id="{{item.id}}"
+                  data-step="-1"
+                  bindtap="handleQuantityStep"
+                >-</button>
+                <input
+                  class="step-input"
+                  type="number"
+                  value="{{item.quantity}}"
+                  data-id="{{item.id}}"
+                  bindblur="handleQuantityInput"
+                />
+                <button
+                  class="step-btn"
+                  size="mini"
+                  data-id="{{item.id}}"
+                  data-step="1"
+                  bindtap="handleQuantityStep"
+                >+</button>
+              </view>
+              <button class="btn btn-ghost" data-id="{{item.id}}" bindtap="removeItem">移除</button>
+            </view>
           </view>
         </view>
-      </view>
-    </block>
-
-    <view class="summary card">
-      <view class="summary-row">
-        <text>合计：</text>
-        <text class="summary-price">￥{{totalPrice}}</text>
-      </view>
-      <view class="summary-actions">
-        <button class="clear-btn" bindtap="clearCart">清空购物车</button>
-        <button class="checkout-btn" type="primary" bindtap="checkout">提交订单</button>
-      </view>
+      </block>
     </view>
   </block>
-
   <block wx:else>
-    <view class="empty">
-      <!-- 购物车空态图，可替换 image/empty/cart-empty.svg -->
+    <view class="empty-card card p-24 text-center">
       <image class="empty-icon" mode="widthFix" src="/image/empty/cart-empty.svg" />
-      <view class="empty-text">购物车还是空的，去挑选心仪的茶叶吧～</view>
-      <button class="go-shop" bindtap="goShop">去逛逛</button>
+      <view class="text-md text-bold mt-16">购物车还是空的</view>
+      <view class="text-sm text-muted mt-12">去精选页挑几款心仪的云茶吧～</view>
+      <button class="btn btn-primary mt-16" bindtap="goShop">前往选购</button>
     </view>
   </block>
 
-  <view class="page-footer card">
-    <!-- 页面底部说明图标，可替换 image/icons/icon-page-cart.svg -->
+  <view class="sticky-bottom safe-area-bottom cart-toolbar" wx:if="{{items.length}}">
+    <view class="toolbar-left flex gap-16">
+      <view class="selection-pill {{selectAll ? 'is-selected' : ''}}" bindtap="toggleSelectAll"></view>
+      <view class="text-sm">全选</view>
+      <view class="divider-vertical"></view>
+      <button class="btn btn-ghost" bindtap="toggleEditMode">{{isEditing ? '完成' : '编辑'}}</button>
+      <button class="btn btn-ghost" bindtap="handleBatchDelete" wx:if="{{isEditing}}">删除选中</button>
+      <button class="btn btn-ghost" bindtap="clearCart" wx:if="{{isEditing}}">清空</button>
+    </view>
+    <view class="toolbar-right flex gap-16">
+      <view class="summary flex-col text-right">
+        <view class="text-sm text-muted">已选 {{selectedCount}} 件</view>
+        <view class="text-md text-bold">合计 ￥{{selectedAmount}}</view>
+      </view>
+      <button class="btn btn-primary" bindtap="checkout">结算</button>
+    </view>
+  </view>
+
+  <view class="page-footer card p-24 mt-24 text-center">
     <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
-    <view class="page-footer__title">{{pageFooter.title}}</view>
-    <view class="page-footer__desc">{{pageFooter.desc}}</view>
+    <view class="page-footer__title text-md text-bold mt-16">{{pageFooter.title}}</view>
+    <view class="page-footer__desc text-sm text-muted mt-16">{{pageFooter.desc}}</view>
   </view>
 </view>

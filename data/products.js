@@ -16,6 +16,7 @@ const products = [
     price: 368,
     // 产地信息
     origin: '西双版纳·易武山',
+    harvestYear: 2022,
     // 当前库存数量
     stock: 120,
     // 综合评分
@@ -82,6 +83,7 @@ const products = [
     price: 298,
     // 产地信息
     origin: '西双版纳·勐海县',
+    harvestYear: 2021,
     // 当前库存数量
     stock: 90,
     // 综合评分
@@ -137,6 +139,7 @@ const products = [
     price: 428,
     // 产地信息
     origin: '西双版纳·布朗山',
+    harvestYear: 2018,
     // 当前库存数量
     stock: 60,
     // 综合评分
@@ -192,6 +195,7 @@ const products = [
     price: 998,
     // 产地信息
     origin: '临沧·双江县',
+    harvestYear: 2023,
     // 当前库存数量
     stock: 40,
     // 综合评分
@@ -235,6 +239,7 @@ const products = [
     price: 268,
     // 产地信息
     origin: '临沧·勐库',
+    harvestYear: 2021,
     // 当前库存数量
     stock: 110,
     // 综合评分
@@ -278,6 +283,7 @@ const products = [
     price: 358,
     // 产地信息
     origin: '普洱市·澜沧县',
+    harvestYear: 2020,
     // 当前库存数量
     stock: 80,
     // 综合评分
@@ -321,6 +327,7 @@ const products = [
     price: 628,
     // 产地信息
     origin: '临沧·昔归村',
+    harvestYear: 2022,
     // 当前库存数量
     stock: 55,
     // 综合评分
@@ -407,6 +414,7 @@ const products = [
     price: 268,
     // 产地信息
     origin: '西双版纳·勐海',
+    harvestYear: 2021,
     // 当前库存数量
     stock: 70,
     // 综合评分

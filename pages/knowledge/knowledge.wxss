@@ -1,312 +1,105 @@
-/* 顶部简介区域，控制整体外边距 */
-.intro {
-  margin: 32rpx;
-}
+/**
+ * pages/knowledge/knowledge.wxss
+ * 功能：为科普页的目录、速览卡片、折叠面板与分享区提供定制样式，同时复用设计令牌。
+ * 用法：与 knowledge.wxml 搭配使用，页面主容器使用 page-container；新增模块时在此补充对应类。
+ * 尺寸（可调）：目录芯片 220rpx×72rpx、fact 卡片宽 260rpx；间距统一依赖 --spacing-* 变量。
+ * 背景/配色：主色取 --color-primary，强调色使用 --color-accent；若需深色模式，可新增 data-theme 覆盖色值。
+ * 位置/布局：scroll-view 设置 gap 与内边距；折叠面板通过 rotate 处理箭头旋转，保持视觉一致。
+ * 交互：目录选中态添加 box-shadow 与色彩强化；折叠箭头根据 expanded class 旋转 180° 提示状态。
+ * 依赖/风险：需确保 util.wxss 中的工具类已引入；锚点滚动依赖 .knowledge-section 上的 id 与 data-anchor。
+ * 后期修改指引：若要扩展更多卡片样式，优先使用 .card + 工具类；特殊尺寸另行定义变量再应用。
+ */
+.knowledge-page { padding-bottom: calc(var(--spacing-48) + 120rpx); }
 
-/* 简介标题样式，突出品牌色 */
-.intro .title {
-  font-size: 40rpx;
-  font-weight: 700;
-  color: #0a8a4a;
-  margin-bottom: 12rpx;
-}
-
-/* 简介正文说明，采用浅灰提升可读性 */
-.intro .desc {
-  font-size: 28rpx;
-  color: #555555;
-  line-height: 1.6;
-}
-
-/* 茶知识速览区域边距 */
-.quick-facts {
-  margin: 0 32rpx 24rpx;
-}
-
-/* 速览标题与描述的垂直排列 */
-.quick-header {
+.catalog-card { position: relative; }
+.catalog-header button { margin-left: var(--spacing-24); }
+.catalog-scroll {
+  margin-top: var(--spacing-20);
   display: flex;
-  flex-direction: column;
-  gap: 8rpx;
-  margin-bottom: 24rpx;
+  gap: var(--spacing-16);
+  padding-bottom: var(--spacing-8);
 }
-
-/* 速览标题颜色与字重 */
-.quick-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #0a8a4a;
+.catalog-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  width: 220rpx;
+  height: 72rpx;
+  padding: 0 var(--spacing-16);
+  border-radius: var(--radius-pill);
+  border: 1rpx solid var(--color-line);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
 }
-
-/* 速览说明文字样式 */
-.quick-desc {
-  font-size: 26rpx;
-  color: #6a6a6a;
+.catalog-chip.is-active {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 10rpx 28rpx rgba(0, 163, 129, 0.24);
 }
+.catalog-chip.is-active .chip-index { background: rgba(255, 255, 255, 0.2); color: #ffffff; }
+.catalog-chip.is-active .chip-label { color: #ffffff; }
+.chip-label { font-size: var(--font-sm); line-height: var(--line-sm); color: var(--color-text); }
 
-/* 横向滚动容器，承载速览卡片 */
+.intro-card { background: linear-gradient(135deg, rgba(107, 78, 61, 0.08), rgba(0, 163, 129, 0.08)); }
+
 .quick-scroll {
+  margin-top: var(--spacing-20);
   display: flex;
-  gap: 24rpx;
-  padding-bottom: 12rpx;
+  gap: var(--spacing-20);
 }
-
-/* 单个速览卡片样式，使用渐变与阴影塑造层次 */
 .fact-card {
   width: 260rpx;
-  flex-shrink: 0;
-  background: linear-gradient(180deg, #f4fbf6, #ffffff);
-  border-radius: 20rpx;
-  padding: 24rpx;
-  margin-right: 24rpx;
-  box-shadow: 0 10rpx 20rpx rgba(10, 138, 74, 0.1);
-}
-
-/* 速览图标尺寸与下边距 */
-.fact-icon {
-  width: 72rpx;
-  height: 72rpx;
-  margin-bottom: 16rpx;
-}
-
-/* 速览卡片标题强调 */
-.fact-title {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-  margin-bottom: 12rpx;
-}
-
-/* 速览卡片正文描述 */
-.fact-desc {
-  font-size: 24rpx;
-  color: #666666;
-  line-height: 1.5;
-}
-
-/* 产地亮点区块外边距 */
-.origin-highlights {
-  margin: 0 32rpx 24rpx;
-}
-
-/* 产地列表布局为纵向卡片 */
-.origin-list {
+  min-height: 240rpx;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-20);
+  background: var(--color-card);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 20rpx;
-  margin-top: 16rpx;
+  gap: var(--spacing-12);
+}
+.fact-icon { width: 88rpx; height: 88rpx; }
+
+.origin-list, .culture-list { display: flex; flex-direction: column; gap: var(--spacing-16); margin-top: var(--spacing-20); }
+.origin-item, .culture-item {
+  padding: var(--spacing-16);
+  border-radius: var(--radius-md);
+  border: 1rpx solid var(--color-line);
+  background: #fff;
 }
 
-.origin-item {
-  padding: 20rpx 24rpx;
-  border-radius: 16rpx;
-  background: #f7faf8;
-  border: 1rpx solid rgba(10, 138, 74, 0.08);
-}
-
-.origin-name {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-  margin-bottom: 8rpx;
-}
-
-.origin-summary {
-  font-size: 26rpx;
-  color: #555555;
-  line-height: 1.6;
-}
-
-.culture-card {
-  margin: 0 32rpx 24rpx;
-}
-
-.culture-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20rpx;
-  margin-top: 16rpx;
-}
-
-.culture-item {
-  padding: 22rpx 26rpx;
-  border-radius: 18rpx;
-  background: linear-gradient(180deg, #fefdf8, #f4fbf6);
-  border: 1rpx solid rgba(10, 138, 74, 0.08);
-  box-shadow: 0 10rpx 18rpx rgba(10, 138, 74, 0.06);
-}
-
-.culture-title {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-  margin-bottom: 8rpx;
-}
-
-.culture-excerpt {
-  font-size: 26rpx;
-  color: #555555;
-  line-height: 1.6;
-}
-
-.brew-guide {
-  margin: 0 32rpx 24rpx;
-}
-
-.brew-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 20rpx;
-  margin-top: 16rpx;
-}
-
+.brew-steps { display: flex; flex-direction: column; gap: var(--spacing-16); margin-top: var(--spacing-20); }
 .brew-step {
   display: flex;
-  gap: 20rpx;
-  align-items: flex-start;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16);
+  border-radius: var(--radius-md);
+  background: rgba(107, 78, 61, 0.05);
 }
+.step-index { width: 48rpx; text-align: center; color: var(--color-primary); }
+.step-content { flex: 1; display: flex; flex-direction: column; gap: var(--spacing-8); }
 
-.step-index {
-  width: 48rpx;
-  height: 48rpx;
-  line-height: 48rpx;
-  text-align: center;
-  border-radius: 50%;
-  background: #0a8a4a;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.step-content {
-  flex: 1;
-  background: #f4fbf6;
-  border-radius: 16rpx;
-  padding: 18rpx 22rpx;
-}
-
-.step-title {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-  margin-bottom: 8rpx;
-}
-
-.step-desc {
-  font-size: 26rpx;
-  color: #555555;
-  line-height: 1.6;
-}
-
-.section {
-  margin: 24rpx 32rpx;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16rpx;
-}
-
-.section-info {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
-}
-
-.section-icon {
-  width: 72rpx;
-  height: 72rpx;
-  border-radius: 20rpx;
-  background: #f0f7f4;
-  padding: 12rpx;
-}
-
-.section-title {
-  font-size: 32rpx;
-  font-weight: 600;
-}
-
-.section-desc {
-  font-size: 26rpx;
-  color: #777777;
-  margin-top: 8rpx;
-}
-
-.section-toggle {
-  display: flex;
-  align-items: center;
-  gap: 12rpx;
-  font-size: 26rpx;
-  color: #0a8a4a;
-  font-weight: 600;
-}
-
-.toggle-arrow {
-  width: 20rpx;
-  height: 20rpx;
-  border-right: 4rpx solid #0a8a4a;
-  border-bottom: 4rpx solid #0a8a4a;
+.knowledge-section { border: 1rpx solid var(--color-line); }
+.section-header { gap: var(--spacing-16); }
+.section-icon { width: 88rpx; height: 88rpx; }
+.toggle-indicator {
+  width: 28rpx;
+  height: 28rpx;
+  border-top: 4rpx solid var(--color-primary);
+  border-right: 4rpx solid var(--color-primary);
   transform: rotate(45deg);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s;
 }
-
-.toggle-arrow.expanded {
-  transform: rotate(-135deg);
-}
-
-.section-body {
-  margin-top: 20rpx;
-  border-top: 1rpx dashed #e1e8e3;
-  padding-top: 20rpx;
-  display: flex;
-  flex-direction: column;
-  gap: 24rpx;
-}
-
+.toggle-indicator.expanded { transform: rotate(-135deg); }
+.section-body { display: flex; flex-direction: column; gap: var(--spacing-20); }
 .knowledge-item {
-  background: #f7faf8;
-  border-radius: 16rpx;
-  padding: 20rpx;
+  padding: var(--spacing-16);
+  border-radius: var(--radius-md);
+  background: rgba(0, 163, 129, 0.06);
 }
 
-.item-name {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-  margin-bottom: 12rpx;
-}
+.share-card button { width: 100%; }
 
-.item-content {
-  font-size: 26rpx;
-  color: #444444;
-  line-height: 1.6;
-}
-
-.page-footer {
-  margin: 32rpx 32rpx 96rpx;
-  padding: 32rpx 28rpx 40rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16rpx;
-  text-align: center;
-}
-
-.page-footer__icon {
-  width: 92rpx;
-  height: 92rpx;
-}
-
-.page-footer__title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: #0a8a4a;
-}
-
-.page-footer__desc {
-  font-size: 26rpx;
-  color: #4f5f58;
-  line-height: 1.8;
-}
+.page-footer__icon { width: 96rpx; height: 96rpx; }

@@ -1,48 +1,56 @@
 /**
  * styles/vars.wxss
- * 功能：集中维护品牌色板、字号、间距、圆角与阴影，方便全局统一调整视觉风格。
- * 用法：在 app.wxss 以 @import 引入后，其他 WXSS 可通过 var() 函数引用 CSS 变量。
- * 尺寸：提供 spacing-4 ~ spacing-48 等阶梯变量；字号从 20rpx 到 40rpx。
- * 背景/配色：定义普洱褐、翠绿、米白等云南茶主题色；根据需要在此增加色值。
- * 位置/布局：提供通用阴影、边框、圆角变量，配合 util.wxss 构成布局体系。
- * 交互：按钮 hover/active 的色彩也在此定义，确保交互反馈一致。
- * 依赖/风险：依赖微信小程序基础库 2.10+ 对 CSS 变量的支持，v2 项目默认满足。
- * 后期修改指引：若需换主题或深色模式，仅需集中调整这里的变量，再查看 util.wxss 是否需要补充。
+ * 功能：集中维护云茶汇视觉系统的设计令牌（色板、字号、间距、圆角、阴影），实现“改一处全局生效”。
+ * 用法：在 app.wxss 中 @import 后即可在任意 WXSS 里通过 var(--token) 调用；新增页面时直接组合 util 工具类。
+ * 尺寸（可调）：字号刻度 22rpx–44rpx（--font-xs ~ --font-xxl），间距刻度 8rpx–96rpx（--spacing-4 ~ --spacing-48）。
+ * 背景/配色（可调）：品牌主色 --color-primary（普洱褐 #6B4E3D）、点缀色 --color-accent（翡翠绿 #00A381）；如需换肤在此调整。
+ * 位置/布局：提供圆角/阴影变量，栅格间距通过 util.wxss 读取 --spacing-* 保持统一。
+ * 交互（事件/回调）：按钮与标签的 hover/active 色值引用 --color-primary-press、--color-accent-soft 以保持一致反馈。
+ * 依赖/风险：依赖基础库对 CSS 变量的支持（>= 2.10），若需兼容旧版本请改为 less/sass 预处理输出静态值。
+ * 后期修改指引：主题换色→先改此文件，再检查 util.wxss 是否需要新增工具类；字号/间距需扩展时按刻度等差递增。
  */
 :root {
-  /* 色板（云南茶主色、点缀色、背景与文本色） */
-  --color-primary: #0a8a4a;
-  --color-primary-light: #13b067;
-  --color-accent: #c26b3a;
-  --color-bg: #f6f7fb;
+  /* 品牌色板 */
+  --color-primary: #6b4e3d;
+  --color-primary-light: #8c6a55;
+  --color-primary-press: #543b2d;
+  --color-accent: #00a381;
+  --color-accent-soft: rgba(0, 163, 129, 0.14);
+  --color-accent-press: #00856a;
+  --color-bg: #f7f8fa;
   --color-card: #ffffff;
-  --color-muted: #8a8a8a;
+  --color-line: rgba(107, 78, 61, 0.12);
+  --color-shadow: rgba(39, 33, 30, 0.12);
+  --color-muted: #6f6f6f;
   --color-text: #1f1f1f;
-  --color-border: rgba(10, 138, 74, 0.15);
-  --color-shadow: rgba(13, 52, 35, 0.08);
+  --color-success: #3ba272;
   --color-warning: #e39d3c;
+  --color-danger: #d64545;
 
-  /* 字号刻度（rpx 单位，直接应用在 font-size） */
+  /* 字号刻度（rpx） */
   --font-xs: 22rpx;
   --font-sm: 26rpx;
   --font-md: 30rpx;
   --font-lg: 34rpx;
   --font-xl: 40rpx;
+  --font-xxl: 44rpx;
 
-  /* 行高（与字号配套使用） */
+  /* 行高（与字号配套） */
   --line-xs: 34rpx;
   --line-sm: 40rpx;
-  --line-md: 44rpx;
+  --line-md: 46rpx;
   --line-lg: 52rpx;
   --line-xl: 60rpx;
+  --line-xxl: 68rpx;
 
-  /* 间距刻度（用于 margin/padding 工具类） */
+  /* 间距刻度（统一用于 margin/padding/gap） */
   --spacing-4: 8rpx;
   --spacing-8: 16rpx;
   --spacing-12: 24rpx;
   --spacing-16: 32rpx;
   --spacing-20: 40rpx;
   --spacing-24: 48rpx;
+  --spacing-28: 56rpx;
   --spacing-32: 64rpx;
   --spacing-40: 80rpx;
   --spacing-48: 96rpx;
@@ -51,7 +59,8 @@
   --radius-sm: 12rpx;
   --radius-md: 20rpx;
   --radius-lg: 28rpx;
-  --shadow-sm: 0 6rpx 20rpx rgba(13, 52, 35, 0.08);
-  --shadow-md: 0 10rpx 28rpx rgba(13, 52, 35, 0.12);
-  --shadow-lg: 0 16rpx 40rpx rgba(13, 52, 35, 0.16);
+  --radius-pill: 999rpx;
+  --shadow-sm: 0 6rpx 20rpx rgba(39, 33, 30, 0.08);
+  --shadow-md: 0 12rpx 36rpx rgba(39, 33, 30, 0.12);
+  --shadow-lg: 0 20rpx 52rpx rgba(39, 33, 30, 0.16);
 }

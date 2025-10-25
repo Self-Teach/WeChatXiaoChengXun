@@ -1,42 +1,14 @@
-.security-page {
-  padding: 24rpx 32rpx 80rpx;
-  display: flex;
-  flex-direction: column;
-  gap: 24rpx;
-}
-
-.intro .title {
-  font-size: 32rpx;
-  font-weight: 600;
-  margin-bottom: 12rpx;
-}
-
-.intro .desc {
-  font-size: 26rpx;
-  color: #555555;
-  line-height: 1.6;
-}
-
-.option {
-  position: relative;
-  padding-right: 72rpx;
-}
-
-.option-title {
-  font-size: 30rpx;
-  font-weight: 600;
-}
-
-.option-desc {
-  font-size: 26rpx;
-  color: #777777;
-  margin-top: 8rpx;
-}
-
-.more {
-  position: absolute;
-  right: 32rpx;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #0a8a4a;
-}
+/**
+ * pages/profile/security/security.wxss
+ * 功能：设置账号安全页面的卡片样式与布局。
+ * 用法：与 security.wxml 配合；intro 使用渐变背景。
+ * 尺寸（可调）：卡片间距 var(--spacing-24)；字体引用设计令牌。
+ * 背景/配色：intro 使用渐变；option 卡片白底。
+ * 位置/布局：列表纵向排列。
+ * 交互：more 文本使用主题色。
+ * 依赖/风险：确保 util 工具类已加载。
+ */
+.security-page { display: flex; flex-direction: column; }
+.intro { background: linear-gradient(135deg, rgba(107, 78, 61, 0.12), rgba(0, 163, 129, 0.12)); }
+.option { border: 1rpx solid var(--color-line); border-radius: var(--radius-lg); background: #fff; }
+.more { display: inline-block; }

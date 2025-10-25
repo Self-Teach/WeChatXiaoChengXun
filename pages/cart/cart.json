@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "购物车"
+  "$comment": {
+    "功能": "配置购物车页面标题与下拉刷新",
+    "用法": "保持与 README 导航一致，若启用自定义导航需要同步调整"
+  },
+  "navigationBarTitleText": "购物车",
+  "enablePullDownRefresh": false
 }
