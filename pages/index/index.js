@@ -2,7 +2,8 @@
 // 商品列表页面，负责展示主要茶叶商品 // 概述页面职责，帮助初学者快速定位功能
 const app = getApp(); // 获取全局应用实例，用于访问全局共享数据
 const { ICONS } = require('../../utils/icons'); // 引入本地图标映射，便于在模板中统一引用
-const { getCartItems, computeCartCount } = require('../../utils/cartStorage'); // 读取和计算购物车数据的工具函数
+// 购物车工具集合：getCartItems 读取缓存、setCartItems 覆写缓存、upsertCartItem 合并商品、computeCartCount 统计数量
+const { getCartItems, setCartItems, upsertCartItem, computeCartCount } = require('../../utils/cartStorage');
 
 Page({ // 使用 Page 构造器注册首页逻辑
   data: { // data 对象保存页面的可绑定状态
@@ -15,7 +16,7 @@ Page({ // 使用 Page 构造器注册首页逻辑
     searchKeyword: '', // 搜索框绑定的关键字
     cartCount: 0, // 浮动购物车上的数量提醒
     // 浮动购物车按钮的图标，可在 image/icons/icon-cart.svg 替换
-    cartIcon: ICONS.cart, // 指定浮动按钮使用的购物车图标
+    cartIcon: ICONS.cart, // 指定浮动按钮使用的购物车图标；可在 utils/icons.js 中替换为其他本地资源
     pageFooter: { // 页面底部提示卡片的数据结构
       // 页面底部说明图标，可替换 image/icons/icon-page-home.svg
       icon: ICONS.pageHome, // 图标字段与 wxml 中的 image 标签绑定
@@ -36,7 +37,7 @@ Page({ // 使用 Page 构造器注册首页逻辑
         allProducts: products // 将全量商品保存到页面状态
       },
       () => {
-        this.applyFilters(); // 初始化完成后执行筛选逻辑，填充 filteredProducts
+        this.applyFilters(); // 初始化完成后执行筛选逻辑，填充 filteredProducts，确保默认展示全部商品
       }
     );
     this.updateCartCount(); // 初始化时同步购物车数量，确保浮标准确
@@ -53,7 +54,7 @@ Page({ // 使用 Page 构造器注册首页逻辑
    * 监听搜索框输入，实时更新关键字并触发筛选。
    */
   handleSearchInput(event) { // 绑定输入框的 input 事件
-    const searchKeyword = event.detail.value.trim(); // 读取输入值并去除首尾空格
+    const searchKeyword = event.detail.value.trim(); // 读取输入值并去除首尾空格，避免多余空格造成筛选不到数据
     this.setData({ searchKeyword }, () => {
       this.applyFilters(); // 更新关键字后重新计算商品列表
     });
@@ -83,7 +84,7 @@ Page({ // 使用 Page 构造器注册首页逻辑
    */
   applyFilters() { // 核心筛选逻辑，将分类和关键字组合
     const { allProducts, activeType, searchKeyword } = this.data; // 从 data 中取出筛选所需状态
-    const keyword = searchKeyword.toLowerCase(); // 将关键字转为小写，便于不区分大小写匹配
+    const keyword = searchKeyword.toLowerCase(); // 将关键字转为小写，便于不区分大小写匹配（中文不受影响）
 
     const filteredProducts = allProducts.filter((product) => { // 遍历商品并筛选符合条件的项
       const matchType =
@@ -91,7 +92,7 @@ Page({ // 使用 Page 构造器注册首页逻辑
       const matchKeyword =
         !keyword ||
         product.name.toLowerCase().includes(keyword) ||
-        product.brief.toLowerCase().includes(keyword) ||
+        product.brief.toLowerCase().includes(keyword) || // 简介模糊匹配
         (product.tastingNotes || []).some((note) => note.toLowerCase().includes(keyword)) ||
         (product.tags || []).some((tag) => tag.toLowerCase().includes(keyword)); // 检查名称、简介、品饮笔记、标签是否包含关键字
       return matchType && matchKeyword; // 分类与关键字都符合时保留该商品
@@ -108,6 +109,35 @@ Page({ // 使用 Page 构造器注册首页逻辑
     wx.navigateTo({ // 使用 navigateTo 打开商品详情页
       url: `/pages/productDetail/productDetail?id=${id}` // 将商品 id 作为查询参数传给详情页
     });
+  },
+
+  /**
+   * 商品卡片上的“加入购物车”快捷按钮事件：
+   * 默认选择商品的第一个规格与选项，并写入本地缓存。
+   * 注：如需区分不同规格，可在按钮上追加数据集属性并传入。
+   */
+  handleQuickAdd(event) {
+    const { id } = event.currentTarget.dataset; // dataset.id 对应 wxml 按钮上的 data-id
+    const product = this.data.allProducts.find((item) => item.id === id); // 查找当前商品详情
+    if (!product) {
+      return;
+    }
+
+    const items = getCartItems(); // 读取已有购物车条目
+    const next = upsertCartItem(items, {
+      id: product.id, // 使用商品唯一 ID
+      name: product.name, // 存入名称，方便购物车渲染
+      spec: product.specs && product.specs.length ? product.specs[0] : '默认规格', // 优先使用第一个规格
+      option: product.options && product.options.length ? product.options[0] : '默认选项', // 优先使用第一个选项
+      price: product.price, // 价格用于计算合计
+      quantity: 1, // 快捷加入默认一次一件，可按需调整
+      thumb: product.images && product.images.length ? product.images[0] : '' // 主图缩略图便于购物车展示
+    });
+
+    const saved = setCartItems(next); // 覆写缓存并同步全局状态
+    const cartCount = computeCartCount(saved); // 重新统计购物车总件数
+    this.setData({ cartCount }); // 更新悬浮按钮徽标
+    wx.showToast({ title: '已加入购物车', icon: 'success', duration: 1200 }); // 给用户反馈
   },
 
   /**

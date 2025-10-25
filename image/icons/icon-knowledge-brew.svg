@@ -1,15 +1,20 @@
 <!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
+<!-- SVG 根节点：width=120、height=120 控制导出尺寸，viewBox=0 0 120 120 决定坐标系统；等比调整可避免拉伸失真 -->
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：知识页“冲泡方法”卡片图标。
     修改指引：调整茶壶或蒸汽颜色时请更新 fill/stroke 属性，保留 120×120 画布以适应卡片。
   -->
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=#e8f6f0 控制内部颜色；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M32 52h56v14c0 28-18 42-28 42s-28-14-28-42z" fill="#e8f6f0" />
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#0a8a4a 配合 stroke-width=6 调整线条颜色与粗细，stroke-linecap=round 控制端点形状；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M44 40a16 16 0 0 1 32 0" stroke="#0a8a4a" stroke-width="6" stroke-linecap="round" fill="none" />
   <!-- 绘制矩形区域，通常用于背景或装饰块 -->
+  <!-- 矩形：x=44/y=56 定位左上角，width=32/height=12 设定大小，fill=#13b067 调整填充，可换成 url(#gradient) 或十六进制色值 -->
   <rect x="44" y="56" width="32" height="12" fill="#13b067" />
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#13b067 配合 stroke-width=6 调整线条颜色与粗细，stroke-linecap=round 控制端点形状；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M72 32c0-6 4-10 8-14" stroke="#13b067" stroke-width="6" stroke-linecap="round" fill="none" />
 </svg>

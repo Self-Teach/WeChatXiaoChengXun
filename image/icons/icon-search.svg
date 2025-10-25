@@ -1,12 +1,15 @@
 <!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
+<!-- SVG 根节点：width=48、height=48 控制导出尺寸，viewBox=0 0 48 48 决定坐标系统；等比调整可避免拉伸失真 -->
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：首页搜索输入框左侧的放大镜图标。
     修改指引：可调整外圈描边与镜片填充颜色，保持 48×48 画布与圆角造型以贴合输入框样式。
   -->
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=22/cy=22 设置圆心坐标，r=12 控制半径，stroke=#0A8A4A 配合 stroke-width=3 决定描边表现 -->
   <circle cx="22" cy="22" r="12" stroke="#0A8A4A" stroke-width="3" fill="none"/>
   <line x1="30.5" y1="30.5" x2="40" y2="40" stroke="#0A8A4A" stroke-width="3" stroke-linecap="round"/>
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=22/cy=22 设置圆心坐标，r=7 控制半径，fill=#CFF3DE 调整填充色 -->
   <circle cx="22" cy="22" r="7" fill="#CFF3DE" opacity="0.6"/>
 </svg>

@@ -1,24 +1,33 @@
 <!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
+<!-- SVG 根节点：width=128、height=128 控制导出尺寸，viewBox=0 0 128 128 决定坐标系统；等比调整可避免拉伸失真 -->
 <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：首页浮动购物车按钮与购物车入口的统一标识。
     修改指引：调整渐变配色需修改 <stop> stop-color，维持 28 的圆角矩形防止外观失真。
   -->
+  <!-- <defs> 节点用于存放渐变或滤镜等复用资源，不使用时可整块删除 -->
   <defs>
   <!-- 定义线性渐变，提供更有层次的填充效果 -->
+    <!-- 定义线性渐变 grad，x1/y1 与 x2/y2 控制光线方向，适当修改可调节高光位置 -->
     <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
     <!-- 渐变色的断点配置，决定颜色过渡 -->
+      <!-- 渐变节点：offset=0% 决定过渡百分比，stop-color=#1ac076 设置该处颜色，可结合品牌色调整 -->
       <stop offset="0%" stop-color="#1ac076" />
     <!-- 渐变色的断点配置，决定颜色过渡 -->
+      <!-- 渐变节点：offset=100% 决定过渡百分比，stop-color=#0a8a4a 设置该处颜色，可结合品牌色调整 -->
       <stop offset="100%" stop-color="#0a8a4a" />
     </linearGradient>
   </defs>
   <!-- 绘制矩形区域，通常用于背景或装饰块 -->
+  <!-- 矩形：x=8/y=8 定位左上角，width=112/height=112 设定大小，rx=28 控制圆角弧度，fill=url(#grad) 调整填充，可换成 url(#gradient) 或十六进制色值 -->
   <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#grad)" />
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#ffffff 配合 stroke-width=6 调整线条颜色与粗细，stroke-linecap=round 控制端点形状，stroke-linejoin=round 决定转角圆滑程度；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M42 40h10l8 36h36l10-28H58" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=62/cy=92 设置圆心坐标，r=7 控制半径，fill=#ffffff 调整填充色 -->
   <circle cx="62" cy="92" r="7" fill="#ffffff" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=94/cy=92 设置圆心坐标，r=7 控制半径，fill=#ffffff 调整填充色 -->
   <circle cx="94" cy="92" r="7" fill="#ffffff" />
 </svg>

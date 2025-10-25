@@ -1,24 +1,33 @@
 <!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
+<!-- SVG 根节点：width=320、height=320 控制导出尺寸，viewBox=0 0 320 320 决定坐标系统；等比调整可避免拉伸失真 -->
 <svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：茶叶精选分类中“滇红”商品主图。
     修改指引：替换茶汤或杯身颜色时请修改对应 fill，保持柔和渐变与其他商品风格一致。
   -->
+  <!-- <defs> 节点用于存放渐变或滤镜等复用资源，不使用时可整块删除 -->
   <defs>
   <!-- 定义线性渐变，提供更有层次的填充效果 -->
+    <!-- 定义线性渐变 redtea，x1/y1 与 x2/y2 控制光线方向，适当修改可调节高光位置 -->
     <linearGradient id="redtea" x1="0%" y1="0%" x2="100%" y2="100%">
     <!-- 渐变色的断点配置，决定颜色过渡 -->
+      <!-- 渐变节点：offset=0% 决定过渡百分比，stop-color=#ffb3a1 设置该处颜色，可结合品牌色调整 -->
       <stop offset="0%" stop-color="#ffb3a1" />
     <!-- 渐变色的断点配置，决定颜色过渡 -->
+      <!-- 渐变节点：offset=100% 决定过渡百分比，stop-color=#d94b3d 设置该处颜色，可结合品牌色调整 -->
       <stop offset="100%" stop-color="#d94b3d" />
     </linearGradient>
   </defs>
   <!-- 绘制矩形区域，通常用于背景或装饰块 -->
+  <!-- 矩形：x=0/y=0 定位左上角，width=320/height=320 设定大小，rx=40 控制圆角弧度，fill=#fff0ed 调整填充，可换成 url(#gradient) 或十六进制色值 -->
   <rect width="320" height="320" rx="40" fill="#fff0ed" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=160/cy=160 设置圆心坐标，r=106 控制半径，fill=#ffd7cf 调整填充色 -->
   <circle cx="160" cy="160" r="106" fill="#ffd7cf" />
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=url(#redtea) 控制内部颜色；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M104 110h112v60c0 32-28 58-56 58s-56-26-56-58z" fill="url(#redtea)" />
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#d94b3d 配合 stroke-width=8 调整线条颜色与粗细，stroke-linecap=round 控制端点形状；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M114 218c22 28 46 40 46 40s24-12 46-40" fill="none" stroke="#d94b3d" stroke-width="8" stroke-linecap="round" />
 </svg>

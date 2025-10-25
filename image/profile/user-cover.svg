@@ -1,24 +1,33 @@
 <!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
+<!-- SVG 根节点：width=320、height=180 控制导出尺寸，viewBox=0 0 320 180 决定坐标系统；等比调整可避免拉伸失真 -->
 <svg width="320" height="180" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：个人中心顶部背景封面插画。
     修改指引：可替换山水或云雾路径颜色营造新主题，保持渐变 stop-color 渐层过渡顺滑。
   -->
+  <!-- <defs> 节点用于存放渐变或滤镜等复用资源，不使用时可整块删除 -->
   <defs>
   <!-- 定义线性渐变，提供更有层次的填充效果 -->
+    <!-- 定义线性渐变 cover，x1/y1 与 x2/y2 控制光线方向，适当修改可调节高光位置 -->
     <linearGradient id="cover" x1="0%" y1="0%" x2="100%" y2="100%">
     <!-- 渐变色的断点配置，决定颜色过渡 -->
+      <!-- 渐变节点：offset=0% 决定过渡百分比，stop-color=#0a8a4a 设置该处颜色，可结合品牌色调整 -->
       <stop offset="0%" stop-color="#0a8a4a" />
     <!-- 渐变色的断点配置，决定颜色过渡 -->
+      <!-- 渐变节点：offset=100% 决定过渡百分比，stop-color=#1ac076 设置该处颜色，可结合品牌色调整 -->
       <stop offset="100%" stop-color="#1ac076" />
     </linearGradient>
   </defs>
   <!-- 绘制矩形区域，通常用于背景或装饰块 -->
+  <!-- 矩形：x=0/y=0 定位左上角，width=320/height=180 设定大小，rx=28 控制圆角弧度，fill=url(#cover) 调整填充，可换成 url(#gradient) 或十六进制色值 -->
   <rect width="320" height="180" rx="28" fill="url(#cover)" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=80/cy=90 设置圆心坐标，r=36 控制半径，fill=#ffffff 调整填充色 -->
   <circle cx="80" cy="90" r="36" fill="#ffffff" opacity="0.28" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=170/cy=70 设置圆心坐标，r=28 控制半径，fill=#ffffff 调整填充色 -->
   <circle cx="170" cy="70" r="28" fill="#ffffff" opacity="0.16" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=250/cy=118 设置圆心坐标，r=40 控制半径，fill=#ffffff 调整填充色 -->
   <circle cx="250" cy="118" r="40" fill="#ffffff" opacity="0.2" />
 </svg>

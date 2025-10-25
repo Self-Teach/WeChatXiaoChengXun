@@ -1,16 +1,19 @@
 <view class="home">
+  <!-- 顶部宣传横幅：左侧为文案，右侧为插画，如需替换图片可直接替换 image/banners/hero-tea.svg -->
   <view class="hero card">
+    <!-- hero-text 负责竖排文案布局，调整字体大小在对应 wxss 中修改 font-size -->
     <view class="hero-text">
       <view class="subtitle">云南山野的好茶</view>
       <view class="title">云茶精选</view>
       <view class="desc">严选八款云南经典好茶，感受普洱的甜润与岁月的沉香。</view>
     </view>
-    <!-- 顶部横幅图片，可替换为 image/banners/hero-tea.svg -->
+    <!-- 顶部横幅图片：mode=aspectFill 保持填充，若需替换图片只要指向 /image/banners 目录即可 -->
     <image class="hero-image" mode="aspectFill" src="/image/banners/hero-tea.svg" />
   </view>
 
+  <!-- 搜索区域：圆角输入框可通过 wxss 中的 border-radius 修改弧度 -->
   <view class="search card">
-    <!-- 搜索图标，可替换 image/icons/icon-search.svg -->
+    <!-- 搜索图标：本地图标统一在 utils/icons.js 中维护，方便换肤 -->
     <image class="search-icon" src="{{ICONS.search}}" mode="aspectFit" />
     <input
       class="search-input"
@@ -20,12 +23,13 @@
       bindinput="handleSearchInput"
     />
     <view class="search-actions">
-      <!-- 筛选图标，可替换 image/icons/icon-filter.svg -->
+      <!-- 筛选图标：如不需要该按钮，可移除 image 及 clear-btn 即可 -->
       <image class="filter-icon" src="{{ICONS.filter}}" mode="aspectFit" />
       <text wx:if="{{searchKeyword}}" class="clear-btn" bindtap="clearSearch">清空</text>
     </view>
   </view>
 
+  <!-- 分类标签滚动条：通过 data-type 携带分类名，chip 外观在 wxss 中可调背景与阴影 -->
   <scroll-view class="type-tabs" scroll-x="true" enable-flex="true">
     <block wx:for="{{teaTypes}}" wx:key="*this">
       <view
@@ -38,11 +42,13 @@
     </block>
   </scroll-view>
 
+  <!-- 列表分组标题，可根据需要调整文案或添加更多装饰 -->
   <view class="section-title">精选推荐</view>
   <view wx:if="{{filteredProducts.length}}" class="product-grid">
     <block wx:for="{{filteredProducts}}" wx:key="id">
+      <!-- 商品卡片整体可点击进入详情，图片、文案、按钮均可在下方节点中个性化 -->
       <view class="product-card" bindtap="handleProductTap" data-id="{{item.id}}">
-        <!-- 商品主图，可在 image/products 目录中替换对应 SVG -->
+        <!-- 商品主图：image 标签的 mode=aspectFill 可让图片铺满卡片 -->
         <image class="product-image" mode="aspectFill" src="{{item.images[0]}}" />
         <view class="product-info">
           <view class="product-header">
@@ -63,6 +69,18 @@
             <text class="rating">⭐ {{item.rating}}</text>
           </view>
           <view class="product-origin">产地：{{item.origin}}</view>
+          <!-- 快捷操作行：catchtap 阻止冒泡，避免触发整卡跳转 -->
+          <view class="product-actions">
+            <button
+              class="product-actions__add"
+              catchtap="handleQuickAdd"
+              data-id="{{item.id}}"
+              plain
+            >
+              <image class="product-actions__icon" src="{{cartIcon}}" mode="aspectFit" />
+              <text class="product-actions__label">加入购物车</text>
+            </button>
+          </view>
         </view>
       </view>
     </block>
@@ -72,6 +90,7 @@
     <view class="empty-desc">试着更换关键词或切换茶类分类，探索更多云南好茶。</view>
   </view>
 
+  <!-- 页面底部说明区域：结合图标与文案强调服务卖点 -->
   <view class="page-footer card">
     <!-- 页面底部说明图标，可替换 image/icons/icon-page-home.svg -->
     <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
@@ -80,7 +99,7 @@
   </view>
 
   <view class="cart-fab" bindtap="goCart">
-    <!-- 悬浮购物车图标，可替换 image/icons/icon-cart.svg -->
+    <!-- 悬浮购物车图标，可替换 image/icons/icon-cart.svg；圆形背景在 wxss 中通过 border-radius 定义 -->
     <image class="cart-fab__icon" src="{{cartIcon}}" mode="aspectFit" />
     <view wx:if="{{cartCount > 0}}" class="cart-fab__badge">{{cartCount}}</view>
   </view>

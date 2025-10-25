@@ -1,15 +1,20 @@
 <!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
+<!-- SVG 根节点：width=56、height=56 控制导出尺寸，viewBox=0 0 56 56 决定坐标系统；等比调整可避免拉伸失真 -->
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：知识页“发酵程度”提示的小桶插画。
     修改指引：修改木桶或叶子颜色时请更新对应路径的 fill，保持 56×56 画布以配合提示卡片。
   -->
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=20/cy=26 设置圆心坐标，r=10 控制半径，fill=#CFF3DE 调整填充色，stroke=#0A8A4A 配合 stroke-width=2 决定描边表现 -->
   <circle cx="20" cy="26" r="10" fill="#CFF3DE" stroke="#0A8A4A" stroke-width="2"/>
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=36/cy=30 设置圆心坐标，r=10 控制半径，fill=#E1F9EE 调整填充色，stroke=#13B067 配合 stroke-width=2 决定描边表现 -->
   <circle cx="36" cy="30" r="10" fill="#E1F9EE" stroke="#13B067" stroke-width="2"/>
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#0A8A4A 配合 stroke-width=2 调整线条颜色与粗细，stroke-linecap=round 控制端点形状；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M16 26C16 24 17.5 22.5 19.5 22.5" stroke="#0A8A4A" stroke-width="2" stroke-linecap="round"/>
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#13B067 配合 stroke-width=2 调整线条颜色与粗细，stroke-linecap=round 控制端点形状；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M32 30C32 28 33.5 26.5 35.5 26.5" stroke="#13B067" stroke-width="2" stroke-linecap="round"/>
 </svg>

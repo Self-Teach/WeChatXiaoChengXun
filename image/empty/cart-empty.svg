@@ -1,21 +1,29 @@
 <!-- 定义图标画布尺寸与命名空间，便于了解资源属性 -->
+<!-- SVG 根节点：width=280、height=220 控制导出尺寸，viewBox=0 0 280 220 决定坐标系统；等比调整可避免拉伸失真 -->
 <svg width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
   <!--
     图标用途：购物车为空状态插画，用于提示用户还未添加商品。
     修改指引：可替换杯子与叶子路径描边颜色，保持浅色背景以免与页面提示文案冲突。
   -->
   <!-- 绘制矩形区域，通常用于背景或装饰块 -->
+  <!-- 矩形：x=0/y=0 定位左上角，width=280/height=220 设定大小，rx=32 控制圆角弧度，fill=#f4f7fb 调整填充，可换成 url(#gradient) 或十六进制色值 -->
   <rect width="280" height="220" rx="32" fill="#f4f7fb" />
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#9bbdd1 配合 stroke-width=8 调整线条颜色与粗细，stroke-linecap=round 控制端点形状，stroke-linejoin=round 决定转角圆滑程度；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M72 86h24l14 66h80l18-50H118" fill="none" stroke="#9bbdd1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=124/cy=172 设置圆心坐标，r=10 控制半径，fill=#9bbdd1 调整填充色 -->
   <circle cx="124" cy="172" r="10" fill="#9bbdd1" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=186/cy=172 设置圆心坐标，r=10 控制半径，fill=#9bbdd1 调整填充色 -->
   <circle cx="186" cy="172" r="10" fill="#9bbdd1" />
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#d4dee8 配合 stroke-width=6 调整线条颜色与粗细，stroke-linecap=round 控制端点形状；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M84 62c0-16 12-26 30-26" fill="none" stroke="#d4dee8" stroke-width="6" stroke-linecap="round" />
   <!-- 绘制自定义路径线条，描述图标的关键造型 -->
+  <!-- 路径：d 属性记录笔划坐标，可在矢量软件中编辑；fill=none 控制内部颜色，stroke=#d4dee8 配合 stroke-width=6 调整线条颜色与粗细，stroke-linecap=round 控制端点形状；需要重新布形状时可直接修改 d 中的数值或导出新路径 -->
   <path d="M140 50c0-14 12-22 24-22" fill="none" stroke="#d4dee8" stroke-width="6" stroke-linecap="round" />
   <!-- 绘制圆形轮廓或背景，突出主要视觉焦点 -->
+  <!-- 圆形：cx=210/cy=64 设置圆心坐标，r=20 控制半径，fill=#de8c34 调整填充色 -->
   <circle cx="210" cy="64" r="20" fill="#de8c34" opacity="0.3" />
 </svg>
