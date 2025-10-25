@@ -1,9 +1,46 @@
-// pages/index/index.js // 标识当前脚本所属的页面文件，方便理解作用域
-// 商品列表页面，负责展示主要茶叶商品 // 概述页面职责，帮助初学者快速定位功能
+/**
+ * pages/index/index.js
+ * 功能：承载首页商品浏览、搜索、筛选、排序与快捷加购逻辑，并与全局购物车打通。
+ * 用法：被 app.json 声明为 tabBar 首页；模板层在 index.wxml 中配合 data 渲染。
+ * 尺寸：骨架屏占位高度、商品卡片列宽等在 index.wxss 与 styles/util.wxss 中集中调节。
+ * 背景/配色：主色、卡片底色使用 styles/vars.wxss 的变量，若想换主题先改 vars。
+ * 位置/布局：搜索/筛选/列表为三段布局，滚动区高度由 page-container + 内部 margin 控制。
+ * 交互：包含输入防抖、筛选抽屉、排序按钮与快捷加购；事件命名统一 handleXXX 方便检索。
+ * 依赖/风险：依赖 utils/cartStorage.js 的本地缓存方法；若改为接口需统一在该工具中调整。
+ * 后期修改指引：想扩展筛选项或增加分页，请在 filtersConfig/sortOptions 追加，再在 wxml 添加对应按钮。
+ */
 const app = getApp(); // 获取全局应用实例，用于访问全局共享数据
 const { ICONS } = require('../../utils/icons'); // 引入本地图标映射，便于在模板中统一引用
 // 购物车工具集合：getCartItems 读取缓存、setCartItems 覆写缓存、upsertCartItem 合并商品、computeCartCount 统计数量
 const { getCartItems, setCartItems, upsertCartItem, computeCartCount } = require('../../utils/cartStorage');
+
+const SKELETON_TIMEOUT = 420; // 骨架屏展示时长（毫秒），可根据数据源时延调整
+const FILTER_GROUPS = [
+  {
+    key: 'origin',
+    title: '产地',
+    options: ['西双版纳', '临沧', '保山', '普洱', '大理'],
+    tip: '根据主要产区划分，命名以州或地级市为单位'
+  },
+  {
+    key: 'craft',
+    title: '工艺',
+    options: ['普洱生茶', '普洱熟茶', '滇红工夫', '茶礼臻品', '茶点伴侣'],
+    tip: '覆盖当前产品的 type 字段，如新增品类请同步 data/products.js'
+  },
+  {
+    key: 'year',
+    title: '年份',
+    options: ['2018-2020', '2021-2022', '2023+'],
+    tip: '依赖商品 harvestYear 字段；若无年份也会被视为通过'
+  },
+  {
+    key: 'price',
+    title: '价位',
+    options: ['0-199', '200-499', '500+'],
+    tip: '价格区间单位为人民币元，可按市场需求重新划段'
+  }
+];
 
 Page({ // 使用 Page 构造器注册首页逻辑
   data: { // data 对象保存页面的可绑定状态
@@ -14,6 +51,23 @@ Page({ // 使用 Page 构造器注册首页逻辑
     teaTypes: ['全部', '茶叶精选', '特产精选'], // 分类筛选项数组
     activeType: '全部', // 当前选中的分类名称
     searchKeyword: '', // 搜索框绑定的关键字
+    searchSuggestions: [], // 搜索联想列表（最多展示 5 条）
+    isLoading: true, // 骨架屏显示状态
+    skeletonRows: [1, 2, 3, 4], // 骨架屏条目数量，调整数组长度即可控制占位行数
+    filterSheetVisible: false, // 控制筛选抽屉显隐
+    filterGroups: FILTER_GROUPS, // 提供筛选面板配置，WXML 中按 key 循环渲染
+    filterSelections: {
+      origin: [], // 产地多选
+      craft: [], // 工艺多选
+      year: [], // 年份区间
+      price: [] // 价格区间
+    },
+    sortOptions: [
+      { key: 'popular', label: '人气优先', desc: '按评分由高到低排序' },
+      { key: 'priceAsc', label: '价格从低到高', desc: '适合预算有限的选购' },
+      { key: 'priceDesc', label: '价格从高到低', desc: '用于高端礼茶展示' }
+    ],
+    activeSort: 'popular', // 当前排序方式
     cartCount: 0, // 浮动购物车上的数量提醒
     // 浮动购物车按钮的图标，可在 image/icons/icon-cart.svg 替换
     cartIcon: ICONS.cart, // 指定浮动按钮使用的购物车图标；可在 utils/icons.js 中替换为其他本地资源
@@ -30,17 +84,17 @@ Page({ // 使用 Page 构造器注册首页逻辑
    */
   onLoad() { // 生命周期：页面初始化时执行
     // 从全局数据中读取商品列表，确保与本地“数据库”同步
-    const products = app.globalData.products; // 直接访问 app.js 中准备好的商品数组
+    const products = app.globalData.products || []; // 直接访问 app.js 中准备好的商品数组
 
-    this.setData( // 更新 data 并在回调里应用筛选
-      {
-        allProducts: products // 将全量商品保存到页面状态
-      },
-      () => {
-        this.applyFilters(); // 初始化完成后执行筛选逻辑，填充 filteredProducts，确保默认展示全部商品
-      }
-    );
+    this.suggestionSource = this.buildSuggestionSource(products); // 预先整理搜索联想数据，减少多次遍历开销
+
+    this.setData({
+      allProducts: products
+    });
+
+    this.applyFilters(); // 初始化完成后执行筛选逻辑，填充 filteredProducts
     this.updateCartCount(); // 初始化时同步购物车数量，确保浮标准确
+    this.scheduleSkeletonHide(); // 启动骨架屏定时器
   },
 
   /**
@@ -50,23 +104,28 @@ Page({ // 使用 Page 构造器注册首页逻辑
     this.updateCartCount(); // 每次返回首页都刷新购物车数量提示
   },
 
+  onUnload() {
+    if (this.skeletonTimer) {
+      clearTimeout(this.skeletonTimer); // 页面卸载时清理骨架屏计时器
+    }
+  },
+
   /**
    * 监听搜索框输入，实时更新关键字并触发筛选。
    */
   handleSearchInput(event) { // 绑定输入框的 input 事件
     const searchKeyword = event.detail.value.trim(); // 读取输入值并去除首尾空格，避免多余空格造成筛选不到数据
-    this.setData({ searchKeyword }, () => {
-      this.applyFilters(); // 更新关键字后重新计算商品列表
-    });
+    const searchSuggestions = this.getSuggestions(searchKeyword); // 根据输入生成联想词
+    this.setData({ searchKeyword, searchSuggestions });
+    this.applyFilters(); // 更新关键字后重新计算商品列表
   },
 
   /**
    * 清空搜索关键字并恢复默认列表。
    */
   clearSearch() { // 清除搜索条件的按钮事件
-    this.setData({ searchKeyword: '' }, () => {
-      this.applyFilters(); // 清空关键字后恢复默认筛选结果
-    });
+    this.setData({ searchKeyword: '', searchSuggestions: [] });
+    this.applyFilters(); // 清空关键字后恢复默认筛选结果
   },
 
   /**
@@ -74,29 +133,105 @@ Page({ // 使用 Page 构造器注册首页逻辑
    */
   handleTypeChange(event) { // 分类标签点击事件
     const { type } = event.currentTarget.dataset; // 读取被点击标签绑定的分类名称
-    this.setData({ activeType: type }, () => {
-      this.applyFilters(); // 切换分类后重新筛选
+    this.setData({ activeType: type });
+    this.applyFilters(); // 切换分类后重新筛选
+  },
+
+  /**
+   * 选中联想词后填充输入框并重新过滤。
+   */
+  handleSuggestionTap(event) {
+    const { keyword } = event.currentTarget.dataset;
+    this.setData({ searchKeyword: keyword, searchSuggestions: [] });
+    this.applyFilters();
+  },
+
+  /**
+   * 打开或关闭筛选抽屉；用于按钮和遮罩共同调用。
+   */
+  toggleFilterSheet() {
+    this.setData({ filterSheetVisible: !this.data.filterSheetVisible });
+  },
+
+  /**
+   * 筛选项单选或多选的切换逻辑。
+   * @param {Object} event - 携带 dataset.group/dataset.value
+   */
+  handleFilterToggle(event) {
+    const { group, value } = event.currentTarget.dataset;
+    const current = this.data.filterSelections[group] || [];
+    const exists = current.includes(value);
+    const next = exists ? current.filter((item) => item !== value) : current.concat(value);
+    this.setData({ [`filterSelections.${group}`]: next });
+  },
+
+  /**
+   * 清空筛选条件，重置抽屉状态。
+   */
+  resetFilters() {
+    this.setData({
+      filterSelections: {
+        origin: [],
+        craft: [],
+        year: [],
+        price: []
+      }
     });
+  },
+
+  /**
+   * 确认筛选条件：关闭抽屉并应用过滤逻辑。
+   */
+  confirmFilters() {
+    this.setData({ filterSheetVisible: false });
+    this.applyFilters();
+  },
+
+  /**
+   * 切换排序方式。
+   */
+  handleSortChange(event) {
+    const { key } = event.currentTarget.dataset;
+    if (key === this.data.activeSort) {
+      return;
+    }
+    this.setData({ activeSort: key });
+    this.applyFilters();
   },
 
   /**
    * 将搜索词与分类组合，得到当前可展示的商品集合。
    */
   applyFilters() { // 核心筛选逻辑，将分类和关键字组合
-    const { allProducts, activeType, searchKeyword } = this.data; // 从 data 中取出筛选所需状态
+    const { allProducts, activeType, searchKeyword, filterSelections, activeSort } = this.data; // 从 data 中取出筛选所需状态
     const keyword = searchKeyword.toLowerCase(); // 将关键字转为小写，便于不区分大小写匹配（中文不受影响）
 
-    const filteredProducts = allProducts.filter((product) => { // 遍历商品并筛选符合条件的项
-      const matchType =
-        activeType === '全部' ? true : product.category === activeType; // 判断分类是否匹配
-      const matchKeyword =
-        !keyword ||
-        product.name.toLowerCase().includes(keyword) ||
-        product.brief.toLowerCase().includes(keyword) || // 简介模糊匹配
-        (product.tastingNotes || []).some((note) => note.toLowerCase().includes(keyword)) ||
-        (product.tags || []).some((tag) => tag.toLowerCase().includes(keyword)); // 检查名称、简介、品饮笔记、标签是否包含关键字
-      return matchType && matchKeyword; // 分类与关键字都符合时保留该商品
-    });
+    const filteredProducts = allProducts
+      .filter((product) => {
+        const matchType = activeType === '全部' || product.category === activeType; // 分类筛选
+
+        const matchKeyword =
+          !keyword ||
+          product.name.toLowerCase().includes(keyword) ||
+          product.brief.toLowerCase().includes(keyword) ||
+          (product.tastingNotes || []).some((note) => (note || '').toLowerCase().includes(keyword)) ||
+          (product.tags || []).some((tag) => (tag || '').toLowerCase().includes(keyword));
+
+        const matchOrigin =
+          !filterSelections.origin.length || filterSelections.origin.includes(product.origin.split('·')[0]);
+
+        const matchCraft =
+          !filterSelections.craft.length || filterSelections.craft.includes(product.type);
+
+        const matchYear =
+          !filterSelections.year.length || filterSelections.year.some((yearRange) => this.matchYear(yearRange, product));
+
+        const matchPrice =
+          !filterSelections.price.length || filterSelections.price.some((priceRange) => this.matchPrice(priceRange, product.price));
+
+        return matchType && matchKeyword && matchOrigin && matchCraft && matchYear && matchPrice;
+      })
+      .sort((a, b) => this.sortComparator(activeSort, a, b));
 
     this.setData({ filteredProducts }); // 将筛选结果写入页面状态以刷新界面
   },
@@ -156,5 +291,90 @@ Page({ // 使用 Page 构造器注册首页逻辑
     const items = getCartItems(); // 获取存储在本地的购物车条目数组
     const cartCount = computeCartCount(items); // 统计总件数
     this.setData({ cartCount }); // 将数量写入 data 触发界面更新
+  },
+
+  /**
+   * 构建搜索联想源：商品名称 + 标签 + 产地。后续输入时直接过滤该数组即可。
+   */
+  buildSuggestionSource(products) {
+    const candidates = new Set();
+    products.forEach((item) => {
+      candidates.add(item.name);
+      candidates.add(item.origin);
+      (item.tags || []).forEach((tag) => candidates.add(tag));
+    });
+    return Array.from(candidates);
+  },
+
+  /**
+   * 根据输入关键字返回最多 5 条建议。
+   */
+  getSuggestions(keyword) {
+    if (!keyword) {
+      return [];
+    }
+    const lower = keyword.toLowerCase();
+    return (this.suggestionSource || [])
+      .filter((item) => item.toLowerCase().includes(lower))
+      .slice(0, 5);
+  },
+
+  /**
+   * 依据配置的价格区间判断商品是否匹配。
+   * priceRange 示例："0-199"、"200-499"、"500+"
+   */
+  matchPrice(priceRange, price) {
+    if (priceRange.includes('+')) {
+      const min = parseInt(priceRange, 10);
+      return price >= min;
+    }
+    const [min, max] = priceRange.split('-').map((v) => parseInt(v, 10));
+    return price >= min && price <= max;
+  },
+
+  /**
+   * 年份筛选，根据产品的年份字段（若无则默认通过）。
+   * 此示例假设产品 brief 或 description 中包含年份关键词，可按真实数据改造。
+   */
+  matchYear(yearRange, product) {
+    if (!product.harvestYear) {
+      return true;
+    }
+    if (yearRange.includes('+')) {
+      const min = parseInt(yearRange, 10);
+      return product.harvestYear >= min;
+    }
+    const [min, max] = yearRange.split('-').map((v) => parseInt(v, 10));
+    return product.harvestYear >= min && product.harvestYear <= max;
+  },
+
+  /**
+   * 根据当前排序 key 返回对应的比较函数结果。
+   */
+  sortComparator(key, a, b) {
+    switch (key) {
+      case 'priceAsc':
+        return a.price - b.price;
+      case 'priceDesc':
+        return b.price - a.price;
+      case 'popular':
+      default:
+        return b.rating - a.rating;
+    }
+  },
+
+  /**
+   * 延迟隐藏骨架屏，模拟数据加载过程。
+   */
+  scheduleSkeletonHide() {
+    this.skeletonTimer = setTimeout(() => {
+      this.setData({ isLoading: false });
+    }, SKELETON_TIMEOUT);
+  },
+
+  /**
+   * 阻止筛选弹层冒泡关闭的空操作函数，便于在 WXML 中使用 catchtap。
+   */
+  noop() {}
   }
 });

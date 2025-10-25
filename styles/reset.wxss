@@ -1,0 +1,30 @@
+/**
+ * styles/reset.wxss
+ * 功能：提供基础重置，清理系统默认 margin/padding，使布局从统一基线开始。
+ * 用法：在 app.wxss 顶部使用 @import 导入，自动作用于全局，无需单独引用。
+ * 尺寸：将所有 view/text 的 margin/padding 重置为 0；图片默认宽度 100%。
+ * 背景/配色：不涉及色彩，仅处理结构属性。
+ * 位置/布局：清除列表、表单的默认样式，确保后续布局完全由 util 工具类控制。
+ * 交互：禁用按钮的默认边框背景，避免与自定义样式冲突。
+ * 依赖/风险：必须放在其他样式之前；若覆盖过多默认行为，可在 util.wxss 中补充。
+ * 后期修改指引：如需恢复部分元素默认样式，在对应页面 WXSS 覆盖即可。
+ */
+page, view, text, image, button, input, textarea {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+image {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+text {
+  display: inline;
+}

@@ -1,8 +1,15 @@
-// app.js // 指出文件是小程序的全局入口脚本
-// 作为全局数据存储与生命周期管理入口，协调各页面共享的基础数据 // 概述文件职责
-// 引入本地的商品与图文数据集合，供页面通过 globalData 共享使用
+/**
+ * app.js
+ * 功能：小程序全局入口，负责注入本地数据源、初始化购物车缓存并暴露跨页面共享的 globalData。
+ * 用法：无需显式导入，基础库会自动执行此文件；各页面通过 getApp().globalData 读取共享数据。
+ * 尺寸：不涉及视觉尺寸；如需调整全局字体/背景，请修改 app.wxss 与 styles/vars.wxss。
+ * 背景/配色：导航栏色值位于 app.json，样式在 app.wxss；此文件仅处理逻辑。
+ * 位置/布局：无 UI，仅处理生命周期逻辑；在 onLaunch 中读取本地存储确保页面加载时状态一致。
+ * 交互：暴露 globalData.cart 供购物车和商品页读写；新增事件请在 App({...}) 中补充。
+ * 依赖/风险：依赖 data/products.js、utils/cartStorage.js；若更换数据来源需在此统一修改。
+ * 后期修改指引：准备接入网络接口时，可在 onLaunch 中增加异步请求并同步更新 globalData。
+ */
 const { products } = require('./data/products'); // 加载商品数据对象，后续挂载到 globalData
-// 引入购物车相关的常量与读取工具，便于统一管理本地存储键和值
 const { CART_STORAGE_KEY, getCartItems } = require('./utils/cartStorage'); // 工具函数帮助管理本地购物车存储
 
 App({ // 使用 App 构造器注册全局应用对象

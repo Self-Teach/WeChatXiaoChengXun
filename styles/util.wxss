@@ -1,0 +1,78 @@
+/**
+ * styles/util.wxss
+ * 功能：提供常用的间距、排版、颜色、卡片与栅格工具类，减少重复样式定义。
+ * 用法：直接在 WXML class 属性中组合这些工具类，如 class="card bg-card shadow-md p-24"。
+ * 尺寸：间距类基于 vars.wxss 的 spacing 变量，可在 vars 中集中调整。
+ * 背景/配色：颜色类引用 vars 中的主题色；若新增主题，先在 vars 定义，再在此扩展工具类。
+ * 位置/布局：包含 flex/gap/栅格等基础布局工具，方便响应式调节。
+ * 交互：按钮状态类（.btn-primary 等）提供 hover/pressed 效果，统一交互反馈。
+ * 依赖/风险：依赖 vars.wxss 中的 CSS 变量，使用前确保 import 顺序正确（reset → vars → util）。
+ * 后期修改指引：新增常用工具类时优先在此扩展，保持样式集中管理；大面积改色直接改 vars。
+ */
+
+/* 间距工具 */
+.p-16 { padding: var(--spacing-16); }
+.p-20 { padding: var(--spacing-20); }
+.p-24 { padding: var(--spacing-24); }
+.p-32 { padding: var(--spacing-32); }
+
+.pb-32 { padding-bottom: var(--spacing-32); }
+.pt-24 { padding-top: var(--spacing-24); }
+.mt-16 { margin-top: var(--spacing-16); }
+.mt-24 { margin-top: var(--spacing-24); }
+.mt-32 { margin-top: var(--spacing-32); }
+.mt-40 { margin-top: var(--spacing-40); }
+.mt-48 { margin-top: var(--spacing-48); }
+.mb-16 { margin-bottom: var(--spacing-16); }
+.mb-24 { margin-bottom: var(--spacing-24); }
+.mb-32 { margin-bottom: var(--spacing-32); }
+
+/* 排版与颜色 */
+.text-xs { font-size: var(--font-xs); line-height: var(--line-xs); }
+.text-sm { font-size: var(--font-sm); line-height: var(--line-sm); }
+.text-md { font-size: var(--font-md); line-height: var(--line-md); }
+.text-lg { font-size: var(--font-lg); line-height: var(--line-lg); }
+.text-xl { font-size: var(--font-xl); line-height: var(--line-xl); }
+.text-muted { color: var(--color-muted); }
+.text-primary { color: var(--color-primary); }
+.text-bold { font-weight: 600; }
+.text-center { text-align: center; }
+
+/* 背景与边框 */
+.bg-card { background: var(--color-card); }
+.bg-page { background: var(--color-bg); }
+.bg-accent-soft { background: rgba(194, 107, 58, 0.08); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.border-light { border: 1rpx solid var(--color-border); }
+
+/* 布局工具 */
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-wrap { display: flex; flex-wrap: wrap; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-24); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-16); }
+.gap-12 { gap: var(--spacing-12); }
+.gap-16 { gap: var(--spacing-16); }
+.gap-24 { gap: var(--spacing-24); }
+
+/* 按钮样式 */
+.btn { border-radius: var(--radius-md); font-size: var(--font-md); line-height: var(--line-md); padding: var(--spacing-12) var(--spacing-24); }
+.btn-primary { background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light)); color: #ffffff; }
+.btn-primary:active { background: var(--color-primary); }
+.btn-outline { border: 2rpx solid var(--color-primary); color: var(--color-primary); }
+.btn-outline:active { background: rgba(10, 138, 74, 0.1); }
+
+/* 卡片容器：默认白底圆角阴影，用于内容块 */
+.card { background: var(--color-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+
+/* 页面容器基线：统一内边距与背景色 */
+.page-container { background: var(--color-bg); min-height: 100vh; padding: var(--spacing-24); }
+
+/* 吸底条容器，用于购物车结算等场景 */
+.safe-area-bottom { padding-bottom: calc(constant(safe-area-inset-bottom) + var(--spacing-16)); padding-bottom: calc(env(safe-area-inset-bottom) + var(--spacing-16)); }

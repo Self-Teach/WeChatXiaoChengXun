@@ -1,38 +1,27 @@
 /**
- * 全局样式设置
+ * app.wxss
+ * 功能：聚合全局样式入口，引入 reset/vars/util 三件套，并定义页面字体与通用背景。
+ * 用法：无需在页面重复引用，所有 WXSS 会自动继承本文件的设定。
+ * 尺寸：全局字体在此设置；若需放大或缩小默认字号，可统一调整 font-size。
+ * 背景/配色：默认页面背景引用 vars.wxss 的 --color-bg；可在 vars 中换主题。
+ * 位置/布局：通过 .page-container 等工具类统一控制页面边距和最小高度。
+ * 交互：按钮默认样式在 util.wxss 中，通过 .btn/.btn-primary 等类调用。
+ * 依赖/风险：导入顺序必须保持 reset → vars → util，避免变量未定义。
+ * 后期修改指引：调整主题先改 styles/vars.wxss，再根据需要在各页面补充；新增工具类请写入 styles/util.wxss。
  */
-page {
-  background-color: #f6f7fb;
-  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
-  color: #333333;
-}
+@import 'styles/reset.wxss';
+@import 'styles/vars.wxss';
+@import 'styles/util.wxss';
 
-.text-muted {
-  color: #888888;
+page {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .section-title {
-  font-size: 32rpx;
+  font-size: var(--font-lg);
   font-weight: 600;
-  color: #0a8a4a;
-  margin: 32rpx 0 16rpx;
-}
-
-.card {
-  background: #ffffff;
-  border-radius: 16rpx;
-  padding: 24rpx;
-  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.08);
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #0a8a4a, #13b067);
-  color: #ffffff;
-  border-radius: 999rpx;
-}
-
-.btn-outline {
-  border: 1rpx solid #0a8a4a;
-  color: #0a8a4a;
-  border-radius: 999rpx;
+  color: var(--color-primary);
+  margin: var(--spacing-32) 0 var(--spacing-16);
 }

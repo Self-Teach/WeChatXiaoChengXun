@@ -1,4 +1,14 @@
 {
+  "$comment": {
+    "功能": "定义小程序的页面路由与底部导航，确保核心路径（精选/科普/购物车/我的）可直接访问",
+    "用法": "新增页面时先在 pages 数组注册，再在对应目录创建 .json/.wxml/.wxss/.js 文件",
+    "尺寸": "tabBar iconSize 默认为 24px，如需自定义请在自定义 tabBar 中处理",
+    "背景/配色": "navigationBar 与 tabBar 的颜色集中在此配置，若要统一改色请同步更新 styles/vars.wxss",
+    "位置/布局": "tabBar 固定在底部；pages 数组顺序影响页面栈的默认首页",
+    "交互": "tabBar 项自动处理切换；如启用自定义 tabBar 需在 custom-tab-bar 中实现事件",
+    "依赖/风险": "所有路径需真实存在；新增网络请求页面时记得在 project.config.json 的白名单配置域名",
+    "后期修改指引": "全局导航调整集中修改 app.json；自定义样式放在 styles/ 目录，通过工具类调用"
+  },
   "pages": [
     "pages/index/index",
     "pages/knowledge/knowledge",

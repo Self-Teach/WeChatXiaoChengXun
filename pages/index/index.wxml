@@ -1,36 +1,80 @@
-<view class="home">
-  <!-- 顶部宣传横幅：左侧为文案，右侧为插画，如需替换图片可直接替换 image/banners/hero-tea.svg -->
-  <view class="hero card">
-    <!-- hero-text 负责竖排文案布局，调整字体大小在对应 wxss 中修改 font-size -->
+<!-- pages/index/index.wxml
+  功能：构建首页的视觉与交互骨架，包含横幅、搜索、筛选、排序、商品列表、骨架屏与悬浮购物车。
+  用法：搭配 index.js 的 data 字段渲染；工具类来自 styles/util.wxss，可自由组合调整留白。
+  尺寸：整体容器使用 page-container 统一 48rpx 内边距；卡片通过 p-20/p-24 控制内边距。
+  背景/配色：主色、渐变与阴影由 styles/vars.wxss 管理；若需换肤优先调整设计令牌。
+  位置/布局：列表使用 grid-2 栅格；芯片容器通过 scroll-view 实现横向滚动，确保小屏易操作。
+  交互：搜索输入实时联想，筛选抽屉支持多选，排序按钮切换多种排序；悬浮购物车 switchTab 到购物车。
+  依赖/风险：图片路径需指向 image/ 目录；数据结构来自 data/products.js，字段缺失需同步补齐。
+  后期修改指引：新增筛选项先改 index.js 的 FILTER_GROUPS，再复制 filter-group 模块；布局尺寸可搜索对应 class。
+-->
+<view class="page-container home-page">
+  <!-- 顶部宣传横幅：左右分栏，图片宽度在 index.wxss 中设置 hero-image -->
+  <view class="card hero p-24">
     <view class="hero-text">
-      <view class="subtitle">云南山野的好茶</view>
+      <view class="subtitle text-sm text-primary">云南山野的好茶</view>
       <view class="title">云茶精选</view>
-      <view class="desc">严选八款云南经典好茶，感受普洱的甜润与岁月的沉香。</view>
+      <view class="desc text-sm">严选八款云南经典好茶，感受普洱的甜润与岁月的沉香。</view>
     </view>
-    <!-- 顶部横幅图片：mode=aspectFill 保持填充，若需替换图片只要指向 /image/banners 目录即可 -->
     <image class="hero-image" mode="aspectFill" src="/image/banners/hero-tea.svg" />
   </view>
 
-  <!-- 搜索区域：圆角输入框可通过 wxss 中的 border-radius 修改弧度 -->
-  <view class="search card">
-    <!-- 搜索图标：本地图标统一在 utils/icons.js 中维护，方便换肤 -->
-    <image class="search-icon" src="{{ICONS.search}}" mode="aspectFit" />
-    <input
-      class="search-input"
-      placeholder="搜索茶名、风味或标签"
-      placeholder-class="placeholder"
-      value="{{searchKeyword}}"
-      bindinput="handleSearchInput"
-    />
-    <view class="search-actions">
-      <!-- 筛选图标：如不需要该按钮，可移除 image 及 clear-btn 即可 -->
-      <image class="filter-icon" src="{{ICONS.filter}}" mode="aspectFit" />
+  <!-- 搜索与筛选触点：药丸形输入框，右侧附带筛选入口 -->
+  <view class="card search-bar p-20 flex-between">
+    <view class="search-left flex gap-12">
+      <image class="icon-32" src="{{ICONS.search}}" mode="aspectFit" />
+      <input
+        class="search-input"
+        placeholder="搜索茶名、风味或标签"
+        placeholder-class="placeholder"
+        value="{{searchKeyword}}"
+        bindinput="handleSearchInput"
+      />
+    </view>
+    <view class="search-actions flex gap-12">
+      <image class="icon-32" src="{{ICONS.filter}}" mode="aspectFit" bindtap="toggleFilterSheet" />
       <text wx:if="{{searchKeyword}}" class="clear-btn" bindtap="clearSearch">清空</text>
     </view>
   </view>
 
-  <!-- 分类标签滚动条：通过 data-type 携带分类名，chip 外观在 wxss 中可调背景与阴影 -->
-  <scroll-view class="type-tabs" scroll-x="true" enable-flex="true">
+  <!-- 搜索联想：点击填充输入框；如需更多条目调整 skeletonRows 或 slice 数量 -->
+  <view wx:if="{{searchSuggestions.length}}" class="card suggestion-panel mt-16 p-20">
+    <view class="suggestion-title text-sm text-muted">可以尝试：</view>
+    <view class="suggestion-list flex flex-wrap gap-12 mt-16">
+      <view
+        wx:for="{{searchSuggestions}}"
+        wx:key="*this"
+        class="suggestion-chip"
+        data-keyword="{{item}}"
+        bindtap="handleSuggestionTap"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 排序操作条：横向滚动容器，便于后续追加更多排序项 -->
+  <view class="card sort-bar mt-16 p-20">
+    <scroll-view class="sort-scroll" scroll-x="true" enable-flex="true">
+      <block wx:for="{{sortOptions}}" wx:key="key">
+        <view
+          class="sort-chip {{activeSort === item.key ? 'active' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="handleSortChange"
+        >
+          <view class="text-md">{{item.label}}</view>
+          <view class="sort-desc text-xs">{{item.desc}}</view>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="filter-entry flex-center" bindtap="toggleFilterSheet">
+      <image class="icon-28" src="{{ICONS.filter}}" mode="aspectFit" />
+      <text class="text-sm">筛选</text>
+    </view>
+  </view>
+
+  <!-- 分类芯片：滚动容器可快速切换分类，芯片样式详见 index.wxss -->
+  <scroll-view class="type-tabs mt-16" scroll-x="true" enable-flex="true">
     <block wx:for="{{teaTypes}}" wx:key="*this">
       <view
         class="type-chip {{activeType === item ? 'active' : ''}}"
@@ -42,65 +86,104 @@
     </block>
   </scroll-view>
 
-  <!-- 列表分组标题，可根据需要调整文案或添加更多装饰 -->
   <view class="section-title">精选推荐</view>
-  <view wx:if="{{filteredProducts.length}}" class="product-grid">
+
+  <!-- 骨架屏：isLoading 为 true 时展示，占位高度可在 index.wxss 中调节 skeleton-card -->
+  <view wx:if="{{isLoading}}" class="skeleton-grid">
+    <block wx:for="{{skeletonRows}}" wx:key="*this">
+      <view class="skeleton-card card"></view>
+    </block>
+  </view>
+
+  <!-- 商品列表：当数据准备完毕且有内容时渲染 -->
+  <view wx:elif="{{filteredProducts.length}}" class="product-grid">
     <block wx:for="{{filteredProducts}}" wx:key="id">
-      <!-- 商品卡片整体可点击进入详情，图片、文案、按钮均可在下方节点中个性化 -->
-      <view class="product-card" bindtap="handleProductTap" data-id="{{item.id}}">
-        <!-- 商品主图：image 标签的 mode=aspectFill 可让图片铺满卡片 -->
+      <view class="product-card card" bindtap="handleProductTap" data-id="{{item.id}}">
         <image class="product-image" mode="aspectFill" src="{{item.images[0]}}" />
-        <view class="product-info">
-          <view class="product-header">
-            <view class="product-name">{{item.name}}</view>
+        <view class="product-info flex-col gap-16">
+          <view class="product-header flex-between">
+            <view class="product-name text-lg">{{item.name}}</view>
             <view class="product-type">{{item.type}}</view>
           </view>
-          <view class="product-brief text-muted">{{item.brief}}</view>
-          <view wx:if="{{item.tags.length}}" class="tag-list">
+          <view class="product-brief text-sm text-muted">{{item.brief}}</view>
+          <view wx:if="{{item.tags.length}}" class="tag-list flex-wrap">
             <text class="tag" wx:for="{{item.tags}}" wx:key="*this">#{{item}}</text>
           </view>
-          <view wx:if="{{item.tastingNotes.length}}" class="tasting-list">
+          <view wx:if="{{item.tastingNotes.length}}" class="tasting-list flex-wrap gap-12">
             <block wx:for="{{item.tastingNotes}}" wx:key="*this">
               <view class="tasting-chip">{{item}}</view>
             </block>
           </view>
-          <view class="product-meta">
-            <text class="price">￥{{item.price}}</text>
-            <text class="rating">⭐ {{item.rating}}</text>
+          <view class="product-meta flex-between">
+            <text class="price text-bold">￥{{item.price}}</text>
+            <text class="rating text-sm">⭐ {{item.rating}}</text>
           </view>
-          <view class="product-origin">产地：{{item.origin}}</view>
-          <!-- 快捷操作行：catchtap 阻止冒泡，避免触发整卡跳转 -->
-          <view class="product-actions">
+          <view class="product-origin text-xs text-muted">产地：{{item.origin}}</view>
+          <view class="product-actions flex-between">
             <button
-              class="product-actions__add"
+              class="product-actions__add btn btn-primary flex-center gap-12"
               catchtap="handleQuickAdd"
               data-id="{{item.id}}"
-              plain
             >
-              <image class="product-actions__icon" src="{{cartIcon}}" mode="aspectFit" />
-              <text class="product-actions__label">加入购物车</text>
+              <image class="product-actions__icon icon-28" src="{{cartIcon}}" mode="aspectFit" />
+              <text class="product-actions__label text-sm">加入购物车</text>
             </button>
           </view>
         </view>
       </view>
     </block>
   </view>
-  <view wx:else class="empty-state card">
-    <view class="empty-title">未找到相关茶品</view>
-    <view class="empty-desc">试着更换关键词或切换茶类分类，探索更多云南好茶。</view>
+  <view wx:else class="empty-state card p-24">
+    <view class="empty-title text-lg">未找到相关茶品</view>
+    <view class="empty-desc text-sm text-muted">试着更换关键词或切换茶类分类，探索更多云南好茶。</view>
   </view>
 
-  <!-- 页面底部说明区域：结合图标与文案强调服务卖点 -->
-  <view class="page-footer card">
-    <!-- 页面底部说明图标，可替换 image/icons/icon-page-home.svg -->
+  <!-- 页面底部说明区域：图标+文案，文案与 icon 在 data.pageFooter 中维护 -->
+  <view class="page-footer card p-24 mt-40 text-center">
     <image class="page-footer__icon" src="{{pageFooter.icon}}" mode="aspectFit" />
-    <view class="page-footer__title">{{pageFooter.title}}</view>
-    <view class="page-footer__desc">{{pageFooter.desc}}</view>
+    <view class="page-footer__title text-md text-bold mt-16">{{pageFooter.title}}</view>
+    <view class="page-footer__desc text-sm text-muted mt-16">{{pageFooter.desc}}</view>
   </view>
 
-  <view class="cart-fab" bindtap="goCart">
-    <!-- 悬浮购物车图标，可替换 image/icons/icon-cart.svg；圆形背景在 wxss 中通过 border-radius 定义 -->
+  <!-- 悬浮购物车：单层圆形背景，尺寸在 index.wxss 中通过 --fab-size 调整 -->
+  <view class="cart-fab flex-center" bindtap="goCart">
     <image class="cart-fab__icon" src="{{cartIcon}}" mode="aspectFit" />
     <view wx:if="{{cartCount > 0}}" class="cart-fab__badge">{{cartCount}}</view>
+  </view>
+
+  <!-- 筛选抽屉：使用遮罩 + 卡片形式，工具类 card 提供圆角阴影 -->
+  <view wx:if="{{filterSheetVisible}}">
+    <view class="filter-overlay" bindtap="toggleFilterSheet"></view>
+    <view class="filter-sheet card" catchtap="noop">
+      <view class="filter-sheet__header flex-between">
+        <view class="text-md text-bold">筛选条件</view>
+        <text class="text-sm text-primary" bindtap="resetFilters">重置</text>
+      </view>
+      <scroll-view class="filter-scroll" scroll-y="true">
+        <block wx:for="{{filterGroups}}" wx:key="key">
+          <view class="filter-group">
+            <view class="filter-group__title text-md">{{item.title}}</view>
+            <view class="filter-group__tip text-xs text-muted">{{item.tip}}</view>
+            <view class="filter-chip-list flex-wrap gap-12 mt-16">
+              <view
+                wx:for="{{item.options}}"
+                wx:for-item="option"
+                wx:key="*this"
+                class="filter-chip {{filterSelections[item.key].indexOf(option) > -1 ? 'selected' : ''}}"
+                data-group="{{item.key}}"
+                data-value="{{option}}"
+                bindtap="handleFilterToggle"
+              >
+                {{option}}
+              </view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+      <view class="filter-actions flex-between">
+        <button class="btn-outline" bindtap="toggleFilterSheet">取消</button>
+        <button class="btn btn-primary" bindtap="confirmFilters">确定</button>
+      </view>
+    </view>
   </view>
 </view>

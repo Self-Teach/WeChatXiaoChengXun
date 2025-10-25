@@ -1,356 +1,342 @@
-/* 页面容器，负责整体内边距和底部留白，确保悬浮购物车不遮挡内容 */
-.home {
-  padding-bottom: 220rpx; /* 预留 220rpx 高度给悬浮购物车，如需调整按钮大小可相应增减此值 */
+/**
+ * pages/index/index.wxss
+ * 功能：为首页各功能区块提供精细样式控制，包括横幅、搜索条、筛选抽屉、商品网格与悬浮按钮。
+ * 用法：配合 styles/util.wxss 的工具类使用；此文件主要负责特殊布局与尺寸变量。
+ * 尺寸：通过自定义属性 --fab-size、--card-gap 控制浮动按钮直径与卡片间距，便于统一修改。
+ * 背景/配色：渐变、描边与阴影引用 styles/vars.wxss；若需换主题，请优先调整 vars 中的颜色令牌。
+ * 位置/布局：整体页面为相对定位以容纳悬浮购物车；网格采用两列布局，可在 .product-grid 中调整 repeat 值。
+ * 交互：芯片 hover/active、骨架屏占位、筛选抽屉开合均在此定义；修改状态类时注意保持过渡平滑。
+ * 依赖/风险：部分样式依赖 CSS 变量与 calc，要求基础库 2.10+；若要兼容旧版需改为固定值。
+ * 后期修改指引：搜索“// 调整点”快速定位常用调节点；新增模块时优先复用工具类，必要时在此补充专用类。
+ */
+
+:root {
+  --fab-size: 120rpx; /* 调整悬浮按钮直径，范围建议 96rpx~140rpx */
+  --card-gap: var(--spacing-24); /* 控制商品卡片之间的水平/垂直间距 */
 }
 
-/* 顶部横幅卡片，用于展示宣传标题和主题插画 */
+.home-page {
+  position: relative; /* 让悬浮购物车使用绝对定位时相对于页面容器 */
+  padding-bottom: calc(var(--fab-size) + var(--spacing-32)); /* 为悬浮按钮留出底部空间，避免遮挡内容 */
+}
+
 .hero {
-  display: flex; /* flex 布局让文案与插画左右排列 */
-  align-items: center; /* 垂直居中文字与插画 */
-  justify-content: space-between; /* 两端对齐，文字与图片分列 */
-  margin: 32rpx; /* 外边距 32rpx，拉开与屏幕边缘距离 */
-  overflow: hidden; /* 隐藏圆角外多余部分 */
-  background: linear-gradient(135deg, #f1fbf5 0%, #ffffff 100%); /* 使用柔和渐变，可替换为纯色背景 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden; /* 确保圆角卡片不溢出 */
+  background: linear-gradient(135deg, rgba(10, 138, 74, 0.08), #ffffff); /* 横幅背景渐变，可替换为纯色 */
 }
 
-/* 横幅中的文案区域，采用纵向排列呈现 */
 .hero-text {
-  flex: 1; /* 文案区占据剩余空间 */
-  display: flex; /* 使用列方向堆叠标题和描述 */
-  flex-direction: column; /* 切换为纵向布局 */
-  gap: 12rpx; /* 行间距 12rpx，便于阅读 */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
 }
 
-/* 副标题文字样式，强调产地信息 */
-.subtitle {
-  font-size: 26rpx; /* 副标题字号，如需更醒目可调大 */
-  color: #0a8a4a; /* 使用品牌绿色，呼应茶叶主题 */
-  letter-spacing: 4rpx; /* 增加字间距突出质感 */
-}
-
-/* 主标题字号较大以吸引视线 */
 .title {
-  font-size: 52rpx; /* 主标题大字号抢眼 */
-  font-weight: 700; /* 加粗增强视觉重点 */
+  font-size: 48rpx; /* 主标题字号：如需更醒目可调至 56rpx */
+  font-weight: 700;
+  color: var(--color-text);
 }
 
-/* 横幅说明文字，配合浅灰色形成轻量阅读感 */
-.desc {
-  font-size: 26rpx; /* 说明文字保持与副标题同字号 */
-  color: #666666; /* 低饱和度灰色提高可读性 */
-  line-height: 1.6; /* 拉大行高便于长句阅读 */
-}
-
-/* 横幅插画尺寸及圆角控制 */
 .hero-image {
-  width: 220rpx; /* 横幅插画宽度，可根据素材比例调整 */
-  height: 220rpx; /* 高度与宽度保持一致实现正方形展示 */
-  border-radius: 24rpx; /* 圆角 24rpx，与整体卡片风格保持一致 */
-  margin-left: 24rpx; /* 左侧留白防止贴边 */
+  width: 240rpx; /* 图片宽度，建议根据素材等比例调整 */
+  height: 240rpx;
+  border-radius: var(--radius-lg);
+  margin-left: var(--spacing-24);
 }
 
-/* 搜索条容器，圆角与内边距营造贴心感 */
-.search {
-  margin: 0 32rpx 24rpx; /* 搜索框左右保持 32rpx 内边距，下方留 24rpx */
-  display: flex; /* 横向排列图标与输入框 */
-  align-items: center; /* 垂直居中内容 */
-  gap: 18rpx; /* 控制图标与输入框间距 */
-  border-radius: 999rpx; /* 圆角极大形成药丸形状 */
-  padding: 18rpx 24rpx; /* 上下 18rpx、左右 24rpx 的内边距保证触控舒适 */
+.search-bar {
+  margin-top: var(--spacing-24);
+  border-radius: 999rpx; /* 药丸形输入框，可改为 var(--radius-lg) 获得更硬朗风格 */
+  align-items: center;
+  background: #ffffff;
 }
 
-/* 搜索与筛选图标的统一尺寸 */
-.search-icon,
-.filter-icon {
-  width: 40rpx; /* 图标宽度 40rpx，与输入框高度协调 */
-  height: 40rpx; /* 高度保持一致，替换图标时确保画布尺寸匹配 */
-}
-
-/* 搜索输入框样式，拉伸占满剩余空间 */
 .search-input {
-  flex: 1; /* 输入框占据剩余空间 */
-  font-size: 26rpx; /* 输入文字大小，与副标题保持一致 */
+  flex: 1;
+  font-size: var(--font-md);
 }
 
-/* 输入提示文字颜色，提示仍可修改 */
 .placeholder {
-  color: #a8b5ad; /* 提示文字浅色，确保有层级感 */
+  color: rgba(10, 138, 74, 0.36); /* 提示文字使用主色的 36% 透明度，若嫌过浅可调高 */
 }
 
-/* 搜索操作区域，用于容纳筛选图标与清空按钮 */
-.search-actions {
-  display: flex; /* 放置筛选图标与清空按钮 */
-  align-items: center; /* 垂直居中 */
-  gap: 16rpx; /* 控制两个元素的间距 */
-}
-
-/* 清空按钮颜色呼应品牌主色 */
 .clear-btn {
-  font-size: 26rpx; /* 文案与输入文字同大小 */
-  color: #0a8a4a; /* 使用品牌主色提高辨识度 */
+  color: var(--color-primary);
+  font-size: var(--font-sm);
 }
 
-/* 分类标签外层滚动容器，支持横向滚动 */
+.icon-32 {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.icon-28 {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.suggestion-panel {
+  border-radius: var(--radius-lg);
+}
+
+.suggestion-chip {
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: var(--radius-md);
+  background: rgba(10, 138, 74, 0.08);
+  font-size: var(--font-sm);
+}
+
+.sort-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+}
+
+.sort-scroll {
+  flex: 1;
+  display: flex;
+  column-gap: var(--spacing-16);
+}
+
+.sort-chip {
+  min-width: 220rpx; /* 排序卡片宽度，可视需求增减 */
+  border-radius: var(--radius-md);
+  border: 1rpx solid rgba(10, 138, 74, 0.12);
+  padding: var(--spacing-12) var(--spacing-16);
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.sort-chip.active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.sort-desc {
+  opacity: 0.7;
+}
+
+.filter-entry {
+  width: 152rpx;
+  height: 88rpx;
+  border-radius: var(--radius-md);
+  border: 1rpx dashed rgba(10, 138, 74, 0.4); /* 虚线边框突出为筛选入口 */
+  color: var(--color-primary);
+  gap: var(--spacing-8);
+}
+
 .type-tabs {
-  display: flex; /* 使用 flex 使 chip 横向排列 */
-  gap: 16rpx; /* chip 间距 */
-  margin: 0 32rpx 24rpx; /* 左右 32rpx 保持统一留白 */
-  padding-bottom: 8rpx; /* 底部留 8rpx 方便滚动条露出 */
+  display: flex;
+  gap: var(--spacing-16);
+  margin-top: var(--spacing-24);
+  padding-bottom: var(--spacing-8);
 }
 
-/* 分类标签样式，可在此调整背景、圆角以及阴影风格 */
 .type-chip {
-  padding: 22rpx 36rpx; /* 内边距控制芯片高度（约 64rpx） */
-  border-radius: 16rpx; /* 16rpx 圆角让方形更柔和，如需锐利效果可降至 8rpx */
-  background: #ffffff; /* 默认白底 */
-  border: 2rpx solid rgba(10, 138, 74, 0.12); /* 淡绿描边保持主题色统一 */
-  color: #4f5f58; /* 文字颜色稍浅以突出激活态 */
-  font-size: 26rpx; /* 分类字体尺寸 */
-  font-weight: 500; /* 适度加粗提高识别 */
-  margin-right: 16rpx; /* 右侧间距，用于断行时保持呼吸感 */
-  min-width: 176rpx; /* 保障芯片至少 176rpx 宽度，防止文字拥挤 */
-  text-align: center; /* 文案居中 */
-  box-shadow: 0 12rpx 20rpx rgba(10, 138, 74, 0.06); /* 轻柔阴影营造悬浮效果 */
-  transition: all 0.2s ease; /* 鼠标按下或激活时平滑过渡 */
+  padding: var(--spacing-12) var(--spacing-24);
+  border-radius: 18rpx; /* 方形视觉，可改为 var(--radius-md) 获得更硬朗效果 */
+  background: #ffffff;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: #4f5f58;
+  border: 1rpx solid rgba(10, 138, 74, 0.2);
+  min-width: 180rpx;
+  text-align: center;
+  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.06);
+  transition: all 0.2s ease;
 }
 
-/* 激活态渐变背景，形成更具层次的方形卡片效果 */
 .type-chip.active {
-  background: linear-gradient(135deg, #0a8a4a, #13b067); /* 激活态使用渐变强化视觉 */
-  color: #ffffff; /* 将文字切换为白色增强对比 */
-  border-color: transparent; /* 移除描边以突出纯色块 */
-  box-shadow: 0 20rpx 32rpx rgba(10, 138, 74, 0.25); /* 阴影更深以凸显选中状态 */
+  background: linear-gradient(135deg, #f1fbf5, rgba(10, 138, 74, 0.16));
+  color: var(--color-primary);
+  border-color: transparent;
 }
 
-/* 商品宫格容器，使用网格布局排列卡片 */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--card-gap);
+  margin-top: var(--spacing-24);
+}
+
+.skeleton-card {
+  height: 360rpx; /* 占位高度接近真实卡片高度，后续可根据图片比例调整 */
+  border-radius: var(--radius-lg);
+  background: linear-gradient(120deg, rgba(10, 138, 74, 0.08), rgba(255, 255, 255, 0.5));
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
 .product-grid {
-  display: grid; /* 使用网格布局形成两列宫格 */
-  grid-template-columns: repeat(2, 1fr); /* repeat(2,1fr) 代表两列平均分配宽度，改为 1 可切换单列 */
-  grid-gap: 24rpx; /* 卡片之间横向与纵向的距离 */
-  padding: 0 32rpx 32rpx; /* 左右与底部留白，方便呼吸 */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--card-gap);
+  margin-top: var(--spacing-24);
 }
 
-/* 单个商品卡片的基础视觉样式 */
 .product-card {
-  background: #ffffff; /* 纯白底突显商品图片 */
-  border-radius: 24rpx; /* 24rpx 圆角呼应全局圆角体系 */
-  overflow: hidden; /* 裁切溢出内容，避免图片超出圆角 */
-  box-shadow: 0 16rpx 28rpx rgba(10, 138, 74, 0.08); /* 绿色系阴影增强层次感 */
-  transition: transform 0.3s; /* 点击缩放动画更平滑 */
-}
-
-.product-card:active {
-  transform: scale(0.98); /* 按压时缩放 2%，提升动感反馈 */
+  overflow: hidden;
 }
 
 .product-image {
-  width: 100%; /* 横向占满卡片宽度 */
-  height: 220rpx; /* 固定高度保持列表整齐，如需更大画面可调高 */
-}
-
-.product-info {
-  padding: 20rpx 24rpx 28rpx; /* 上 20、右 24、下 28rpx 提供舒适留白 */
-  display: flex; /* 内部内容纵向排列 */
-  flex-direction: column; /* 切换纵向排列方式 */
-  gap: 12rpx; /* 模块间间距 12rpx，视觉节奏稳定 */
-}
-
-.product-header {
-  display: flex; /* 名称与类型横向摆放 */
-  justify-content: space-between; /* 两端对齐让版面更整洁 */
-  align-items: center; /* 垂直方向保持居中 */
-  gap: 12rpx; /* 名称过长时留出缓冲空间 */
-}
-
-.product-name {
-  font-size: 30rpx; /* 商品名称字号稍大，阅读层级更高 */
-  font-weight: 600; /* 半粗体强调重点信息 */
-  color: #222222; /* 深灰色提升对比度但不刺眼 */
-  flex: 1; /* 占满剩余空间，避免被右侧标签挤压 */
+  width: 100%;
+  height: 280rpx;
+  border-radius: var(--radius-md);
 }
 
 .product-type {
-  font-size: 24rpx; /* 类型标签字体略小与主标题区分 */
-  padding: 8rpx 16rpx; /* 调整上下左右内边距让标签更圆润 */
-  border-radius: 999rpx; /* 最大圆角生成 pill 标签 */
-  background: #ecf8f0; /* 背景浅绿营造茶香氛围 */
-  color: #0a8a4a; /* 文字颜色与品牌色一致 */
+  font-size: var(--font-xs);
+  color: var(--color-primary);
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(10, 138, 74, 0.12);
 }
 
 .product-brief {
-  font-size: 24rpx; /* 摘要文字保持舒适字号 */
-  line-height: 1.5; /* 行距 1.5，便于连贯阅读 */
-  min-height: 70rpx; /* 设定最小高度，使卡片高度更统一 */
+  line-height: 1.6;
 }
 
 .tag-list {
-  display: flex; /* 标签采用 flex 布局 */
-  flex-wrap: wrap; /* 标签数量多时自动换行 */
-  gap: 12rpx; /* 标签之间横纵间距 12rpx */
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
 }
 
 .tag {
-  font-size: 22rpx; /* 标签字体稍小确保不喧宾夺主 */
-  color: #0a8a4a; /* 文字使用品牌色 */
-  background: #f1fbf5; /* 背景浅绿系可突出主题 */
-  border-radius: 999rpx; /* 胶囊风格营造柔软感 */
-  padding: 6rpx 16rpx; /* 内边距控制标签高度和舒适度 */
-}
-
-.tasting-list {
-  display: flex; /* 风味标签沿用 flex 布局 */
-  flex-wrap: wrap; /* 支持换行 */
-  gap: 12rpx; /* 与 tag-list 保持一致的间距 */
+  padding: var(--spacing-4) var(--spacing-12);
+  border-radius: 999rpx;
+  background: rgba(10, 138, 74, 0.1);
+  font-size: var(--font-xs);
 }
 
 .tasting-chip {
-  padding: 8rpx 18rpx; /* 较厚的 padding 让标签更饱满 */
-  border-radius: 999rpx; /* 胶囊造型与 tag 保持一致 */
-  background: rgba(19, 176, 103, 0.12); /* 透明度 0.12 的绿色，营造淡淡呼吸感 */
-  color: #0a8a4a; /* 文案仍使用主题色 */
-  font-size: 22rpx; /* 字号与 tag 保持一致以统一视觉 */
-}
-
-.product-meta {
-  display: flex; /* 价格与评分横向排列 */
-  justify-content: space-between; /* 两端对齐突出价格 */
-  align-items: center; /* 垂直方向保持水平线 */
-}
-
-.price {
-  color: #e08b22; /* 选用暖色系突出价格 */
-  font-size: 32rpx; /* 字号略大提升关注度 */
-  font-weight: 700; /* 加粗让价格更显眼 */
-}
-
-.rating {
-  color: #0a8a4a; /* 使用绿色象征好评 */
-  font-size: 24rpx; /* 保持信息层级 */
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: var(--radius-md);
+  background: rgba(194, 107, 58, 0.1); /* 使用特产橙色弱化显示 */
+  font-size: var(--font-sm);
 }
 
 .product-origin {
-  font-size: 24rpx; /* 产地文案字号适中 */
-  color: #697973; /* 低饱和度绿色体现山野气息 */
-}
-
-/* 快捷加入购物车操作区域 */
-.product-actions {
-  display: flex; /* 方便未来扩展多个按钮 */
-  justify-content: flex-end; /* 按钮贴近右下角，便于拇指点击 */
-  margin-top: 8rpx; /* 与产地信息保持 8rpx 间隔 */
+  letter-spacing: 2rpx;
 }
 
 .product-actions__add {
-  display: flex; /* 图标与文字横向排布 */
-  align-items: center; /* 垂直居中元素 */
-  gap: 12rpx; /* 图标与文字之间 12rpx */
-  padding: 14rpx 24rpx; /* 增加触控面积，提高可点击性 */
-  background: linear-gradient(135deg, #0a8a4a, #13b067); /* 使用渐变突出操作感 */
-  border-radius: 999rpx; /* 圆角按钮与整体风格统一 */
-  color: #ffffff; /* 白色文字对比强烈 */
-  font-size: 26rpx; /* 字号与分类标签一致 */
-  border: none; /* plain 按钮默认边框，这里移除防止双线 */
-}
-
-.product-actions__add::after {
-  border: none; /* 移除小程序 button 默认的点击边框 */
+  width: 100%;
+  justify-content: center;
+  border-radius: var(--radius-md);
 }
 
 .product-actions__icon {
-  width: 32rpx; /* 图标宽度 32rpx，与按钮高度成比例 */
-  height: 32rpx; /* 高度保持一致，替换图标时注意画布大小 */
-}
-
-.product-actions__label {
-  letter-spacing: 2rpx; /* 微调字距，增强精致感 */
+  width: 32rpx;
+  height: 32rpx;
 }
 
 .empty-state {
-  margin: 0 32rpx 32rpx; /* 空态卡片与页面边缘保持 32rpx 距离 */
-  text-align: center; /* 文字居中更显友好 */
-  padding: 48rpx 32rpx; /* 上下 48rpx、左右 32rpx 确保内容集中 */
-  background: #f7faf8; /* 浅绿色背景提示可继续探索 */
-  border: 1rpx dashed rgba(10, 138, 74, 0.2); /* 虚线边框营造提示感 */
-}
-
-.empty-title {
-  font-size: 30rpx; /* 标题比正文稍大 */
-  font-weight: 600; /* 加粗强调提示语 */
-  color: #0a8a4a; /* 使用品牌绿色保持视觉统一 */
-  margin-bottom: 16rpx; /* 下方空出 16rpx 与描述分离 */
-}
-
-.empty-desc {
-  font-size: 26rpx; /* 描述文字保持舒适字号 */
-  color: #607068; /* 中灰绿色读感柔和 */
-  line-height: 1.6; /* 行距 1.6 让段落不显拥挤 */
-}
-
-.cart-fab {
-  position: fixed; /* 固定定位确保跟随用户滚动 */
-  right: 32rpx; /* 距右侧 32rpx，保持与页面留白一致 */
-  bottom: 120rpx; /* 距底部 120rpx，预留给 tabBar 与安全区 */
-  width: 96rpx; /* 直径 96rpx，符合拇指触控推荐尺寸 */
-  height: 96rpx;
-  border-radius: 50%; /* 形成完整圆形按钮 */
-  background: #0a8a4a; /* 深绿色背景传达主色调 */
-  display: flex; /* 图标居中展示 */
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
-  box-shadow: 0 16rpx 32rpx rgba(10, 138, 74, 0.2); /* 添加阴影提升浮起感 */
-  color: #ffffff; /* 内部文字或图标默认白色 */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* 点击时缩放与阴影平滑变化 */
-  z-index: 10; /* 保证按钮位于最上层 */
-}
-
-.cart-fab:active {
-  transform: translateY(4rpx) scale(0.96); /* 点击时下压 4rpx 并缩小 4% */
-  box-shadow: 0 12rpx 24rpx rgba(10, 138, 74, 0.18); /* 阴影相应减弱呈现按压状态 */
-}
-
-.cart-fab__icon {
-  width: 48rpx; /* 图标尺寸约占按钮一半 */
-  height: 48rpx; /* 替换图标时保持等宽高更协调 */
-}
-
-.cart-fab__badge {
-  position: absolute; /* 相对按钮定位徽标 */
-  top: -10rpx; /* 向上偏移 10rpx，使徽章悬浮在圆外 */
-  right: -6rpx; /* 右侧微调防止遮挡图标 */
-  min-width: 44rpx; /* 最小宽度保证数字显示完全 */
-  padding: 6rpx 12rpx; /* 内边距让徽章保持圆润 */
-  border-radius: 999rpx; /* 完全圆角塑造胶囊形状 */
-  background: #ff6b3d; /* 使用暖橙色强调数量提醒 */
-  color: #ffffff; /* 数字颜色保持白色高对比 */
-  font-size: 22rpx; /* 字号适中避免过于夸张 */
-  font-weight: 600; /* 加粗数字提高可读性 */
-  text-align: center; /* 数字居中显示 */
-  box-shadow: 0 10rpx 20rpx rgba(255, 107, 61, 0.28); /* 徽章也添加阴影增强层次 */
-}
-
-.page-footer {
-  margin: 0 32rpx 160rpx; /* 底部留足空间，避免被 tabBar 遮挡 */
-  padding: 32rpx 28rpx 36rpx; /* 三段式 padding 让模块更立体 */
-  display: flex; /* 内部内容纵向排列 */
-  flex-direction: column; /* 竖向布局 */
-  align-items: center; /* 所有元素水平居中 */
-  gap: 16rpx; /* 各元素间距 16rpx */
-  text-align: center; /* 文案居中 */
+  margin-top: var(--spacing-24);
+  text-align: center;
 }
 
 .page-footer__icon {
-  width: 88rpx; /* 图标尺寸可根据素材调整 */
-  height: 88rpx; /* 保持正方形画布 */
+  width: 120rpx;
+  height: 120rpx;
+  margin: 0 auto;
 }
 
-.page-footer__title {
-  font-size: 30rpx; /* 标题字号略大 */
-  font-weight: 600; /* 半粗体保持层级 */
-  color: #0a8a4a; /* 主题色呼应顶部 */
+.cart-fab {
+  position: fixed;
+  right: var(--spacing-24);
+  bottom: calc(var(--spacing-32) + constant(safe-area-inset-bottom));
+  bottom: calc(var(--spacing-32) + env(safe-area-inset-bottom));
+  width: var(--fab-size);
+  height: var(--fab-size);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  box-shadow: var(--shadow-lg);
+  color: #ffffff;
+  z-index: 99;
 }
 
-.page-footer__desc {
-  font-size: 26rpx; /* 描述文字保持舒适阅读 */
-  color: #55625d; /* 选用低饱和灰绿营造温和语气 */
-  line-height: 1.7; /* 行距较大提升易读性 */
+.cart-fab__icon {
+  width: 56rpx;
+  height: 56rpx;
+}
+
+.cart-fab__badge {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  min-width: 36rpx;
+  padding: 4rpx 8rpx;
+  background: #ff5f5f;
+  color: #ffffff;
+  border-radius: 999rpx;
+  font-size: var(--font-xs);
+  text-align: center;
+}
+
+.filter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* 遮罩透明度，可在 0.25~0.45 间调整 */
+  z-index: 90;
+}
+
+.filter-sheet {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 70%; /* 抽屉宽度，可根据内容多寡调整在 60%~80% */
+  padding: var(--spacing-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  z-index: 91;
+}
+
+.filter-sheet__header {
+  align-items: center;
+}
+
+.filter-scroll {
+  flex: 1;
+}
+
+.filter-group {
+  margin-bottom: var(--spacing-32);
+}
+
+.filter-group__tip {
+  margin-top: var(--spacing-8);
+}
+
+.filter-chip {
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: var(--radius-md);
+  border: 1rpx solid rgba(10, 138, 74, 0.2);
+  background: #ffffff;
+  font-size: var(--font-sm);
+  transition: all 0.2s;
+}
+
+.filter-chip.selected {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-actions {
+  gap: var(--spacing-16);
 }
