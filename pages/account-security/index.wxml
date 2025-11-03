@@ -1,0 +1,35 @@
+<!-- pages/account-security/index.wxml -->
+<!-- 账号与安全页面：模拟更换手机号和修改密码 -->
+<view class="security-page">
+  <view class="card">
+    <view class="section-title">更换手机号</view>
+    <view class="form-item">
+      <text class="label">当前手机号</text>
+      <input class="input" disabled value="{{security.phone || '未设置'}}" />
+    </view>
+    <view class="form-item">
+      <text class="label">新手机号</text>
+      <input class="input" placeholder="请输入新的手机号" bindinput="onInput" data-field="newPhone" type="number" />
+    </view>
+    <button class="action-btn" bindtap="onChangePhone">确认更换</button>
+  </view>
+
+  <view class="card">
+    <view class="section-title">修改密码</view>
+    <view class="form-item">
+      <text class="label">当前密码</text>
+      <input class="input" password placeholder="请输入当前密码" bindinput="onInput" data-field="currentPassword" />
+    </view>
+    <view class="form-item">
+      <text class="label">新密码</text>
+      <input class="input" password placeholder="请输入新密码（不少于6位）" bindinput="onInput" data-field="newPassword" />
+    </view>
+    <button class="action-btn" bindtap="onChangePassword">确认修改</button>
+    <view class="tips">* 密码仅保存在本地存储中，真实项目应交由安全的后端服务处理。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">安全中心说明</view>
+    <view class="content">请保持账号信息一致，谨防钓鱼链接，勿向陌生人透露验证码或支付信息。如需真正的账号安全防护，必须结合短信验证、服务端校验等手段。</view>
+  </view>
+</view>

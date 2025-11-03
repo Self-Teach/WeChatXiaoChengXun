@@ -1,0 +1,91 @@
+<!-- pages/product-detail/index.wxml -->
+<!-- 商品详情页面，展示轮播、基本信息、规格选择和购买操作 -->
+<view class="page-detail" wx:if="{{product}}">
+  <swiper class="detail-swiper" indicator-dots="true" autoplay="true" interval="3000" circular="true">
+    <block wx:for="{{product.images}}" wx:key="*this">
+      <swiper-item>
+        <image src="{{item}}" mode="aspectFill"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 基础信息模块 -->
+  <view class="card detail-card">
+    <view class="detail-title">{{product.name}}</view>
+    <view class="detail-sub">产地：{{product.origin}} ｜ 年份：{{product.year}} ｜ 类型：{{product.type}}</view>
+    <view class="detail-desc">{{product.desc}}</view>
+    <view class="detail-price">￥{{product.price}}</view>
+    <view class="detail-tags">
+      <text class="tag" wx:for="{{product.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 规格选择模块 -->
+  <view class="card detail-card">
+    <view class="section-title">规格选择</view>
+    <view class="spec-list">
+      <view
+        class="spec-item {{selectedSpecId === spec.id ? 'active' : ''}}"
+        wx:for="{{product.specs}}"
+        wx:key="id"
+        bindtap="onSelectSpec"
+        data-id="{{spec.id}}"
+        data-name="{{spec.name}}"
+      >
+        {{spec.name}}
+      </view>
+    </view>
+    <view class="quantity-row">
+      <text>购买数量</text>
+      <view class="quantity-ctrl">
+        <button size="mini" bindtap="onDecrease">-</button>
+        <text class="quantity-text">{{quantity}}</text>
+        <button size="mini" bindtap="onIncrease">+</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 规格信息补充 -->
+  <view class="card detail-card">
+    <view class="section-title">规格信息</view>
+    <view class="info-row">茶类：{{product.type}}</view>
+    <view class="info-row">仓储建议：干燥、通风、避光、无异味环境</view>
+    <view class="info-row">适宜人群：喜欢云南茶的朋友、赠礼人群</view>
+  </view>
+
+  <!-- 商品评价模块 -->
+  <view class="card detail-card">
+    <view class="section-title">用户评价</view>
+    <block wx:if="{{comments.length > 0}}">
+      <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+        <view class="comment-header">
+          <text class="comment-user">{{item.user}}</text>
+          <text class="comment-date">{{item.date}}</text>
+        </view>
+        <view class="comment-content">{{item.content}}</view>
+      </view>
+    </block>
+    <view class="text-muted" wx:else>暂无评价，欢迎您率先品鉴后分享体验。</view>
+  </view>
+
+  <!-- 富文本介绍 -->
+  <view class="card detail-card">
+    <view class="section-title">商品详情</view>
+    <view class="detail-rich">
+      <text>· 精选云南高山茶区原料，茶气足、香气高。</text>
+      <text>· 采用传统工艺压制，饼形端正，后期存放潜力好。</text>
+      <text>· 建议使用盖碗或紫砂壶冲泡，水温 95℃ 以上，快速醒茶。</text>
+      <text class="detail-note">以上内容来源于茶叶供应商提供资料，真实项目中需结合权威资料复核。</text>
+    </view>
+  </view>
+
+  <!-- 底部操作条 -->
+  <view class="action-bar">
+    <button class="action-btn" open-type="share">分享</button>
+    <button class="action-btn" bindtap="onAddCart">加入购物车</button>
+    <button class="action-btn primary" bindtap="onBuyNow">立即购买</button>
+  </view>
+</view>
+
+<!-- 兜底提示 -->
+<view class="text-muted" wx:else>商品信息加载中，请稍候...</view>

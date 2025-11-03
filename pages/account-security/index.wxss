@@ -1,0 +1,39 @@
+/* pages/account-security/index.wxss */
+.security-page {
+  padding: 24rpx;
+}
+
+.form-item {
+  margin-bottom: 20rpx;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8rpx;
+  font-size: 26rpx;
+}
+
+.input {
+  border: 1rpx solid #dddddd;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  background-color: #ffffff;
+}
+
+.action-btn {
+  background-color: #146356;
+  color: #ffffff;
+  margin-top: 8rpx;
+}
+
+.tips {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.content {
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 40rpx;
+}

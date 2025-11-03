@@ -1,0 +1,57 @@
+/* pages/knowledge-category/index.wxss */
+.category-page {
+  padding: 24rpx;
+}
+
+.category-card {
+  margin-bottom: 24rpx;
+}
+
+.category-header {
+  display: flex;
+  gap: 20rpx;
+}
+
+.category-header image {
+  width: 200rpx;
+  height: 140rpx;
+  border-radius: 16rpx;
+  background-color: #f3f3f3;
+}
+
+.category-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.category-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2f4f4f;
+}
+
+.category-definition {
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 38rpx;
+}
+
+.category-detail {
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  color: #444444;
+  line-height: 40rpx;
+}
+
+.detail-line {
+  margin-bottom: 6rpx;
+}
+
+.knowledge-note {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 36rpx;
+}

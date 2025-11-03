@@ -1,0 +1,51 @@
+/* app.wxss */
+/* 全局样式，定义基础色彩、字体与布局 */
+page {
+  background-color: #fdfaf5;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #333333;
+}
+
+button {
+  border-radius: 24rpx;
+  background-color: #146356;
+  color: #ffffff;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2f4f4f;
+  margin: 32rpx 0 16rpx 0;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.06);
+  margin-bottom: 24rpx;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-muted {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.price-text {
+  color: #c06014;
+  font-weight: 600;
+  font-size: 28rpx;
+}

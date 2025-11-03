@@ -1,0 +1,53 @@
+<!-- pages/profile/index.wxml -->
+<!-- 个人中心页面：登录模拟、订单入口、地址管理等 -->
+<view class="profile-page">
+  <view class="profile-header card">
+    <image class="avatar" src="{{userInfo.avatar || '/images/avatar-default.png'}}" mode="aspectFill"></image>
+    <view class="user-info">
+      <view class="nickname">{{userInfo.nickname || '游客'}}</view>
+      <view class="text-muted">欢迎光临云南茶叶馆</view>
+    </view>
+    <button class="login-btn" size="mini" bindtap="onLogin">{{userInfo ? '已登录' : '登录'}}</button>
+  </view>
+
+  <view class="card">
+    <view class="section-title">我的订单</view>
+    <view class="order-status-list">
+      <view class="status-item" wx:for="{{orderStatus}}" wx:key="id" bindtap="goOrderList" data-status="{{item.name}}">
+        <image src="{{item.icon}}" mode="aspectFit"></image>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card entry-card" bindtap="goAddressList">
+    <view class="entry-left">
+      <image src="/images/icon-address.png" mode="aspectFit"></image>
+      <view>
+        <view class="entry-title">地址管理</view>
+        <view class="entry-desc">管理收货人信息，结算时快速选择地址</view>
+      </view>
+    </view>
+    <text class="arrow">></text>
+  </view>
+
+  <view class="card entry-card" bindtap="goAccountSecurity">
+    <view class="entry-left">
+      <image src="/images/icon-security.png" mode="aspectFit"></image>
+      <view>
+        <view class="entry-title">账号与安全</view>
+        <view class="entry-desc">模拟更换手机号、修改密码等</view>
+      </view>
+    </view>
+    <text class="arrow">></text>
+  </view>
+
+  <view class="card">
+    <view class="section-title">客服服务</view>
+    <view class="service-box">
+      <view>添加客服微信号获取茶叶推荐：<text class="highlight">SelfLearner</text></view>
+      <button size="mini" bindtap="onCopyService">复制微信号</button>
+      <view class="text-muted">* 实际项目中可接入在线客服或企业微信，需遵守平台规范。</view>
+    </view>
+  </view>
+</view>

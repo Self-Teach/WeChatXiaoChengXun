@@ -1,0 +1,29 @@
+/* pages/knowledge/index.wxss */
+.knowledge-page {
+  padding: 24rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2f4f4f;
+}
+
+.card-desc {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 40rpx;
+}
+
+.tip-item {
+  font-size: 26rpx;
+  color: #444444;
+  margin-bottom: 12rpx;
+}
+
+.knowledge-note {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #999999;
+}

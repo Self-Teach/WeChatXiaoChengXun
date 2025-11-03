@@ -1,0 +1,22 @@
+<!-- pages/address-edit/index.wxml -->
+<!-- 地址编辑页面：用于新增或修改收货地址 -->
+<view class="edit-page">
+  <view class="form-item">
+    <text class="label">收货人</text>
+    <input class="input" placeholder="请输入收货人姓名" value="{{form.name}}" bindinput="onInput" data-field="name" />
+  </view>
+  <view class="form-item">
+    <text class="label">手机号</text>
+    <input class="input" placeholder="请输入联系电话" value="{{form.phone}}" bindinput="onInput" data-field="phone" type="number" />
+  </view>
+  <view class="form-item">
+    <text class="label">省市区</text>
+    <input class="input" placeholder="如：云南省 昆明市 五华区" value="{{form.region}}" bindinput="onInput" data-field="region" />
+  </view>
+  <view class="form-item">
+    <text class="label">详细地址</text>
+    <textarea class="textarea" placeholder="街道、小区、楼栋等详细信息" value="{{form.detail}}" bindinput="onTextarea" data-field="detail"></textarea>
+  </view>
+  <view class="tips">* 地址数据保存在本地存储中，仅用于学习演示。</view>
+  <button class="save-btn" bindtap="onSubmit">保存</button>
+</view>

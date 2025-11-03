@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/knowledge/index",
+    "pages/cart/index",
+    "pages/profile/index",
+    "pages/product-detail/index",
+    "pages/knowledge-category/index",
+    "pages/order-list/index",
+    "pages/address-list/index",
+    "pages/address-edit/index",
+    "pages/account-security/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f5f0e6",
+    "navigationBarTitleText": "云南茶叶馆",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#146356",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/knowledge/index",
+        "text": "茶识",
+        "iconPath": "images/tab-knowledge.png",
+        "selectedIconPath": "images/tab-knowledge-active.png"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "购物车",
+        "iconPath": "images/tab-cart.png",
+        "selectedIconPath": "images/tab-cart-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "images/tab-user.png",
+        "selectedIconPath": "images/tab-user-active.png"
+      }
+    ]
+  },
+  "style": "v2"
+}

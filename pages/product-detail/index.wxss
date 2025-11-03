@@ -1,0 +1,160 @@
+/* pages/product-detail/index.wxss */
+.page-detail {
+  padding-bottom: 120rpx;
+}
+
+.detail-swiper {
+  width: 100%;
+  height: 520rpx;
+}
+
+.detail-swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-card {
+  margin: 24rpx;
+}
+
+.detail-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #2f4f4f;
+}
+
+.detail-sub {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.detail-desc {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 40rpx;
+}
+
+.detail-price {
+  margin-top: 20rpx;
+  color: #c06014;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+.detail-tags {
+  margin-top: 16rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.tag {
+  background-color: #e9f5f1;
+  color: #146356;
+  padding: 4rpx 16rpx;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+}
+
+.spec-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.spec-item {
+  border: 1rpx solid #d0d0d0;
+  padding: 12rpx 24rpx;
+  border-radius: 24rpx;
+  font-size: 26rpx;
+  color: #555555;
+}
+
+.spec-item.active {
+  border-color: #146356;
+  background-color: #e9f5f1;
+  color: #146356;
+}
+
+.quantity-row {
+  margin-top: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.quantity-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.quantity-text {
+  min-width: 60rpx;
+  text-align: center;
+}
+
+.info-row {
+  font-size: 26rpx;
+  margin-bottom: 12rpx;
+  color: #555555;
+}
+
+.comment-item {
+  border-bottom: 1rpx solid #f0f0f0;
+  padding: 16rpx 0;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  color: #666666;
+  font-size: 24rpx;
+}
+
+.comment-content {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 40rpx;
+}
+
+.detail-rich {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  font-size: 26rpx;
+  color: #444444;
+}
+
+.detail-note {
+  color: #999999;
+  font-size: 24rpx;
+}
+
+.action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  padding: 16rpx 0;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.action-btn {
+  flex: 1;
+  margin: 0 16rpx;
+  border-radius: 30rpx;
+  background-color: #f0f0f0;
+  color: #333333;
+}
+
+.action-btn.primary {
+  background-color: #146356;
+  color: #ffffff;
+}

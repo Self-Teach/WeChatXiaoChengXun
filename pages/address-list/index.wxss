@@ -1,0 +1,42 @@
+/* pages/address-list/index.wxss */
+.address-page {
+  padding: 24rpx;
+}
+
+.add-btn {
+  background-color: #146356;
+  color: #ffffff;
+  margin-bottom: 24rpx;
+}
+
+.address-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin-bottom: 12rpx;
+}
+
+.address-detail {
+  font-size: 26rpx;
+  color: #555555;
+}
+
+.address-actions {
+  margin-top: 16rpx;
+  display: flex;
+  gap: 16rpx;
+}
+
+.empty {
+  margin-top: 120rpx;
+  text-align: center;
+  color: #999999;
+}

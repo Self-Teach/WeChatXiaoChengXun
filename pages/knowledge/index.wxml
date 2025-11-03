@@ -1,0 +1,27 @@
+<!-- pages/knowledge/index.wxml -->
+<!-- 茶叶知识科普主页面 -->
+<view class="knowledge-page">
+  <view class="section-title">云南茶分类</view>
+  <view class="card" bindtap="goCategory">
+    <view class="card-title">了解普洱、滇红等分类</view>
+    <view class="card-desc">点击进入，查看不同茶类的定义、工艺、口感与适宜人群。</view>
+  </view>
+
+  <view class="section-title">主要产地介绍</view>
+  <view class="card" wx:for="{{origins}}" wx:key="title">
+    <view class="card-title">{{item.title}}</view>
+    <view class="card-desc">{{item.content}}</view>
+  </view>
+
+  <view class="section-title">存储事项</view>
+  <view class="card">
+    <view class="tip-item" wx:for="{{storageTips}}" wx:key="*this">{{index + 1}}. {{item}}</view>
+    <view class="knowledge-note">以上建议来自茶叶仓储常识，在真实项目中应结合专家意见验证。</view>
+  </view>
+
+  <view class="section-title">冲泡方法</view>
+  <view class="card" wx:for="{{brewGuides}}" wx:key="title">
+    <view class="card-title">{{item.title}}</view>
+    <view class="card-desc">{{item.detail}}</view>
+  </view>
+</view>

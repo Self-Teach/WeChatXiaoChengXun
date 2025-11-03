@@ -1,0 +1,49 @@
+<!-- pages/cart/index.wxml -->
+<!-- 购物车页面：展示已加入的商品列表，支持数量调整和结算 -->
+<view class="cart-page">
+  <block wx:if="{{cartList.length > 0}}">
+    <view class="cart-header">
+      <view class="select-all" bindtap="onToggleAll">
+        <view class="select-icon {{allChecked ? 'checked' : ''}}"></view>
+        <text>全选</text>
+      </view>
+      <text class="text-muted">共 {{cartList.length}} 款商品</text>
+    </view>
+
+    <block wx:for="{{cartList}}" wx:key="{{item.id}}-{{item.specId}}">
+      <view class="cart-item">
+        <view class="select-icon {{item.checked ? 'checked' : ''}}" bindtap="onToggleItem" data-id="{{item.id}}" data-spec="{{item.specId}}"></view>
+        <image class="item-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="item-info">
+          <view class="item-name">{{item.name}}</view>
+          <view class="item-spec">规格：{{item.specName}}</view>
+          <view class="item-price">￥{{item.price}}</view>
+          <view class="quantity-wrap">
+            <button size="mini" bindtap="onDecrease" data-id="{{item.id}}" data-spec="{{item.specId}}">-</button>
+            <text class="quantity">{{item.quantity}}</text>
+            <button size="mini" bindtap="onIncrease" data-id="{{item.id}}" data-spec="{{item.specId}}">+</button>
+            <button class="delete-btn" size="mini" type="warn" bindtap="onDelete" data-id="{{item.id}}" data-spec="{{item.specId}}">删除</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <view class="empty-view" wx:else>
+    <image src="/images/empty-cart.png" mode="widthFix"></image>
+    <text>购物车空空如也，去首页挑选喜欢的茶吧～</text>
+    <button class="go-home" bindtap="goHome">去逛逛</button>
+  </view>
+
+  <!-- 底部结算条 -->
+  <view class="cart-footer" wx:if="{{cartList.length > 0}}">
+    <view class="footer-left">
+      <view class="select-all" bindtap="onToggleAll">
+        <view class="select-icon {{allChecked ? 'checked' : ''}}"></view>
+        <text>全选</text>
+      </view>
+      <view class="total-price">合计：￥{{summary.totalPrice}}</view>
+    </view>
+    <button class="checkout-btn" bindtap="onCheckout">结算({{summary.totalQuantity}})</button>
+  </view>
+</view>

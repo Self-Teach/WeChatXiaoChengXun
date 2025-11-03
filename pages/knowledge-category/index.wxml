@@ -1,0 +1,21 @@
+<!-- pages/knowledge-category/index.wxml -->
+<!-- 分类详情页面 -->
+<view class="category-page">
+  <block wx:for="{{categories}}" wx:key="id">
+    <view class="card category-card">
+      <view class="category-header">
+        <image src="{{item.image}}" mode="aspectFill"></image>
+        <view class="category-info">
+          <view class="category-name">{{item.name}}</view>
+          <view class="category-definition">{{item.definition}}</view>
+        </view>
+      </view>
+      <view class="category-detail">
+        <view class="detail-line">制作工艺：{{item.process}}</view>
+        <view class="detail-line">口感特点：{{item.taste}}</view>
+        <view class="detail-line">适宜人群：{{item.crowd}}</view>
+      </view>
+    </view>
+  </block>
+  <view class="knowledge-note">以上内容整理自云南当地茶叶从业者经验，实际应用需结合茶叶书籍、专家访谈进一步核实。</view>
+</view>
